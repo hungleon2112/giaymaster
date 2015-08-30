@@ -15,3 +15,6 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+
+Route::get("/admin/index",array('as'=>'admin.index','uses'=>'AdminController@Index'));
