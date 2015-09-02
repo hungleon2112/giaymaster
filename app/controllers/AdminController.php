@@ -7,9 +7,9 @@ class AdminController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function Dashboard()
 	{
-		return View::make('admin.index');
+		return View::make('admin.dashboard');
 	}
 
 

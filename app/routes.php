@@ -17,4 +17,4 @@ Route::get('/', function()
 });
 
 
-Route::get("/admin/index",array('as'=>'admin.index','uses'=>'AdminController@Index'));
+Route::get("/admin/dashboard",array('as'=>'admin.dashboard','uses'=>'AdminController@Dashboard'));

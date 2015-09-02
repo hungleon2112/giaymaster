@@ -36,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html">MasterC Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -143,39 +143,32 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href=""><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class=""></i> Sản phẩm <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="product" class="collapse">
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#">Thêm</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#">Danh sách</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a href=""><i class=""></i> Đơn hàng </a>
                     </li>
                     <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#order"><i class=""></i> Đại lý <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="order" class="collapse">
+                            <li>
+                                <a href="#">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="#">Danh sách</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -201,15 +194,6 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
 
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -234,28 +218,28 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-tasks fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>New Tasks!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    {{--<div class="col-lg-3 col-md-6">--}}
+                        {{--<div class="panel panel-green">--}}
+                            {{--<div class="panel-heading">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-xs-3">--}}
+                                        {{--<i class="fa fa-tasks fa-5x"></i>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-xs-9 text-right">--}}
+                                        {{--<div class="huge">12</div>--}}
+                                        {{--<div>New Tasks!</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<a href="#">--}}
+                                {{--<div class="panel-footer">--}}
+                                    {{--<span class="pull-left">View Details</span>--}}
+                                    {{--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>--}}
+                                    {{--<div class="clearfix"></div>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-yellow">
                             <div class="panel-heading">
@@ -278,28 +262,28 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    {{--<div class="col-lg-3 col-md-6">--}}
+                        {{--<div class="panel panel-red">--}}
+                            {{--<div class="panel-heading">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-xs-3">--}}
+                                        {{--<i class="fa fa-support fa-5x"></i>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-xs-9 text-right">--}}
+                                        {{--<div class="huge">13</div>--}}
+                                        {{--<div>Support Tickets!</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<a href="#">--}}
+                                {{--<div class="panel-footer">--}}
+                                    {{--<span class="pull-left">View Details</span>--}}
+                                    {{--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>--}}
+                                    {{--<div class="clearfix"></div>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 <!-- /.row -->
 
@@ -318,20 +302,20 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
+                    {{--<div class="col-lg-4">--}}
+                        {{--<div class="panel panel-default">--}}
+                            {{--<div class="panel-heading">--}}
+                                {{--<h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>--}}
+                            {{--</div>--}}
+                            {{--<div class="panel-body">--}}
+                                {{--<div id="morris-donut-chart"></div>--}}
+                                {{--<div class="text-right">--}}
+                                    {{--<a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
@@ -377,7 +361,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Transactions Panel</h3>
