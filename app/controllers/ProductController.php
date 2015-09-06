@@ -2,6 +2,11 @@
 
 class ProductController extends \BaseController {
 
+    public function Add()
+    {
+        return View::make('admin.productAdd');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

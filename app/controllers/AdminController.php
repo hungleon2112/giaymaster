@@ -12,8 +12,7 @@ class AdminController extends \BaseController {
 		return View::make('admin.dashboard');
 	}
 
-
-	/**
+ 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
