@@ -20,17 +20,12 @@
         @include('_partials.banner')
       </div>
       <div class="main_content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2 col-sm-2 category">
-              @include('_partials.right_menu')
+              <div class="container">
+                <div class="blog-content">
+                    @yield('content')
+                </div>
+              </div>
             </div>
-            <div class="col-md-10 col-sm-12 category-content">
-              @yield('content')
-            </div>
-          </div>
-        </div>
-      </div>
 
       <footer>
         @include('_partials.footer')

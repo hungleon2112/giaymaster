@@ -2,6 +2,8 @@
     <!-- Bootstrap -->
     <link href="/front/css/bootstrap.min.css" rel="stylesheet">
     <link href="/front/css/jquery.bxslider.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/front/css/examples.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/front/css/transitions.css" media="all" />
     <link href="/front/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

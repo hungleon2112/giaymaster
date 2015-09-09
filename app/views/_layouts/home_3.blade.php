@@ -17,20 +17,24 @@
         @include('_partials.header')
       </header>
       <div class="banner">
-        @include('_partials.banner')
+          <div class="banner_images_content">
+            <div id="googleMap"></div>
+          </div>
+          <div class="description_banner">
+            <p>
+              Pellentesque habitant <br>
+              morbi tristique <span>senectus et</span>
+            </p>
+            <span>Proin malesuada consectetur erat, vitae lacinia</span>
+          </div>
       </div>
       <div class="main_content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2 col-sm-2 category">
-              @include('_partials.right_menu')
+              <div class="container">
+                <div class="blog-content">
+                    @yield('content')
+                </div>
+              </div>
             </div>
-            <div class="col-md-10 col-sm-12 category-content">
-              @yield('content')
-            </div>
-          </div>
-        </div>
-      </div>
 
       <footer>
         @include('_partials.footer')

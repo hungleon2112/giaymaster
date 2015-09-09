@@ -860,3 +860,6 @@ footer {
         opacity: 1; }
     .gallery #bx-pager .active {
       opacity: 1; }
+
+.hide-images {
+  display: none; }
