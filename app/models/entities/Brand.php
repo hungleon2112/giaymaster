@@ -34,5 +34,9 @@ class Brand extends BaseModel {
         return $this->hasMany('Product', 'category_id', 'id');
     }
 
+    public function GetAllBrand()
+    {
+        return Brand::all();
+    }
 
 }

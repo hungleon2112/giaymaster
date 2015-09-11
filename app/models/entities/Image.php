@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Image extends BaseModel {
+class Images extends BaseModel {
 
 
 
@@ -24,6 +24,14 @@ class Image extends BaseModel {
     public static $rules_update = array();
 
     public static $rules_delete = array();
+
+
+    public function GetAllImage($product_id)
+    {
+        $query = static::where('product_id', '=', $product_id);
+        $results = $query->get();
+        return $results;
+    }
 
 
 	/**

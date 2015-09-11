@@ -34,4 +34,9 @@ class Branch extends BaseModel {
     {
         return $this->hasMany('Category', 'branch_id', 'id');
     }
+
+    public function GetAllBranch()
+    {
+        return Branch::all();
+    }
 }

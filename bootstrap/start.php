@@ -24,11 +24,12 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-
-	'local' => array('homestead'),
-
-));
+$env = $app->detectEnvironment(function() {
+    if(in_array(gethostname(),['prod.get4x.com','cp.get4x.com'])){
+        return 'production';
+    }
+    return 'local';
+});
 
 /*
 |--------------------------------------------------------------------------

@@ -1,6 +1,8 @@
 <!-- Bootstrap Core CSS -->
 <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
 
+<link href="/admin/css/admin_css.css" rel="stylesheet">
+
 <!-- Custom CSS -->
 <link href="/admin/css/sb-admin.css" rel="stylesheet">
 

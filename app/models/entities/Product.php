@@ -45,6 +45,21 @@ class Product extends BaseModel {
         return $this->hasMany('Optional_Product', 'product_id', 'id');
     }
 
+    public function Brand()
+    {
+        return $this->belongsTo('Brand','brand_id');
+    }
+
+    public function ListProduct()
+    {
+        $results = DB::table('products')
+            ->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'brands.name as brand', 'categories.name as category')
+            ->get();
+        return $results;
+    }
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

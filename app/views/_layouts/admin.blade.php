@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Giày MasterC - Admin</title>
 
     @include('_partials.admin_css_include')
 
@@ -149,10 +149,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class=""></i> Sản phẩm <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="product" class="collapse">
                             <li>
-                                <a href="../admin/product/add">Thêm</a>
+                                <a href="/admin/product/add">Thêm</a>
                             </li>
                             <li>
-                                <a href="#">Danh sách</a>
+                                <a href="/admin/product/list">Danh sách</a>
                             </li>
                         </ul>
                     </li>
