@@ -120,9 +120,53 @@ class ProductController extends \BaseController {
 
     public function ListProduct()
     {
-        $listProduct = $this->product->ListProduct();
+        $listProduct = $this->product->ListProduct((Session::get('pagination')) != '' ? Session::get('pagination') : 50);
         return View::make('admin.productList')->with('listProduct',$listProduct);
     }
+
+    public function SetPagination()
+    {
+        try
+        {
+            $input = Input::all();
+            if(isset($input))
+            {
+                $pagination = $input['showing'];
+                Session::put('pagination', $pagination);
+            }
+        }
+        catch(Exception $e)
+        {
+            print_r($e->getMessage());
+            die();
+            return $e->getMessage();
+        }
+    }
+
+
+    public function Edit()
+    {
+        $input = Input::all();
+        $product_id = $input['id'];
+
+        $product = $this->product->FindProduct($product_id);
+
+        $listImage = $this->image->GetAllImage($input['id']);
+        foreach($listImage as $i)
+        {
+            $i['url'] = $_ENV['Domain_Name']."\\".$i['url'];
+        }
+
+        $listBranch = $this->branch->GetAllBranch();
+        $listBrand = $this->brand->GetAllBrand();
+
+        return View::make('admin.productAdd')
+            ->with('listBranch',$listBranch)
+            ->with('listBrand',$listBrand)
+            ->with('product',$product[0])
+            ->with('listImage', $listImage);
+    }
+
 
 
 	/**
@@ -169,29 +213,6 @@ class ProductController extends \BaseController {
 		//
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
 
 	/**

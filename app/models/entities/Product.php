@@ -50,12 +50,24 @@ class Product extends BaseModel {
         return $this->belongsTo('Brand','brand_id');
     }
 
-    public function ListProduct()
+    public function ListProduct($pagination)
     {
         $results = DB::table('products')
-            ->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->leftJoin('brands', 'products.brand_id', '=', 'brands.id')
+            ->leftjoin('categories', 'products.category_id', '=', 'categories.id')
+            ->join('branchs', 'categories.branch_id', '=', 'branchs.id')
+            ->select('products.*', 'brands.name as brand', 'categories.name as category', 'branchs.name as branch')
+            ->paginate($pagination);
+        return $results;
+    }
+
+    public function FindProduct($product_id)
+    {
+        $results = DB::table('products')
+            ->leftJoin('brands', 'products.brand_id', '=', 'brands.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*', 'brands.name as brand', 'categories.name as category')
+            ->where('products.id','=',$product_id)
             ->get();
         return $results;
     }

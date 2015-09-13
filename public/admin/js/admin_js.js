@@ -239,6 +239,26 @@ $( document ).ready(function() {
         });
         return false;
     });
+
+    //Showing Item Per Page
+    $("#showing-button").click(function() {
+        var showing = $("#showing").val();
+
+        $.ajax({
+            url: '/admin/product/showing',
+            type: 'GET',
+            data: { showing: $("#showing").val()} ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+
 });
 
 function CleanAllCatLev()

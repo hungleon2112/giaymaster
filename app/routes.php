@@ -22,6 +22,7 @@ Route::get("/product/detail",array('as'=>'home.index','uses'=>'HomeController@Pr
 
 
 Route::get("/admin/dashboard",array('as'=>'admin.dashboard','uses'=>'AdminController@Dashboard'));
+
 Route::get("/admin/product/add",array('as'=>'admin.product.add','uses'=>'ProductController@Add'));
 Route::post("/admin/product/postAdd",array('as'=>'admin.product.add','uses'=>'ProductController@PostAdd'));
 Route::post("/admin/product/uploadImage",array('as'=>'admin.product.add','uses'=>'ProductController@UploadImage'));
@@ -32,3 +33,5 @@ Route::get("/admin/product/deleteImage",array('as'=>'admin.product.add','uses'=>
 
 Route::get("/admin/product/list",array('as'=>'admin.product.list','uses'=>'ProductController@ListProduct'));
 
+Route::get("/admin/product/edit",array('as'=>'admin.product.edit','uses'=>'ProductController@Edit'));
+Route::get("/admin/product/showing",array('as'=>'admin.product.showing','uses'=>'ProductController@SetPagination'));

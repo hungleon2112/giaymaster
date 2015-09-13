@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Sản phẩm <small id="modify-type">Tạo mới</small>
+                Sản phẩm <small id="modify-type"><?php echo (!isset($product) ? 'Tạo mới' : 'Cập nhật')  ?></small>
             </h1>
         </div>
     </div>
@@ -16,16 +16,24 @@
 <div class="row">
     <div class="col-xs-6">
         {{ Form::open(array('method' => 'POST','route' => 'admin.product.add','role'=>'form', 'id'=>'product-form', 'name'=>'product-form')) }}
-        <input type="hidden" value="{{ $product['id'] }}" id="id" name="id">
+        <input type="hidden" value="{{ isset($product)?$product->id:'' }}" id="id" name="id">
          <!-- Name -->
           <div class="form-group">
             {{ Form::label('name', 'Tên') }}
-            {{ Form::input('text','name',$product['name'],array('class'=>'form-control','id'=>'name','placeholder'=>'Tên')) }}
+            {{ Form::input('text','name',isset($product)?$product->name:'',array('class'=>'form-control','id'=>'name','placeholder'=>'Tên')) }}
           </div>
 
           <!-- Cateogy -->
           <div class="form-group">
             {{ Form::label('category', 'Loại') }}
+            <?php
+            if(isset($product))
+                {
+                    echo '<div class="dropdown">';
+                    echo Form::input('text','name','Đang chọn: '.isset($product)?$product->category:'',array('style'=>'width:50%;','class'=>'form-control','id'=>'name','placeholder'=>'Tên','disabled'));
+                    echo '</div>';
+                }
+            ?>
             <div class="dropdown">
               <select name="branch" id="branch" class="form-control">
                   <option value="0"> --- Chọn loại --- </option>
@@ -53,13 +61,21 @@
               </select>
             </div>
 
-            <input type="hidden" name="category_id" id="category_id" value="{{ $product['category_id']  }}" />
+            <input type="hidden" name="category_id" id="category_id" value="{{ isset($product)?$product->category_id:''  }}" />
 
           </div>
 
           <!-- Brand -->
           <div class="form-group">
               {{ Form::label('brand', 'Thương hiệu') }}
+              <?php
+                      if(isset($product))
+                          {
+                              echo '<div class="dropdown">';
+                              echo Form::input('text','name','Đang chọn: '.isset($product)?$product->brand:'',array('style'=>'width:50%;','class'=>'form-control','id'=>'name','placeholder'=>'Tên','disabled'));
+                              echo '</div>';
+                          }
+                      ?>
               <div class="dropdown">
                 <select name="brand" id="brand" class="form-control">
                     <option value="0"> --- Chọn thương hiệu --- </option>
@@ -75,11 +91,31 @@
               {{ Form::label('gender', 'Nam / Nữ') }}
               <div class="radio">
                 <label>
-                  <input type="radio" name="gender" id="gender" value="Nam" checked>
+                  <input type="radio" name="gender" id="gender" value="Nam"
+                  <?php
+                  if(isset($product))
+                  {
+                    if($product->gender == 'Nam')
+                    {
+                       echo 'checked';
+                    }
+                  }
+                  ?>
+                  >
                     Nam
                 </label>
                 <label>
-                   <input type="radio" name="gender" id="gender" value="Nữ" checked>
+                   <input type="radio" name="gender" id="gender" value="Nữ"
+                   <?php
+                     if(isset($product))
+                     {
+                       if($product->gender == 'Nữ')
+                       {
+                          echo 'checked';
+                       }
+                     }
+                   ?>
+                   >
                      Nữ
                 </label>
               </div>
@@ -88,22 +124,22 @@
           <!-- Price Original -->
           <div class="form-group">
                 {{ Form::label('price_original', 'Giá') }}
-                {{ Form::input('text','price_original',$product['price_original'],array('class'=>'form-control','id'=>'price_original','placeholder'=>'Giá')) }}
+                {{ Form::input('text','price_original',isset($product)?$product->price_original:'',array('class'=>'form-control','id'=>'price_original','placeholder'=>'Giá')) }}
           </div>
 
           <!-- Price Original -->
           <div class="form-group">
                  {{ Form::label('price_new', 'Giá mới') }}
-                 {{ Form::input('text','price_new',$product['price_new'],array('class'=>'form-control','id'=>'price_new','placeholder'=>'Giá mới')) }}
+                 {{ Form::input('text','price_new',isset($product)?$product->price_new:'',array('class'=>'form-control','id'=>'price_new','placeholder'=>'Giá mới')) }}
           </div>
 
           <!-- Price Original -->
           <div class="form-group">
                  {{ Form::label('size', 'Size') }}
-                 {{ Form::input('text','size',$product['size'],array('class'=>'form-control','id'=>'size','placeholder'=>'Size (cách nhau bằng dấu "  , " )')) }}
+                 {{ Form::input('text','size',isset($product)?$product->size:'',array('class'=>'form-control','id'=>'size','placeholder'=>'Size (cách nhau bằng dấu "  , " )')) }}
           </div>
 
-          <button type="button" id="product-add" class="btn btn-default">Thêm sản phẩm</button>
+          <button type="button" id="product-add" class="btn btn-default"><?php echo (!isset($product) ? 'Thêm sản phẩm' : 'Cập nhật sản phẩm')  ?></button>
 
         {{ Form::close() }}
 
@@ -111,11 +147,22 @@
         <br/>
 
         <!-- Upload Image -->
-        <div id="upload-image-panel" style="display:none">
+        <div id="upload-image-panel"
+        <?php
+        if(isset($listImage))
+        {
+            echo 'style="display:block"';
+        }
+        else{
+            echo 'style="display:none"';
+        }
+        ?>
+
+        >
             <div class="form-group">
                   {{ Form::label('image', 'Hình ảnh') }}
                   {{ Form::open(array('url' => 'upload', 'files' => true, 'id' => 'upload-form')) }}
-                     <input type="hidden" value="{{ $product['id'] }}" id="product_id" name="id">
+                     <input type="hidden" value="{{ isset($product)?$product->id:'' }}" id="product_id" name="id">
                     {{ Form::file('image', array('class'=>'form-control', 'id'=>'image')) }}
                   {{ Form::close() }}
             </div>
@@ -125,7 +172,17 @@
             <div class="form-group">
                 <div class="table-responsive">
                     <table id="table-image" class="table table-bordered table-striped">
-
+                    <?php
+                    if(isset($listImage))
+                    {
+                        foreach($listImage as $i)
+                        {
+                            echo '<tr><td><img class="product-image" src='.$i->url.' /> </td>'.
+                                 '<td> <button class="btn btn-default" type="button" id="delete-image" image-id = '.$i->id.'>Delete</button> </td> ' .
+                                 '</tr>';
+                        }
+                    }
+                    ?>
                     </table>
                 </div>
             </div>
@@ -139,7 +196,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><b id="modify-type-modal">Thêm</b> sản phẩm thành công</h4>
+        <h4 class="modal-title"><b id="modify-type-modal"><?php echo (!isset($product) ? 'Thêm' : 'Cập nhật')  ?></b> sản phẩm thành công</h4>
       </div>
       <div class="modal-body">
         <p></p>

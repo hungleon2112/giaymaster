@@ -3,6 +3,8 @@
 
 <link href="/admin/css/admin_css.css" rel="stylesheet">
 
+<link href="/admin/css/bootstrap-table.css" rel="stylesheet">
+
 <!-- Custom CSS -->
 <link href="/admin/css/sb-admin.css" rel="stylesheet">
 
