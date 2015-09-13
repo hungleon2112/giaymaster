@@ -115,7 +115,6 @@ $( document ).ready(function() {
 
         var form = document.forms.namedItem("product-form"); // high importance!, here you need change "yourformname" with the name of your form
         var formdata = new FormData(form); // high importance!
-
         $.ajax({
             async: true,
             url: '/admin/product/postAdd',
@@ -258,6 +257,43 @@ $( document ).ready(function() {
         });
     });
 
+
+    $('.date-picker').datepicker();
+
+    //Insert New Optional product
+    $('#optional-checkbox').change(function() {
+        var $this = $(this);
+        if ($this.is(':checked')) {
+
+            var parentForm = $this.parent().parent();
+            var $from_date = parentForm.find("from_date");
+            if($("#" + parentForm.find("from_date").selector).val() == '' || $("#" + parentForm.find("to_date").selector).val() == '')
+            {
+                alert('Vui lòng chọn ngày bắt đầu và ngày kết thúc.');
+                $this.prop('checked',false);
+                return false;
+            }
+            var form = document.forms.namedItem($this.attr('form-name')); // high importance!, here you need change "yourformname" with the name of your form
+            var formdata = new FormData(form); // high importance!
+            $.ajax({
+                async: true,
+                url: '/admin/product/optionalInsert',
+                type: 'POST',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+
+
+        } else {
+            // the checkbox was unchecked
+        }
+    });
 
 });
 

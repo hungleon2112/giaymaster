@@ -30,7 +30,7 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-8">
+    <div class="col-xs-12">
         <div class="table-responsive">
             <table data-toggle="table" data-search="true"   class="table table-hover" data-sort-order="desc" data-sort-name="name" >
                 <thead>
@@ -42,6 +42,8 @@
                         <th data-sortable="true">Nam/Nữ</th>
                         <th data-sortable="true">Giá</th>
                         <th>Giá mới</th>
+                        <th>Hàng mới</th>
+                        <th>Sale off</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +56,22 @@
                             <td>{{$p->gender}}</td>
                             <td>{{$p->price_original}}</td>
                             <td>{{$p->price_new}}</td>
+                            <td>
+                            <div class="form-group">
+                                <form name="optional-form-{{$p->id}}">
+                                    <input type="hidden" name="optional_product_id" id="optional_product_id">
+                                    <input type="hidden" value="{{$p->id}}" id="product_id" name="product_id">
+                                    <label><input type="checkbox" form-name="optional-form-{{$p->id}}" value="1" name="optional_id" id="optional-checkbox"></label>
+                                    <div class="form-group">
+                                    <input class="form-control date-picker" data-date-format="dd/mm/yy" id="from_date" name="from_date" />
+                                    </div>
+                                    <div class="form-group">
+                                    <input class="form-control date-picker" data-date-format="dd/mm/yy"  id="to_date" name="to_date" />
+                                    </div>
+                                </form>
+                            </div>
+                            </td>
+                            <td></td>
                         </tr>
                     @endforeach
                 </tbody>

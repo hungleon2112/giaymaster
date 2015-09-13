@@ -2,6 +2,35 @@
 
 class OptionalProductController extends \BaseController {
 
+
+    protected $optional_product;
+
+    public function __construct(Optional_Product $optional_product){
+        $this->optional_product = $optional_product;
+    }
+
+    public function OptionalInsert()
+    {
+        $input = Input::all();
+        $final_input['product_id'] = $input['product_id'];
+        $final_input['optional_id'] = $input['optional_id'];
+        $final_input['from_date'] = $input['from_date'];
+        $final_input['to_date'] = $input['to_date'];
+
+        $optional_product = $this->optional_product->create($final_input);
+        return $optional_product;
+    }
+
+    public function OptionalDelete()
+    {
+        $input = Input::all();
+        $final_input['optional_product_id'] = $input['optional_product_id'];
+
+        $optional_product = Optional_Product::find($final_input['optional_product_id']);
+        $optional_product->delete();
+    }
+
+
 	/**
 	 * Display a listing of the resource.
 	 *

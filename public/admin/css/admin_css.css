@@ -35,3 +35,7 @@ select{
 #loading-modal img{
     margin-left:-16px;
 }
+
+.date-picker{
+    min-width:85px;
+}
