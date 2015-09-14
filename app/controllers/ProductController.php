@@ -7,17 +7,20 @@ class ProductController extends \BaseController {
     protected $brand;
     protected $product;
     protected $image;
+    protected $optional_product;
 
     public function __construct(Branch $branch,
                                 Category $category,
                                 Brand $brand,
                                 Product $product,
-                                Images $image){
+                                Images $image,
+                                Optional_Product $optional_product){
         $this->branch = $branch;
         $this->category = $category;
         $this->brand = $brand;
         $this->product = $product;
         $this->image = $image;
+        $this->optional_product = $optional_product;
     }
 
     public function Add()
@@ -121,6 +124,22 @@ class ProductController extends \BaseController {
     public function ListProduct()
     {
         $listProduct = $this->product->ListProduct((Session::get('pagination')) != '' ? Session::get('pagination') : 50);
+        foreach($listProduct as $p){
+            //Get Optional News
+            $optional_product_news = $this->optional_product->GetOptionalProductByProductID($_ENV['News'], $p->id);
+            if(isset($optional_product_news))
+            {
+                $p->optional_news = $optional_product_news;
+            }
+
+            //Get Optional Sale Off
+            $optional_product_sale = $this->optional_product->GetOptionalProductByProductID($_ENV['Sale'], $p->id);
+            if(isset($optional_product_sale))
+            {
+                $p->optional_sale = $optional_product_sale;
+            }
+        }
+        //print_r($listProduct); die();
         return View::make('admin.productList')->with('listProduct',$listProduct);
     }
 

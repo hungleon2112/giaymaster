@@ -54,9 +54,8 @@ class Product extends BaseModel {
     {
         $results = DB::table('products')
             ->leftJoin('brands', 'products.brand_id', '=', 'brands.id')
-            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
             ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
-            ->leftJoin('optional')
             ->select('products.*', 'brands.name as brand', 'categories.name as category', 'branchs.name as branch')
             ->paginate($pagination);
         return $results;

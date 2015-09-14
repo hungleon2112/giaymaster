@@ -249,7 +249,8 @@ $( document ).ready(function() {
             data: { showing: $("#showing").val()} ,
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
-                location.reload();
+                //location.reload();
+                window.location = '/admin/product/list';
             },
             error: function () {
                 console.log('error');
@@ -259,6 +260,16 @@ $( document ).ready(function() {
 
 
     $('.date-picker').datepicker();
+
+    $('.date-picker').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+
+    $('.date-picker-modal').datepicker();
+
+    $('.date-picker-modal').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
 
     //Insert New Optional product
     $(document).on('change', '#optional-checkbox', function() {
@@ -274,9 +285,36 @@ $( document ).ready(function() {
             }
             var form = document.forms.namedItem($this.attr('form-name')); // high importance!, here you need change "yourformname" with the name of your form
             var formdata = new FormData(form); // high importance!
+
+            $('#loading-modal').modal('show');
             $.ajax({
                 async: true,
                 url: '/admin/product/optionalInsert',
+                type: 'POST',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    (parentForm.find("#optional_product_id")).val(response.id);
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+
+            $('#loading-modal').modal('hide');
+        } else {
+
+            $('#loading-modal').modal('show');
+            var parentForm = $("#"+$this.attr('form-name'));
+            (parentForm.find("#from_date")).val('');
+            (parentForm.find("#to_date")).val('');
+
+            var form = document.forms.namedItem($this.attr('form-name')); // high importance!, here you need change "yourformname" with the name of your form
+            var formdata = new FormData(form); // high importance!
+            $.ajax({
+                async: true,
+                url: '/admin/product/optionalDelete',
                 type: 'POST',
                 data: formdata,
                 contentType: false,
@@ -287,14 +325,22 @@ $( document ).ready(function() {
                     console.log('error');
                 }
             });
-
-
-        } else {
-            var parentForm = $("#"+$this.attr('form-name'));
-            (parentForm.find("#from_date")).val('');
-            (parentForm.find("#to_date")).val('');
+            $('#loading-modal').modal('hide');
         }
     });
+
+
+    //Open Update Panel
+    $("#edit-button").click(function(){
+        $('#update-panel').modal('show');
+        $("input[name='btSelectItem']").each(function()
+        {
+            var theTrTag = $(this).parent().parent();
+            var product_id = (theTrTag.find("#product_id_hidden"));
+            console.log(product_id);
+        });
+    });
+
 
 });
 

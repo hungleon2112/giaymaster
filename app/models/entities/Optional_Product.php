@@ -31,5 +31,12 @@ class Optional_Product extends BaseModel {
 	 * @var array
 	 */
 
+    public function GetOptionalProductByProductID($optional_id, $product_id){
+        $results = DB::table('optional_product')
+            ->where('product_id','=',$product_id)
+            ->where('optional_id','=',$optional_id)
+            ->get();
+        return $results;
+    }
 
 }

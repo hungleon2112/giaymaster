@@ -39,3 +39,7 @@ select{
 .date-picker{
     min-width:85px;
 }
+
+.datepicker{
+    z-index: 99999 !important;
+}
