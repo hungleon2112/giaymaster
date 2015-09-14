@@ -261,13 +261,12 @@ $( document ).ready(function() {
     $('.date-picker').datepicker();
 
     //Insert New Optional product
-    $('#optional-checkbox').change(function() {
+    $(document).on('change', '#optional-checkbox', function() {
         var $this = $(this);
         if ($this.is(':checked')) {
 
-            var parentForm = $this.parent().parent();
-            var $from_date = parentForm.find("from_date");
-            if($("#" + parentForm.find("from_date").selector).val() == '' || $("#" + parentForm.find("to_date").selector).val() == '')
+            var parentForm = $("#"+$this.attr('form-name'));
+            if((parentForm.find("#from_date")).val() == '' || (parentForm.find("#to_date")).val() == '')
             {
                 alert('Vui lòng chọn ngày bắt đầu và ngày kết thúc.');
                 $this.prop('checked',false);
@@ -291,7 +290,9 @@ $( document ).ready(function() {
 
 
         } else {
-            // the checkbox was unchecked
+            var parentForm = $("#"+$this.attr('form-name'));
+            (parentForm.find("#from_date")).val('');
+            (parentForm.find("#to_date")).val('');
         }
     });
 

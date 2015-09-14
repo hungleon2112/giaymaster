@@ -100,6 +100,10 @@
                        echo 'checked';
                     }
                   }
+                  else
+                  {
+                    echo 'checked';
+                  }
                   ?>
                   >
                     Nam

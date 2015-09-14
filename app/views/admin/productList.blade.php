@@ -58,10 +58,10 @@
                             <td>{{$p->price_new}}</td>
                             <td>
                             <div class="form-group">
-                                <form name="optional-form-{{$p->id}}">
+                                <form name="optional-form-1-{{$p->id}}" id="optional-form-1-{{$p->id}}">
                                     <input type="hidden" name="optional_product_id" id="optional_product_id">
                                     <input type="hidden" value="{{$p->id}}" id="product_id" name="product_id">
-                                    <label><input type="checkbox" form-name="optional-form-{{$p->id}}" value="1" name="optional_id" id="optional-checkbox"></label>
+                                    <label><input type="checkbox" form-name="optional-form-1-{{$p->id}}" value="1" name="optional_id" id="optional-checkbox"></label>
                                     <div class="form-group">
                                     <input class="form-control date-picker" data-date-format="dd/mm/yy" id="from_date" name="from_date" />
                                     </div>
@@ -71,7 +71,21 @@
                                 </form>
                             </div>
                             </td>
-                            <td></td>
+                            <td>
+                            <div class="form-group">
+                                <form name="optional-form-2-{{$p->id}}" id="optional-form-2-{{$p->id}}">
+                                    <input type="hidden" name="optional_product_id" id="optional_product_id">
+                                    <input type="hidden" value="{{$p->id}}" id="product_id" name="product_id">
+                                    <label><input type="checkbox" form-name="optional-form-2-{{$p->id}}" value="2" name="optional_id" id="optional-checkbox"></label>
+                                    <div class="form-group">
+                                    <input class="form-control date-picker" data-date-format="dd/mm/yy" id="from_date" name="from_date" />
+                                    </div>
+                                    <div class="form-group">
+                                    <input class="form-control date-picker" data-date-format="dd/mm/yy"  id="to_date" name="to_date" />
+                                    </div>
+                                </form>
+                            </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
