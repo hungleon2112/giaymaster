@@ -47,6 +47,7 @@
       </div>
       <div class="modal-body">
         <form>
+          <input type="hidden" id="update-list-product-id" name="update-list-product-id">
           <div class="form-group">
             <label for="exampleInputEmail1">Giá</label>
             <input type="text" class="form-control" id="price_original" placeholder="Giá">
@@ -57,31 +58,53 @@
           </div>
           <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="1" name="optional_id" id="optional-checkbox">Hàng mới
+                    <input type="checkbox" value="1" name="optional_id" id="optional-checkbox-news">Hàng mới
                 </label>
                 <div class="form-group">
-                <input class="form-control date-picker-modal" placeholder="Ngày bắt đầu" data-date-format="yyyy/mm/dd" id="from_date" name="from_date_news" />
+                <input disabled class="form-control date-picker-modal" placeholder="Ngày bắt đầu" data-date-format="yyyy/mm/dd" id="from_date_news" name="from_date_news" />
                 </div>
                 <div class="form-group">
-                <input class="form-control date-picker-modal" placeholder="Ngày kết thúc" data-date-format="yyyy/mm/dd"  id="to_date" name="to_date_news" />
+                <input disabled class="form-control date-picker-modal" placeholder="Ngày kết thúc" data-date-format="yyyy/mm/dd"  id="to_date_news" name="to_date_news" />
                 </div>
           </div>
           <div class="checkbox">
               <label>
-                  <input type="checkbox" value="2" name="optional_id" id="optional-checkbox">Sale Off
+                  <input type="checkbox" value="2" name="optional_id" id="optional-checkbox-sale">Sale Off
               </label>
               <div class="form-group">
-              <input class="form-control date-picker-modal" placeholder="Ngày bắt đầu" data-date-format="yyyy/mm/dd" id="from_date" name="from_date_sale" />
+              <input disabled class="form-control date-picker-modal" placeholder="Ngày bắt đầu" data-date-format="yyyy/mm/dd" id="from_date_sale" name="from_date_sale" />
               </div>
               <div class="form-group">
-              <input class="form-control date-picker-modal" placeholder="Ngày kết thúc" data-date-format="yyyy/mm/dd"  id="to_date" name="to_date_sale" />
+              <input disabled class="form-control date-picker-modal" placeholder="Ngày kết thúc" data-date-format="yyyy/mm/dd"  id="to_date_sale" name="to_date_sale" />
               </div>
            </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary">Lưu</button>
+        <button type="button" class="btn btn-primary" id="btn-update">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Update Panel -->
+<div class="modal fade" id="delete-panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Xóa sản phẩm</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="hidden" id="delete-list-product-id" name="delete-list-product-id">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" id="btn-delete">Xóa</button>
       </div>
     </div>
   </div>
@@ -108,10 +131,10 @@
                 </thead>
                 <tbody>
                     @foreach($listProduct as $p)
-                        <input type="hidden" value="{{$p->id}}" id="product_id_hidden" name="product_id">
                         <tr>
                             <td></td>
                             <td>
+                                <input type="hidden" value="{{$p->id}}" id="product_id_hidden" name="product_id">
                                 <a href="/admin/product/edit?id={{$p->id}}">{{$p->name}}</a>
                             </td>
                             <td>{{$p->brand}}</td>

@@ -332,15 +332,143 @@ $( document ).ready(function() {
 
     //Open Update Panel
     $("#edit-button").click(function(){
-        $('#update-panel').modal('show');
+        var listProductID = "";
         $("input[name='btSelectItem']").each(function()
         {
-            var theTrTag = $(this).parent().parent();
-            var product_id = (theTrTag.find("#product_id_hidden"));
-            console.log(product_id);
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var product_id = $(theTrTag.find("#product_id_hidden"));
+                if(listProductID == '')
+                {
+                    //First Element
+                    listProductID += product_id.val();
+                }
+                else
+                {
+                    listProductID += ',' + product_id.val();
+                }
+            }
         });
+
+        if(listProductID == '')
+        {
+            alert('Chưa có sản phẩm nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#update-list-product-id").val(listProductID);
+            $('#update-panel').modal('show');
+        }
+
     });
 
+
+    //Open Delete Panel
+    $("#delete-button").click(function(){
+        var listProductID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var product_id = $(theTrTag.find("#product_id_hidden"));
+                if(listProductID == '')
+                {
+                    //First Element
+                    listProductID += product_id.val();
+                }
+                else
+                {
+                    listProductID += ',' + product_id.val();
+                }
+            }
+        });
+
+        if(listProductID == '')
+        {
+            alert('Chưa có sản phẩm nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-product-id").val(listProductID);
+            $('#delete-panel').modal('show');
+        }
+
+    });
+
+
+    //Delete List Products
+    $("#btn-delete").click(function(){
+        $.ajax({
+            url: '/admin/product/deleteListProduct',
+            type: 'POST',
+            data: {delete_list_product_id : $("#delete-list-product-id").val()},
+            success: function (response) {
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel').modal('hide');
+    });
+
+    //Update List Products
+    $("#btn-update").click(function(){
+        $.ajax({
+            url: '/admin/product/updateListProduct',
+            type: 'POST',
+            data: {
+                update_list_product_id : $("#update-list-product-id").val(),
+                price_original : $("#price_original").val(),
+                price_new : $("#price_new").val(),
+                optional_checkbox_news : $("#optional-checkbox-news").prop('checked'),
+                from_date_news : $("#from_date_news").val(),
+                to_date_news : $("#to_date_news").val(),
+                optional_checkbox_sale : $("#optional-checkbox-sale").prop('checked'),
+                from_date_sale : $("#from_date_sale").val(),
+                to_date_sale : $("#to_date_sale").val()
+            },
+            success: function (response) {
+                $('#update-panel').modal('hide');
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#update-panel').modal('hide');
+    });
+
+
+    //Update Panel Checkbox Event
+    $(document).on('change', '#optional-checkbox-news', function() {
+        var $this = $(this);
+        if ($this.is(':checked')) {
+            $("#from_date_news").removeAttr('disabled');
+            $("#to_date_news").removeAttr('disabled');
+        }
+        else
+        {
+            $("#from_date_news").prop('disabled',true);
+            $("#to_date_news").prop('disabled',true);
+        }
+    });
+
+    $(document).on('change', '#optional-checkbox-sale', function() {
+        var $this = $(this);
+        if ($this.is(':checked')) {
+            $("#from_date_sale").removeAttr('disabled');
+            $("#to_date_sale").removeAttr('disabled');
+        }
+        else
+        {
+            $("#from_date_sale").prop('disabled',true);
+            $("#to_date_sale").prop('disabled',true);
+        }
+    });
 
 });
 

@@ -25,6 +25,12 @@ class Product extends BaseModel {
 
     public static $rules_delete = array();
 
+    public static function registerEvents(){
+        static::deleting(function($product){
+            $product->images()->delete();
+        });
+    }
+
     public function Order_Detail()
     {
         return $this->hasMany('Order_Detail', 'product_id', 'id');

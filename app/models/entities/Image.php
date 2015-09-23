@@ -33,6 +33,11 @@ class Images extends BaseModel {
         return $results;
     }
 
+    public function products()
+    {
+        return $this->belongsTo('Products')->withTrashed();
+    }
+
 
 	/**
 	 * The attributes excluded from the model's JSON form.

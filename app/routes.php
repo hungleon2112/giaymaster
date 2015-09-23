@@ -37,3 +37,6 @@ Route::get("/admin/product/edit",array('as'=>'admin.product.edit','uses'=>'Produ
 Route::get("/admin/product/showing",array('as'=>'admin.product.showing','uses'=>'ProductController@SetPagination'));
 Route::post("/admin/product/optionalInsert",array('as'=>'admin.product.optional','uses'=>'OptionalProductController@OptionalInsert'));
 Route::post("/admin/product/optionalDelete",array('as'=>'admin.product.optional','uses'=>'OptionalProductController@OptionalDelete'));
+
+Route::post("/admin/product/updateListProduct",array('as'=>'admin.product.update','uses'=>'ProductController@UpdateListProduct'));
+Route::post("/admin/product/deleteListProduct",array('as'=>'admin.product.delete','uses'=>'ProductController@DeleteListProduct'));

@@ -186,6 +186,50 @@ class ProductController extends \BaseController {
             ->with('listImage', $listImage);
     }
 
+    public function UpdateListProduct()
+    {
+        $input = Input::all();
+        $listProductID = $input['update_list_product_id'];
+        $listProductID = explode(",",$listProductID);
+        $input_final['price_original'] = $input['price_original'];
+        $input_final['price_new'] = $input['price_new'];
+        foreach($listProductID as $p)
+        {
+            if($input_final['price_new'] != '' )
+            {
+                $product = Product::find($p);
+                $product->price_new = $input_final['price_new'];
+                $product->save();
+            }
+
+            if($input['optional_checkbox_news'] == true)
+            {
+                $optional_product = new Optional_Product();
+                $optional_product->optional_id = 1;
+                $optional_product->product_id = $p;
+                $optional_product->from_date = $input['from_date_news'];
+                $optional_product->to_date = $input['to_date_news'];
+                $optional_product->save();
+            }
+
+            if($input['optional_checkbox_sale'] == true)
+            {
+                $optional_product = new Optional_Product();
+                $optional_product->optional_id = 2;
+                $optional_product->product_id = $p;
+                $optional_product->from_date = $input['from_date_sale'];
+                $optional_product->to_date = $input['to_date_sale'];
+                $optional_product->save();
+            }
+        }
+    }
+
+    public function DeleteListProduct()
+    {
+        $input = Input::all();
+        $listProductID = $input['delete_list_product_id'];
+        DB::table('products')->whereIn('id', explode(",",$listProductID))->delete();
+    }
 
 
 	/**

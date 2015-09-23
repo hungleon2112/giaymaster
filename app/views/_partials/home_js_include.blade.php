@@ -89,6 +89,15 @@ jQuery(document).ready(function() {
   $( "a.category-menu" ).click(function() {
     $( ".category").toggleClass( "slide-out", 1000, "easeOutSine" );
   });
+  $(".nav-res > ul > li > a").click(function(){
+      if($(this).next().is(":visible") != true)
+      {
+        $('.sub-menu').slideUp();
+      }
+      $(this).next().slideToggle(function(){
+
+      });
+  });
 
 // gallery slider
       $('.bxslider_gallery').bxSlider({
