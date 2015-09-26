@@ -43,7 +43,7 @@ class Product extends BaseModel {
 
     public function Images()
     {
-        return $this->hasMany('Image', 'product_id', 'id');
+        return $this->hasMany('Images', 'product_id', 'id');
     }
 
     public function Optional_Product()
@@ -65,6 +65,24 @@ class Product extends BaseModel {
             ->select('products.*', 'brands.name as brand', 'categories.name as category', 'branchs.name as branch')
             ->paginate($pagination);
         return $results;
+    }
+
+    public function GetProductBy($category, $gender){
+      if ($gender == 'male'){
+        $gender = 'Nam';
+      }
+      if ($gender == 'female'){
+        $gender = 'Nữ';
+      }
+      $results = DB::table('products')
+        ->leftJoin('brands', 'products.brand_id', '=', 'brands.id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
+        ->select('products.*', 'brands.name as brand', 'categories.name as category', 'branchs.name as branch')
+        ->where('products.category_id','=',$category)
+        ->where('products.gender','=',$gender)
+        ->get();
+      return $results;
     }
 
     public function FindProduct($product_id)

@@ -16,12 +16,18 @@ class HomeController extends BaseController {
 	*/
     protected $category;
     protected $branch;
+    protected $product;
+    protected $image;
     protected $result = array();
     public function __construct(Branch $branch,
-                                Category $category
+                                Category $category,
+                                Product $product,
+                                Images $image
                                 ){
         $this->branch = $branch;
         $this->category = $category;
+        $this->product = $product;
+        $this->image = $image;
         $this->beforeFilter(function()
         {
             $branch_list = $this->branch->GetAllBranch();
@@ -33,10 +39,17 @@ class HomeController extends BaseController {
         });
     }
 
-	public function Index()
-	{
-		return View::make('home.index')->with('result', $this->result);
-	}
+    public function Index()
+    {
+      $top_35_prod = Product::take(35)->orderBy('id', 'desc')->get();
+      $product_img = array();
+      foreach($top_35_prod as $product):
+//        /$img_url = 'uploads/1443109378.jpg';
+        $img_url = $this->image->GetFirstImageUrl($product->id);
+        $product_img[$product->id] = $img_url;
+      endforeach;
+      return View::make('home.index')->with('result', $this->result)->with('product_img', $product_img);
+    }
 
     public function Blog_Detail()
     {
@@ -63,9 +76,16 @@ class HomeController extends BaseController {
         return View::make('home.gallery_detail')->with('result', $this->result);
     }
 
-    public function Product_List()
+    public function Product_List($category, $gender)
     {
-        return View::make('home.product_list')->with('result', $this->result);
+        $product_info = array();
+        $list_prod = $this->product->GetProductBy($category, $gender);
+        foreach($list_prod as $product):
+          $img_url = $this->image->GetFirstImageUrl($product->id);
+          $product_info[$product->id] = [$img_url, $product];
+        endforeach;
+        //print_r($product_info); die();
+        return View::make('home.product_list')->with('result', $this->result)->with('product_info', $product_info);
     }
 
     public function Product_Detail()
