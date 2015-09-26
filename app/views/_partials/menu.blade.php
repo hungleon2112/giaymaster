@@ -12,7 +12,7 @@
                         <ul>
                             @foreach($value as $val)
                                 <li>
-                                    <a href="#">{{$val->name}}</a>
+                                    {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'male'] ) }}
                                 </li>
                           @endforeach
                       </ul>
@@ -34,7 +34,7 @@
                       <ul>
                           @foreach($value as $val)
                               <li>
-                                  <a href="#">{{$val->name}}</a>
+                                  {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'female'] ) }}
                               </li>
                           @endforeach
                       </ul>

@@ -125,6 +125,18 @@
               </div>
           </div>
 
+          <!-- Short Description -->
+          <div class="form-group">
+                {{ Form::label('description_short', 'Tóm tắt') }}
+                {{ Form::input('text','description_short','',array('class'=>'form-control','id'=>'description_short','placeholder'=>'Tóm tắt')) }}
+          </div>
+
+          <!-- Full Description -->
+           <div class="form-group">
+                {{ Form::label('description_full', 'Mô tả') }}
+                {{ Form::textarea('description_full','',array('class'=>'form-control','id'=>'description_full','placeholder'=>'Mô tả')) }}
+           </div>
+
           <!-- Price Original -->
           <div class="form-group">
                 {{ Form::label('price_original', 'Giá') }}

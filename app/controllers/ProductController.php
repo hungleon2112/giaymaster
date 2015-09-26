@@ -44,6 +44,8 @@ class ProductController extends \BaseController {
         $final_input['gender'] = $input['gender'];
         $final_input['price_original'] = $input['price_original'];
         $final_input['price_new'] = $input['price_new'];
+        $final_input['description_short'] = $input['description_short'];
+        $final_input['description_full'] = $input['description_full'];
 
         try
         {
@@ -61,6 +63,8 @@ class ProductController extends \BaseController {
                 $product->gender = $final_input['gender'];
                 $product->price_original = $final_input['price_original'];
                 $product->price_new = $final_input['price_new'];
+                $product->description_short = $final_input['description_short'];
+                $product->description_full = $final_input['description_full'];
 
                 $product->save();
                 return $product;
@@ -108,7 +112,7 @@ class ProductController extends \BaseController {
         $listImage = $this->image->GetAllImage($input['product_id']);
         foreach($listImage as $i)
         {
-            $i['url'] = $_ENV['Domain_Name']."\\".$i['url'];
+            $i['url'] = $_ENV['Domain_Name'].$i['url'];
         }
         return $listImage;
     }
@@ -173,7 +177,7 @@ class ProductController extends \BaseController {
         $listImage = $this->image->GetAllImage($input['id']);
         foreach($listImage as $i)
         {
-            $i['url'] = $_ENV['Domain_Name']."\\".$i['url'];
+            $i['url'] = $_ENV['Domain_Name'].$i['url'];
         }
 
         $listBranch = $this->branch->GetAllBranch();

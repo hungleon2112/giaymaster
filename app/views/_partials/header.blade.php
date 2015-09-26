@@ -20,7 +20,7 @@
                  <li><a href="#">Store locator</a></li>
                  <li><a href="#">Customer service</a></li>
                  <li><a href="#">Trach / return</a></li>
-                 <li><a href="#">Signin / join</a></li>
+                 <li><a href="#" id="authenticate-button">Signin / join</a></li>
                </ul>
               </div>
               <div class="cart-content">
@@ -47,7 +47,7 @@
             <nav>
               <ul>
                 <li>
-                  <a href="#">Trang chủ</a>
+                  <a href="{{ url('/') }}">Trang chủ</a>
                 </li>
                 <li>
                   <a href="#">Nam</a>
@@ -58,7 +58,7 @@
                             <ul>
                                 @foreach($value as $val)
                                     <li>
-                                        <a href="#">{{$val->name}}</a>
+                                        {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'male'] ) }}
                                     </li>
                                 @endforeach
                             </ul>
@@ -80,7 +80,7 @@
                             <ul>
                                 @foreach($value as $val)
                                     <li>
-                                        <a href="#">{{$val->name}}</a>
+                                        {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'female'] ) }}
                                     </li>
                                 @endforeach
                             </ul>

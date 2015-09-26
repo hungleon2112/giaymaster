@@ -59,6 +59,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Adix";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -66,6 +67,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Asics Gel";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -73,6 +75,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Neo";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -80,6 +83,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "NB";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -87,6 +91,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Rade";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -94,6 +99,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Rade R2";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -101,6 +107,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Zx";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -108,6 +115,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "F1";
         $category->parent_id = 1;
+        $category->root_category_id = 1;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -115,6 +123,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Flex";
         $category->parent_id = 2;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -122,6 +131,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Giày Cut";
         $category->parent_id = 2;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -129,6 +139,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Asics Training";
         $category->parent_id = 2;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -136,6 +147,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Baseketrade";
         $category->parent_id = 3;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -143,6 +155,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Giày Cut";
         $category->parent_id = 3;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -150,6 +163,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Adi Tennis";
         $category->parent_id = 4;
+        $category->root_category_id = 4;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -157,6 +171,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Flex Training";
         $category->parent_id = 15;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -164,6 +179,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Flex Pro";
         $category->parent_id = 15;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -171,6 +187,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Dual Fusion";
         $category->parent_id = 16;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -178,6 +195,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Flex Supreme";
         $category->parent_id = 16;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -185,6 +203,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "T Lite MM";
         $category->parent_id = 16;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -192,6 +211,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Season";
         $category->parent_id = 16;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -199,6 +219,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Air Max";
         $category->parent_id = 16;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -206,6 +227,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Maori";
         $category->parent_id = 16;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -213,6 +235,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "GT";
         $category->parent_id = 17;
+        $category->root_category_id = 2;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -220,6 +243,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Crazy Beat";
         $category->parent_id = 18;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -227,6 +251,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Dual Fusion Basketball";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -234,6 +259,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Prime Hype";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -241,6 +267,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Visi Pro";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -248,6 +275,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Air Premier";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -255,6 +283,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Zoom";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -262,6 +291,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Jordan";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -269,6 +299,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Overplay";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -276,6 +307,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Kobe";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -283,6 +315,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Kobe";
         $category->parent_id = 19;
+        $category->root_category_id = 3;
         $category->Branch()->associate(Branch::where('name','=','Giày dép')->first());
         $category->save();
 
@@ -325,6 +358,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Balance";
         $category->parent_id = 40;
+        $category->root_category_id = 40;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -332,6 +366,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Long Tee";
         $category->parent_id = 40;
+        $category->root_category_id = 40;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -339,6 +374,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Raglan";
         $category->parent_id = 40;
+        $category->root_category_id = 40;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -346,6 +382,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Tank Top";
         $category->parent_id = 40;
+        $category->root_category_id = 40;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -353,6 +390,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Print Tee";
         $category->parent_id = 40;
+        $category->root_category_id = 40;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -360,6 +398,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Sport Shirt";
         $category->parent_id = 40;
+        $category->root_category_id = 40;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -367,6 +406,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Hoodie";
         $category->parent_id = 41;
+        $category->root_category_id = 41;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -374,6 +414,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Bomber";
         $category->parent_id = 41;
+        $category->root_category_id = 41;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 
@@ -381,6 +422,7 @@ class CategoryTableSeeder extends Seeder{
         $category = new Category();
         $category->name = "Jacket";
         $category->parent_id = 41;
+        $category->root_category_id = 41;
         $category->Branch()->associate(Branch::where('name','=','Áo quần')->first());
         $category->save();
 

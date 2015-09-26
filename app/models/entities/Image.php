@@ -39,7 +39,16 @@ class Images extends BaseModel {
     }
 
 
-	/**
+    public function GetFirstImageUrl($product_id){
+        $query = static::where('product_id', '=', $product_id)->first();
+        if (!is_object($query)) {
+            return 'front/images/no-image.jpg';
+        }
+        return $query->url;
+    }
+
+
+    /**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array

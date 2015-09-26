@@ -6,6 +6,7 @@
 <script src="/front/js/jquery.collagePlus.js"></script>
 <script src="/front/js/jquery.removeWhitespace.js"></script>
 <script src="/front/js/jquery.collageCaption.js"></script>
+<script src="/front/js/front_js.js"></script>
 <!-- Select menus on Android -->
 <script>
 $(function () {

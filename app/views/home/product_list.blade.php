@@ -8,296 +8,36 @@
     </p>
   </div>
   <div class="product-main sub-list-product">
+
+    @foreach($list_product as $product)
     <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_1.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
+        <a href="/product/detail/{{$product[1]->id}}" class="img-content">
+            <img src="{{$product[0][0]->url}}"
+            data-alt-src="
+            <?php
+             if(isset($product[0][1]))
+             {
+                echo $product[0][1]->url;
+             }
+             else
+             {
+                echo $product[0][0]->url;
+             }
+             ?>
+             " alt="">
         </a>
-      </div>
+        <div class="content-product-detail">
+            <a href="">
+              <h2>{{$product[1]->name}}</h2>
+              <p>{{$product[1]->description_short}}</p>
+              <span>{{$product[1]->price_original}} VNĐ</span>
+            </a>
+          </div>
     </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_2.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_3.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_4.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_5.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_6.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_7.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_8.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_1.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_2.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_3.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_4.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_5.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_6.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_7.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_8.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_1.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_2.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_3.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_4.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_5.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_6.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_7.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
-    <div class="pd-content">
-      <a href="#" class="img-content">
-        <img data-alt-src="/front/images/pd_me_2.jpg" src="/front/images/pd_me_8.jpg" alt="">
-      </a>
-      <div class="content-product-detail">
-        <a href="">
-          <h2>AIR JORDANS </h2>
-          <p>air jordan 13 retro "grey toe"</p>
-          <span>$275</span>
-        </a>
-      </div>
-    </div>
+    @endforeach
     <div class="clearfix"></div>
-    <div class="pages">
+    <?php echo $list_prod->links(); ?>
+    <!--<div class="pages">
       <ul>
         <li class="active"><a href="#"><span class="glyphicon glyphicon-menu-left"></span></a></li>
         <li>
@@ -317,7 +57,7 @@
         </li>
         <li class="active"><a href="#"><span class="glyphicon glyphicon-menu-right"></span></a></li>
       </ul>
-    </div>
+    </div>-->
   </div>
 
 @stop
