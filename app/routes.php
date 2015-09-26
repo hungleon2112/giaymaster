@@ -17,7 +17,7 @@ Route::get("/blog/list",array('as'=>'home.index','uses'=>'HomeController@Blog_Li
 Route::get("/contact",array('as'=>'home.index','uses'=>'HomeController@Contact'));
 Route::get("/gallery/list",array('as'=>'home.index','uses'=>'HomeController@Gallery_List'));
 Route::get("/gallery/detail",array('as'=>'home.index','uses'=>'HomeController@Gallery_Detail'));
-Route::get("/product/list",array('as'=>'home.index','uses'=>'HomeController@Product_List'));
+Route::get("/product/list/{gender}/{category}",array('as'=>'category.show','uses'=>'HomeController@Product_List'));
 Route::get("/product/detail",array('as'=>'home.index','uses'=>'HomeController@Product_Detail'));
 
 
@@ -32,6 +32,7 @@ Route::get("/admin/product/getAllImage",array('as'=>'admin.product.add','uses'=>
 Route::get("/admin/product/deleteImage",array('as'=>'admin.product.add','uses'=>'ProductController@DeleteImage'));
 
 Route::get("/admin/product/list",array('as'=>'admin.product.list','uses'=>'ProductController@ListProduct'));
+Route::get("/admin/product/list/:id",array('as'=>'admin.product.list','uses'=>'ProductController@ListProduct'));
 
 Route::get("/admin/product/edit",array('as'=>'admin.product.edit','uses'=>'ProductController@Edit'));
 Route::get("/admin/product/showing",array('as'=>'admin.product.showing','uses'=>'ProductController@SetPagination'));
