@@ -67,6 +67,19 @@ class Product extends BaseModel {
         return $results;
     }
 
+    public function GetProductByBrand($brand, $pagination){
+        $results = DB::table('products')
+            ->leftJoin('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
+            ->select('products.*', 'brands.name as brand', 'categories.name as category', 'branchs.name as branch')
+
+            ->where('products.brand_id','=',$brand)
+            ->paginate($pagination);
+
+        return $results;
+    }
+
     public function GetProductByCategoryGender($category, $gender, $pagination){
       if ($gender == 'male'){
         $gender = 'Nam';

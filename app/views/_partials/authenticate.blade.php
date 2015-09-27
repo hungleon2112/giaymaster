@@ -14,23 +14,35 @@
 
         <div class="tab-content">
           <div id="home" class="tab-pane fade in active">
-            <h3>HOME</h3>
-            <p>Some content.</p>
-          </div>
-          <div id="menu1" class="tab-pane fade">
-            <h3>Đăng ký</h3>
-            {{ Form::open(array('method' => 'POST','route' => 'admin.product.add','role'=>'form', 'id'=>'register-form', 'name'=>'register-form')) }}
-                  <div class="form-group">
-                    {{ Form::label('name', 'Tên') }}
-                    {{ Form::input('text','name','',array('class'=>'form-control','id'=>'name','placeholder'=>'Tên')) }}
-                  </div>
+            <h3>Đăng nhập</h3>
+            {{ Form::open(array('method' => 'POST','route' => 'user.login','role'=>'form', 'id'=>'login-form', 'name'=>'login-form', 'data-toggle' => 'validator')) }}
+
                   <div class="form-group">
                     {{ Form::label('name', 'Tên đăng nhập') }}
-                    {{ Form::input('text','username','',array('class'=>'form-control','id'=>'username','placeholder'=>'Tên đăng nhập')) }}
+                    {{ Form::input('text','username','',array('class'=>'form-control','id'=>'usernameLogin','placeholder'=>'Tên đăng nhập', 'required')) }}
                   </div>
                   <div class="form-group">
                       {{ Form::label('name', 'Mật khẩu') }}
-                      {{ Form::input('password','password','',array('class'=>'form-control','id'=>'password','placeholder'=>'Mật khẩu')) }}
+                      {{ Form::input('password','password','',array('class'=>'form-control','id'=>'passwordLogin','placeholder'=>'Mật khẩu', 'required')) }}
+                  </div>
+
+                  <button type="button" id="login-btn" class="btn btn-default">Đăng nhập</button>
+            {{ Form::close() }}
+          </div>
+          <div id="menu1" class="tab-pane fade">
+            <h3>Đăng ký</h3>
+            {{ Form::open(array('method' => 'POST','route' => 'user.register','role'=>'form', 'id'=>'register-form', 'name'=>'register-form', 'data-toggle' => 'validator')) }}
+                  <div class="form-group">
+                    {{ Form::label('name', 'Tên') }}
+                    {{ Form::input('text','name','',array('class'=>'form-control','id'=>'name','placeholder'=>'Tên', 'required')) }}
+                  </div>
+                  <div class="form-group">
+                    {{ Form::label('name', 'Tên đăng nhập') }}
+                    {{ Form::input('text','username','',array('class'=>'form-control','id'=>'username','placeholder'=>'Tên đăng nhập', 'required')) }}
+                  </div>
+                  <div class="form-group">
+                      {{ Form::label('name', 'Mật khẩu') }}
+                      {{ Form::input('password','password','',array('class'=>'form-control','id'=>'password','placeholder'=>'Mật khẩu', 'required')) }}
                   </div>
                   <div class="form-group">
                     {{ Form::label('name', 'Nhập lại mật khẩu') }}
@@ -38,15 +50,15 @@
                   </div>
                   <div class="form-group">
                     {{ Form::label('name', 'Điện thoại') }}
-                    {{ Form::input('text','phone','',array('class'=>'form-control','id'=>'phone','placeholder'=>'Điện thoại')) }}
+                    {{ Form::input('text','phone','',array('class'=>'form-control','id'=>'phone','placeholder'=>'Điện thoại', 'required')) }}
                   </div>
                   <div class="form-group">
                     {{ Form::label('name', 'Email') }}
-                    {{ Form::input('text','email','',array('class'=>'form-control','id'=>'email','placeholder'=>'Email')) }}
+                    {{ Form::input('text','email','',array('class'=>'form-control','id'=>'email','placeholder'=>'Email', 'required')) }}
                   </div>
                   <div class="form-group">
                     {{ Form::label('name', 'Địa chỉ') }}
-                    {{ Form::input('text','address','',array('class'=>'form-control','id'=>'address','placeholder'=>'Địa chỉ')) }}
+                    {{ Form::input('text','address','',array('class'=>'form-control','id'=>'address','placeholder'=>'Địa chỉ', 'required')) }}
                   </div>
                   <button type="button" id="register-btn" class="btn btn-default">Đăng ký</button>
             {{ Form::close() }}

@@ -12,14 +12,19 @@
 */
 
 Route::get("/",array('as'=>'home.index','uses'=>'HomeController@Index'));
-Route::get("/blog/detail",array('as'=>'home.index','uses'=>'HomeController@Blog_Detail'));
-Route::get("/blog/list",array('as'=>'home.index','uses'=>'HomeController@Blog_List'));
-Route::get("/contact",array('as'=>'home.index','uses'=>'HomeController@Contact'));
-Route::get("/gallery/list",array('as'=>'home.index','uses'=>'HomeController@Gallery_List'));
-Route::get("/gallery/detail",array('as'=>'home.index','uses'=>'HomeController@Gallery_Detail'));
-Route::get("/product/list/{gender}/{category}",array('as'=>'category.show','uses'=>'HomeController@Product_List'));
-Route::get("/product/detail/{id}",array('as'=>'home.index','uses'=>'HomeController@Product_Detail'));
-
+Route::get("/blog/detail",array('as'=>'blog.detail','uses'=>'HomeController@Blog_Detail'));
+Route::get("/blog/list",array('as'=>'blog.list','uses'=>'HomeController@Blog_List'));
+Route::get("/contact",array('as'=>'contact','uses'=>'HomeController@Contact'));
+Route::get("/gallery/list",array('as'=>'gallery.list','uses'=>'HomeController@Gallery_List'));
+Route::get("/gallery/detail",array('as'=>'gallery.detail','uses'=>'HomeController@Gallery_Detail'));
+Route::get("/product/list/{brand}",array('as'=>'product.list.brand','uses'=>'HomeController@Product_List_Brand'));
+Route::get("/product/list/{gender}/{category}",array('as'=>'product.list','uses'=>'HomeController@Product_List'));
+Route::get("/product/detail/{id}",array('as'=>'product.detail','uses'=>'HomeController@Product_Detail'));
+Route::post("/user/login",array('as'=>'user.login','uses'=>'UserController@Login'));
+Route::get("/user/logout",array('as'=>'user.logout','uses'=>'UserController@Logout'));
+Route::post("/user/register",array('as'=>'user.register','uses'=>'UserController@Register'));
+Route::get("/user/checkUsername/{username}",array('as'=>'user.check','uses'=>'UserController@CheckUsername'));
+Route::get("/user/checkEmail/{email}",array('as'=>'user.check','uses'=>'UserController@CheckEmail'));
 
 Route::get("/admin/dashboard",array('as'=>'admin.dashboard','uses'=>'AdminController@Dashboard'));
 

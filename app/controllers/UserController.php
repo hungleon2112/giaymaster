@@ -2,85 +2,63 @@
 
 class UserController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+
+    protected $user;
+    public function __construct(Users $user){
+        $this->user = $user;
+    }
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+	public function Register()
+    {
+        $input = Input::all();
+
+        $final_input['name'] = $input['name'];
+        $final_input['username'] = $input['username'];
+        $final_input['password'] = $input['password'];
+        $final_input['phone'] = $input['phone'];
+        $final_input['email'] = $input['email'];
+        $final_input['address'] = $input['address'];
+
+        $user = $this->user->create($final_input);
+
+        Session::put('user_info', $user);
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+        return Redirect::route('home.index');
+    }
 
+    public function Login()
+    {
+        $input = Input::all();
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+        $final_input['username'] = $input['username'];
+        $final_input['password'] = $input['password'];
+        $user = $this->user->Login($final_input['username'], $final_input['password']);
 
+        if(count($user) != 0){
+            Session::put('user_info', $user[0]);
+            return Redirect::route('home.index');
+        }
+        else
+        {
+            return $_ENV['Login_Fail_Message'];
+        }
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    public function Logout()
+    {
+        Session::forget('user_info');
+        return Redirect::route('home.index');
+    }
 
+    public function CheckUsername($username){
+        $user = $this->user->CheckRecordExist("username", $username);
+        return count($user);
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+    public function CheckEmail($email){
+        $user = $this->user->CheckRecordExist("email", $email);
+        return count($user);
+    }
 }

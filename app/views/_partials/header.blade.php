@@ -13,15 +13,27 @@
                <a href="#"><i class="icon icon-tt"></i></a>
                <a href="#"><i class="icon icon-face"></i></a>
                <a href="#"><i class="icon icon-mail"></i></a>
-               <a href="#" class="chat">Chat with me in facebook</a>
+               <!--<a href="#" class="chat">Chat with me in facebook</a>-->
               </div>
               <div class="top-nav">
-               <ul>
-                 <li><a href="#">Store locator</a></li>
-                 <li><a href="#">Customer service</a></li>
-                 <li><a href="#">Trach / return</a></li>
-                 <li><a href="#" id="authenticate-button">Signin / join</a></li>
-               </ul>
+               <?php
+                if (isset($user_info))
+                {
+                ?>
+                <ul>
+                    <li><a href="#" id="">Xin chào {{$user_info->name}}</a></li>
+                    <li><a href="#" id="logout-btn">Đăng xuất</a></li>
+                </ul>
+                <?php
+                }
+                else
+                {
+                ?>
+                   <a href="#" id="authenticate-button">Đăng nhập / Đăng ký</a>
+                <?php
+                }
+               ?>
+
               </div>
               <div class="cart-content">
                <i class="icon icon-cart"></i>
@@ -58,7 +70,7 @@
                             <ul>
                                 @foreach($value as $val)
                                     <li>
-                                        {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'male'] ) }}
+                                        {{ HTML::linkRoute('product.list',$val->name, [$val->id, 'male'] ) }}
                                     </li>
                                 @endforeach
                             </ul>
@@ -80,7 +92,7 @@
                             <ul>
                                 @foreach($value as $val)
                                     <li>
-                                        {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'female'] ) }}
+                                        {{ HTML::linkRoute('product.list',$val->name, [$val->id, 'female'] ) }}
                                     </li>
                                 @endforeach
                             </ul>
@@ -99,82 +111,15 @@
                     <div class="col-md-2 col-xs-4">
                       <h2></h2>
                       <ul>
-                        <li>
-                          <a href="#">5TheWay</a>
-                        </li>
-                        <li>
-                          <a href="#">Nike</a>
-                        </li>
-                        <li>
-                          <a href="#">Adidas</a>
-                        </li>
-                        <li>
-                          <a href="#">Puma</a>
-                        </li>
-                        <li>
-                          <a href="#">RipCurl</a>
-                        </li>
-                        <li>
-                          <a href="#">The NorthFace</a>
-                        </li>
-                        <li>
-                          <a href="#">Overdose</a>
-                        </li>
-                        <li>
-                          <a href="#">KenStyle</a>
-                        </li>
-                        <li>
-                          <a href="#">Real Tree</a>
-                        </li>
-                        <li>
-                          <a href="#">Game Guard</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-2 col-xs-4">
-                      <h2>SHOP WOMENS 4</h2>
-                      <ul>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-2 col-xs-4">
-                      <h2>SHOP MENS 4</h2>
-                      <ul>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
-                        <li>
-                          <a href="#">SNEAKERS</a>
-                        </li>
+                      <?php
+                      foreach($listBrand as $brand){
+                      ?>
+                          <li>
+                            {{ HTML::linkRoute('product.list.brand',$brand->name, $brand->id ) }}
+                          </li>
+                      <?php
+                      }
+                      ?>
                       </ul>
                     </div>
                     <div class="col-md-4 col-xs-12">

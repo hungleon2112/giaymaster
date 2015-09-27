@@ -23,8 +23,8 @@ class CreateProductTable extends Migration {
             $table->integer('brand_id');
             $table->string('size',250);
             $table->string('gender',10);
-            $table->decimal('price_original',12,2);
-            $table->decimal('price_new',12,2);
+            $table->decimal('price_original',12,0);
+            $table->decimal('price_new',12,0);
         });
     }
 

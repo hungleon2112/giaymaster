@@ -12,7 +12,7 @@
                         <ul>
                             @foreach($value as $val)
                                 <li>
-                                    {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'male'] ) }}
+                                    {{ HTML::linkRoute('product.list',$val->name, [$val->id, 'male'] ) }}
                                 </li>
                           @endforeach
                       </ul>
@@ -34,7 +34,7 @@
                       <ul>
                           @foreach($value as $val)
                               <li>
-                                  {{ HTML::linkRoute('category.show',$val->name, [$val->id, 'female'] ) }}
+                                  {{ HTML::linkRoute('product.list',$val->name, [$val->id, 'female'] ) }}
                               </li>
                           @endforeach
                       </ul>

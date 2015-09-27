@@ -35,6 +35,19 @@ class Users extends BaseModel {
         return $this->hasMany('Product_Comment_User', 'user_id', 'id');
     }
 
+    public function CheckRecordExist($column_name, $value)
+    {
+        $query = static::where($column_name, '=', $value);
+        $result = $query->get();
+        return $result;
+    }
+
+    public function Login($username, $password)
+    {
+        $query = static::where('username', '=', $username)->where('password', '=', $password);
+        $result = $query->get();
+        return $result;
+    }
 
     /**
 	 * The attributes excluded from the model's JSON form.

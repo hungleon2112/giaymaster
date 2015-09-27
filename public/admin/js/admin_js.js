@@ -413,6 +413,7 @@ $( document ).ready(function() {
             }
         });
         $('#delete-panel').modal('hide');
+        location.reload();
     });
 
     //Update List Products

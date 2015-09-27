@@ -4,7 +4,7 @@
 
 <div class="title">
 <p>
-Sản Phẩm Mới
+Sản Phẩm
 </p>
 </div>
 <div class="product-main product-detail">
@@ -12,63 +12,46 @@ Sản Phẩm Mới
 <div class="col-md-6">
 <div class="product-content">
 <div class="big-img">
-<img src="/front/images/shoe.jpg" alt="">
+<img src="{{$product_info[0][0]->url}}" alt="">
 </div>
 <div class="small-img">
-<a href="#">
-  <img src="/front/images/shoe_small1.jpg" alt="">
-</a>
-<a href="#">
-  <img src="/front/images/shoe_small2.jpg" alt="">
-</a>
-<a href="#">
-  <img src="/front/images/shoe_small3.jpg" alt="">
-</a>
-<a href="#">
-  <img src="/front/images/shoe_small4.jpg" alt="">
-</a>
+<?php
+for($i = 1 ; $i < count($product_info[0]); $i ++){
+?>
+    <a href="#">
+      <img src="{{$product_info[0][$i]->url}}" alt="">
+    </a>
+<?php
+}
+?>
+
 </div>
 </div>
+<!--
 <div class="social-content">
 <img src="/front/images/social_content.jpg" alt="">
 </div>
+-->
 </div>
 <div class="col-md-6 detail-text">
-<h3>AIR JORDAN 13 RETRO "BARONS"</h3>
-<span class="sprice">$400</span>
+<h3>{{$product_info[1][0]->name}}</h3>
+<span class="sprice">{{$product_info[1][0]->price_original}} VNĐ</span>
 <div class="size">
 <span>Size</span>
 <ul>
+<?php
+$size = $product_info[1][0]->size;
+$size_list = explode(",", $size);
+for($i = 0; $i < count($size_list); $i++)
+{
+?>
 <li>
-  <a href="javascript:;">8</a>
+  <a href="javascript:;" size="{{$size_list[$i]}}" class="size-href">{{$size_list[$i]}}</a>
 </li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
-<li>
-  <a href="javascript:;">8</a>
-</li>
+<?php
+}
+?>
+
 </ul>
 <div class="clearfix"></div>
 </div>
@@ -76,27 +59,22 @@ Sản Phẩm Mới
 <label for="">Quantity</label>
 
 <select class="form-control">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
+<?php
+for($i = 1; $i <= $add_cart_quantity ; $i++)
+{
+?>
+    <option>{{$i}}</option>
+<?php
+}
+?>
 </select>
 </div>
 <button class="btn"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
-<div class="style-content">
+<!--<div class="style-content">
 STYLE# 747212-818
-</div>
+</div>-->
 <div class="description">
-NIKE <br>
-Kobe Bryant <br>
-Low top men's sneaker <br>
-Lace up closure <br>
-Woven material upper <br>
-Padded tongue with Kobe Bryant logo <br>
-NIKE swoosh on sides <br>
-Cushioned inner sole for comfort <br>
-Rubber outsole for ultimate performance<br>
+{{$product_info[1][0]->description_full}}
 </div>
 <div class="size-chart">
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
