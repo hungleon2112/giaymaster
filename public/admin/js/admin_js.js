@@ -479,13 +479,15 @@ $( document ).ready(function() {
             type: 'POST',
             data: {delete_list_product_id : $("#delete-list-product-id").val()},
             success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 2000);
             },
             error: function () {
                 console.log('error');
             }
         });
         $('#delete-panel').modal('hide');
-        location.reload();
     });
 
     //Update List Products

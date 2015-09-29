@@ -17,6 +17,13 @@
     <div class="col-xs-6">
         {{ Form::open(array('method' => 'POST','route' => 'admin.product.add','role'=>'form', 'id'=>'product-form', 'name'=>'product-form')) }}
         <input type="hidden" value="{{ isset($product)?$product->id:'' }}" id="id" name="id">
+
+        <!-- Code -->
+          <div class="form-group">
+            {{ Form::label('name', 'Mã sản phẩm') }}
+            {{ Form::input('text','code',isset($product)?$product->code:'',array('class'=>'form-control','id'=>'code','placeholder'=>'Mã sản phẩm')) }}
+          </div>
+
          <!-- Name -->
           <div class="form-group">
             {{ Form::label('name', 'Tên') }}

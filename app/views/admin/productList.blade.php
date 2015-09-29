@@ -118,6 +118,7 @@
                 <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
+                        <th data-sortable="true">Mã</th>
                         <th data-field="name"  data-sortable="true">Tên</th>
                         <th data-sortable="true">Thương hiệu</th>
                         <th data-sortable="true">Loại</th>
@@ -133,6 +134,9 @@
                     @foreach($listProduct as $p)
                         <tr>
                             <td></td>
+                            <td>
+                                <a href="/admin/product/edit?id={{$p->id}}">{{$p->code}}</a>
+                            </td>
                             <td>
                                 <input type="hidden" value="{{$p->id}}" id="product_id_hidden" name="product_id">
                                 <a href="/admin/product/edit?id={{$p->id}}">{{$p->name}}</a>

@@ -25,9 +25,12 @@ Route::get("/user/logout",array('as'=>'user.logout','uses'=>'UserController@Logo
 Route::post("/user/register",array('as'=>'user.register','uses'=>'UserController@Register'));
 Route::get("/user/checkUsername/{username}",array('as'=>'user.check','uses'=>'UserController@CheckUsername'));
 Route::get("/user/checkEmail/{email}",array('as'=>'user.check','uses'=>'UserController@CheckEmail'));
+Route::get("/cart/add",array('as'=>'cart.add','uses'=>'HomeController@AddProductToCart'));
+Route::get("/cart/show",array('as'=>'cart.show','uses'=>'HomeController@ShowCart'));
+Route::get("/cart/deleteItem/{id}",array('as'=>'cart.delete.item','uses'=>'HomeController@DeleteItemCart'));
+Route::get("/cart/approve",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
 
 Route::get("/admin/dashboard",array('as'=>'admin.dashboard','uses'=>'AdminController@Dashboard'));
-
 Route::get("/admin/product/add",array('as'=>'admin.product.add','uses'=>'ProductController@Add'));
 Route::post("/admin/product/postAdd",array('as'=>'admin.product.add','uses'=>'ProductController@PostAdd'));
 Route::post("/admin/product/uploadImage",array('as'=>'admin.product.add','uses'=>'ProductController@UploadImage'));
@@ -37,7 +40,6 @@ Route::get("/admin/product/getAllImage",array('as'=>'admin.product.add','uses'=>
 Route::get("/admin/product/deleteImage",array('as'=>'admin.product.add','uses'=>'ProductController@DeleteImage'));
 
 Route::get("/admin/product/list",array('as'=>'admin.product.list','uses'=>'ProductController@ListProduct'));
-Route::get("/admin/product/list/:id",array('as'=>'admin.product.list','uses'=>'ProductController@ListProduct'));
 
 Route::get("/admin/product/edit",array('as'=>'admin.product.edit','uses'=>'ProductController@Edit'));
 Route::get("/admin/product/showing",array('as'=>'admin.product.showing','uses'=>'ProductController@SetPagination'));

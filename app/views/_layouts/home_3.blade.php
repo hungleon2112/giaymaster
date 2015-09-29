@@ -41,7 +41,7 @@
       </footer>
 
     </div>
-
+    @include('_partials.authenticate')
     @include('_partials.home_js_include')
 
   </body>
