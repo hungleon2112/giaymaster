@@ -46,3 +46,11 @@ Route::post("/admin/product/optionalDelete",array('as'=>'admin.product.optional'
 
 Route::post("/admin/product/updateListProduct",array('as'=>'admin.product.update','uses'=>'ProductController@UpdateListProduct'));
 Route::post("/admin/product/deleteListProduct",array('as'=>'admin.product.delete','uses'=>'ProductController@DeleteListProduct'));
+
+
+// Brand Route
+Route::get("/admin/brand/add",array('as'=>'admin.brand.add','uses'=>'BrandController@Add'));
+Route::post("/admin/brand/postAdd",array('as'=>'admin.brand.add','uses'=>'BrandController@PostAdd'));
+Route::get("/admin/brand/list",array('as'=>'admin.brand.add','uses'=>'BrandController@ListBrand'));
+Route::get("/admin/brand/edit",array('as'=>'admin.brand.edit','uses'=>'BrandController@Edit'));
+Route::post("/admin/brand/deleteListBrand",array('as'=>'admin.brand.delete','uses'=>'BrandController@DeleteListBrand'));

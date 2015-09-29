@@ -145,6 +145,17 @@
                     <li class="active">
                         <a href="/admin/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
+                     <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#brand"><i class=""></i> Thương hiệu <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="brand" class="collapse">
+                            <li>
+                                <a href="/admin/brand/add">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="/admin/brand/list">Danh sách</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class=""></i> Sản phẩm <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="product" class="collapse">

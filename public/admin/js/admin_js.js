@@ -110,6 +110,31 @@ $( document ).ready(function() {
 
     });
 
+    //Insert Brand
+    $("#brand-add").click(function() {
+        var form = document.forms.namedItem("brand-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/brand/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-brand-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+
     //Insert Product
     $("#product-add").click(function() {
 
@@ -364,6 +389,39 @@ $( document ).ready(function() {
 
     });
 
+    //Open Delete Brand Panel
+    $("#delete-button-brand").click(function(){
+        var listBrandID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var brand_id = $(theTrTag.find("#brand_id_hidden"));
+                if(listBrandID == '')
+                {
+                    //First Element
+                    listBrandID += brand_id.val();
+                }
+                else
+                {
+                    listBrandID += ',' + brand_id.val();
+                }
+            }
+        });
+
+        if(listBrandID == '')
+        {
+            alert('Chưa có thương hiệu nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-brand-id").val(listBrandID);
+            $('#delete-brand-panel').modal('show');
+        }
+
+    });
 
     //Open Delete Panel
     $("#delete-button").click(function(){
@@ -399,7 +457,21 @@ $( document ).ready(function() {
 
     });
 
-
+    // Delete List Brand
+    $("#btn-brand-delete").click(function(){
+        $.ajax({
+            url: '/admin/brand/deleteListBrand',
+            type: 'POST',
+            data: {delete_list_brand_id : $("#delete-list-brand-id").val()},
+            success: function (response) {
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-brand-panel').modal('hide');
+        location.reload();
+    });
     //Delete List Products
     $("#btn-delete").click(function(){
         $.ajax({
