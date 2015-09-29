@@ -12,6 +12,7 @@ $( document ).ready(function() {
             $( this ).removeClass("size-active");
         });
         $( this ).addClass("size-active");
+        $("#size").val($(this).attr('size-value'));
     });
 
     $('#register-form').validator().on('submit', function (e) {
@@ -56,7 +57,6 @@ $( document ).ready(function() {
             type: 'GET',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
-
                 location.reload();
             },
             error: function () {
@@ -107,6 +107,58 @@ $( document ).ready(function() {
             },
             error: function () {
                 console.log(response);
+            }
+        });
+    });
+
+    $("#add-to-cart-btn").click(function(){
+        $.ajax({
+            url: '/cart/add',
+            type: 'GET',
+            data: {product_id : $("#product_id").val(), size : $("#size").val(), name : $("#name").val(),
+                   quantity : $("#quantity").val(), price : $("#price").val(), code : $("#code").val()
+                  },
+            success: function (response) {
+                console.log(response.cart.length);
+                $("#cart-quantity").text('('+response.cart.length+')');
+                $("#cart-inform-modal").modal("show");
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    $("#delete-item-cart-btn").click(function(){
+        $.ajax({
+            url: '/cart/deleteItem/' + $(this).attr('cart-item-id') + '',
+            type: 'GET',
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    $("#approve-cart-btn").click(function(){
+        $.ajax({
+            url: '/cart/approve',
+            type: 'GET',
+            success: function (response) {
+                if(response == 'Authentication error'){
+                    $('#authenticate-modal').modal('show');
+                }
+                if(response == 'Success'){
+                    $("#cart-approved-modal").modal("show");
+                    setTimeout(function(){
+                        window.location = '/';
+                    }, 2000);
+                }
+            },
+            error: function () {
+                console.log('error');
             }
         });
     });

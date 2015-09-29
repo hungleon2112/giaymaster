@@ -22,17 +22,23 @@ class HomeController extends BaseController {
     protected $listBrand = array();
     protected $brand;
     protected $user_info;
+    protected $order;
+    protected $order_detail;
     public function __construct(Branch $branch,
                                 Category $category,
                                 Product $product,
                                 Images $image,
-                                Brand $brand
+                                Brand $brand,
+                                Order $order,
+                                Order_Detail $order_detail
                                 ){
         $this->branch = $branch;
         $this->category = $category;
         $this->product = $product;
         $this->image = $image;
         $this->brand = $brand;
+        $this->order = $order;
+        $this->order_detail = $order_detail;
         $this->beforeFilter(function()
         {
             $branch_list = $this->branch->GetAllBranch();
@@ -172,15 +178,99 @@ class HomeController extends BaseController {
     public function AddProductToCart(){
         $input = Input::all();
 
+        $item['id'] = UtilityHelper::guid();
+        $item['name'] = $input['name'];
+        $item['code'] = $input['code'];
         $item['product_id'] = $input['product_id'];
         $item['size'] = $input['size'];
         $item['quantity'] = $input['quantity'];
+        $item['price'] = $input['price'];
         $item['total'] = $input['quantity'] * $input['price'];
 
-        if (Session::has('cart'))
+        $cart = Session::get('giay.cart');
+        //print_r($cart);die();
+
+        if ($cart != ''){
+            $cart = Session::get('giay.cart');
+            array_push($cart,$item);
+        }
+        else
         {
-            //pull item to cart
-            array_push($stack, "apple", "raspberry");
+            $cart = array();
+            array_push($cart,$item);
+        }
+
+        Session::put('giay.cart', $cart);
+        return Response::json(array("cart"=>Session::get('giay.cart')));
+    }
+
+    public function ShowCart()
+    {
+        $cart = Session::get('giay.cart');
+        $total = 0;
+        for($i = 0 ; $i < count($cart) ; $i ++)
+        {
+            $total += $cart[$i]['total'];
+        }
+        return View::make('home.cart')
+            ->with('cart',$cart)
+            ->with('total',$total)
+            ->with('result', $this->result)
+            ->with('listBrand', $this->listBrand)
+            ->with('user_info', $this->user_info);
+    }
+
+    public function DeleteItemCart($id)
+    {
+        $cart = Session::get('giay.cart');
+        for($i = 0 ; $i < count($cart) ; $i ++)
+        {
+            if($cart[$i]['id'] == $id){
+                unset($cart[$i]);
+            }
+        }
+        $cart = array_values($cart);
+        Session::put('giay.cart', $cart);
+        return Response::json(array("cart"=>Session::get('giay.cart')));
+    }
+
+    public function ApproveCart()
+    {
+        try {
+            $user_info = Session::get('user_info');
+            if ($user_info == null) {
+                return "Authentication error";
+            }
+
+            //Get Total
+            $cart = Session::get('giay.cart');
+            $total = 0;
+            for ($i = 0; $i < count($cart); $i++) {
+                $total += $cart[$i]['total'];
+            }
+
+            $order['user_id'] = $user_info->id;
+            $order['status_id'] = 5;
+            $order['date'] = date('Y-m-d H:i:s');
+            $order['total'] = $total;
+
+            $order_obj = $this->order->create($order);
+            $order_id = $order_obj->id;
+
+            for ($i = 0; $i < count($cart); $i++) {
+                $order_detail['order_id'] = $order_id;
+                $order_detail['product_id'] = $cart[$i]['product_id'];
+                $order_detail['quantity'] = $cart[$i]['quantity'];
+                $order_detail['total'] = $cart[$i]['total'];
+                $order_detail['status'] = false;
+                $order_detail['size'] = $cart[$i]['size'];
+                $this->order_detail->create($order_detail);
+            }
+            Session::forget('giay.cart');
+            return "Success";
+        }
+        catch(Exception $ex){
+            return "Fail";
         }
     }
 }

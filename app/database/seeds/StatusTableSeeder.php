@@ -26,5 +26,9 @@ class StatusTableSeeder extends Seeder{
         $status = new Status();
         $status->name = "Đã giao hàng";
         $status->save();
+
+        $status = new Status();
+        $status->name = "Vừa đặt hàng";
+        $status->save();
     }
 } 

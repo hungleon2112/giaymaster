@@ -23,3 +23,15 @@
     text-transform: uppercase; }
 .top-nav a:hover {
     color: #34bad9; }
+
+#show-cart{
+    color: #333;
+}
+
+.cart-table{
+    font-size: 20px;
+}
+
+.empty-cart{
+    font-size: 17px;
+}

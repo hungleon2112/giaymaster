@@ -11,6 +11,11 @@ Sản Phẩm
 <div class="row">
 <div class="col-md-6">
 <div class="product-content">
+<input type="hidden" value="{{$product_info[1][0]->id}}" id="product_id" />
+<input type="hidden" id="size" />
+<input type="hidden" id="code"  value="{{$product_info[1][0]->code}}"  />
+<input type="hidden" id="name"  value="{{$product_info[1][0]->name}}"  />
+<input type="hidden" id="price" value="{{$product_info[1][0]->price_original}}" />
 <div class="big-img">
 <img src="{{$product_info[0][0]->url}}" alt="">
 </div>
@@ -46,7 +51,7 @@ for($i = 0; $i < count($size_list); $i++)
 {
 ?>
 <li>
-  <a href="javascript:;" size="{{$size_list[$i]}}" class="size-href">{{$size_list[$i]}}</a>
+  <a href="javascript:;" size="{{$size_list[$i]}}" class="size-href" size-value="{{$size_list[$i]}}">{{$size_list[$i]}}</a>
 </li>
 <?php
 }
@@ -58,18 +63,18 @@ for($i = 0; $i < count($size_list); $i++)
 <div class="quantity">
 <label for="">Quantity</label>
 
-<select class="form-control">
+<select class="form-control" id="quantity">
 <?php
 for($i = 1; $i <= $add_cart_quantity ; $i++)
 {
 ?>
-    <option>{{$i}}</option>
+    <option value="{{$i}}">{{$i}}</option>
 <?php
 }
 ?>
 </select>
 </div>
-<button class="btn"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
+<button class="btn" id="add-to-cart-btn"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
 <!--<div class="style-content">
 STYLE# 747212-818
 </div>-->
@@ -794,5 +799,21 @@ STYLE# 747212-818
 </div>
 </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="cart-inform-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><b id="modify-type-modal">Thêm vào giỏ hàng thành công.</h4>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @stop
