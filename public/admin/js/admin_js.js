@@ -460,7 +460,7 @@ $( document ).ready(function() {
     // Delete List Brand
     $("#btn-brand-delete").click(function(){
         $.ajax({
-            url: '/admin/brand/deleteListBrand',
+            url: '/admin/brand  /deleteListBrand',
             type: 'POST',
             data: {delete_list_brand_id : $("#delete-list-brand-id").val()},
             success: function (response) {
@@ -469,7 +469,7 @@ $( document ).ready(function() {
                 console.log('error');
             }
         });
-        $('#delete-brand-panel').modal('hide');
+        $('#delete-brand-panel').modal('hide'); 
         location.reload();
     });
     //Delete List Products
