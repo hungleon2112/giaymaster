@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebdd65cc-b132-4cfc-993e-74438f34f321" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/branch/add.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/branch/list.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/BranchController.php" afterPath="$PROJECT_DIR$/app/controllers/BranchController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/BrandController.php" afterPath="$PROJECT_DIR$/app/controllers/BrandController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/_layouts/admin.blade.php" afterPath="$PROJECT_DIR$/app/views/_layouts/admin.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/admin/js/admin_js.js" afterPath="$PROJECT_DIR$/public/admin/js/admin_js.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/brand/list.blade.php" afterPath="$PROJECT_DIR$/app/views/admin/brand/list.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GiayMaster.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,8 +41,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="467" max-vertical-offset="1037">
-              <caret line="55" column="116" selection-start-line="55" selection-start-column="101" selection-end-line="55" selection-end-column="116" />
+            <state vertical-scroll-proportion="-11.611111" vertical-offset="359" max-vertical-offset="1224">
+              <caret line="58" column="116" selection-start-line="58" selection-start-column="101" selection-end-line="58" selection-end-column="116" />
               <folding>
                 <element signature="e#7#392#0#PHP" expanded="true" />
               </folding>
@@ -42,35 +50,22 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/_layouts/home.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="850">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/ProductController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2927" max-vertical-offset="5151">
-              <caret line="191" column="0" selection-start-line="169" selection-start-column="3" selection-end-line="191" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.2777778" vertical-offset="3350" max-vertical-offset="5202">
+              <caret line="193" column="37" selection-start-line="193" selection-start-column="20" selection-end-line="193" selection-end-column="37" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/brand/list.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="938" max-vertical-offset="2159">
-              <caret line="66" column="46" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_js.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/admin/js/admin_js.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3155604" vertical-offset="7717" max-vertical-offset="9503">
-              <caret line="462" column="32" selection-start-line="462" selection-start-column="32" selection-end-line="462" selection-end-column="32" />
-              <caret line="471" column="48" selection-start-line="471" selection-start-column="48" selection-end-line="471" selection-end-column="48" />
-              <folding>
-                <marker date="1443511143942" expanded="false" signature="7867:7880" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -78,8 +73,8 @@
       <file leaf-file-name="productList.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/productList.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1890" max-vertical-offset="3791">
-              <caret line="101" column="87" selection-start-line="101" selection-start-column="65" selection-end-line="101" selection-end-column="87" />
+            <state vertical-scroll-proportion="-0.9259259" vertical-offset="902" max-vertical-offset="3859">
+              <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -88,39 +83,51 @@
       <file leaf-file-name="BrandController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/BrandController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1567" max-vertical-offset="2448">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.259259" vertical-offset="562" max-vertical-offset="2703">
+              <caret line="72" column="0" selection-start-line="57" selection-start-column="2" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/entities/Product.php">
+      <file leaf-file-name="BranchController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/BranchController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="616" max-vertical-offset="2091">
-              <caret line="66" column="24" selection-start-line="58" selection-start-column="4" selection-end-line="66" selection-end-column="24" />
+            <state vertical-scroll-proportion="-5.3333335" vertical-offset="732" max-vertical-offset="2686">
+              <caret line="60" column="41" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Brand.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/entities/Brand.php">
+      <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/branch/list.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="765">
-              <caret line="36" column="31" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="31" />
+            <state vertical-scroll-proportion="-6.9074073" vertical-offset="987" max-vertical-offset="2159">
+              <caret line="80" column="75" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/brand/add.blade.php">
+      <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/brand/list.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1088">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.3333335" vertical-offset="1072" max-vertical-offset="2159">
+              <caret line="80" column="68" selection-start-line="80" selection-start-column="62" selection-end-line="80" selection-end-column="68" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_js.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/admin/js/admin_js.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.46801347" vertical-offset="10362" max-vertical-offset="12614">
+              <caret line="585" column="25" selection-start-line="585" selection-start-column="8" selection-end-line="585" selection-end-column="25" />
+              <folding>
+                <marker date="1443518883922" expanded="false" signature="8730:8743" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,8 +135,8 @@
       <file leaf-file-name="productAdd.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/productAdd.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2385" max-vertical-offset="4131">
-              <caret line="157" column="47" selection-start-line="157" selection-start-column="36" selection-end-line="157" selection-end-column="47" />
+            <state vertical-scroll-proportion="12.907408" vertical-offset="833" max-vertical-offset="4250">
+              <caret line="8" column="59" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -148,10 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172224_create_order_admin_table.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172330_create_admin_table.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172421_create_user_table.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172520_create_product_comment_user_table.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172632_create_track_table.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172738_create_role_table.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_172911_create_notification_table.php" />
@@ -191,14 +194,18 @@
         <option value="$PROJECT_DIR$/app/database/migrations/2015_08_26_173131_create_discount_table.php" />
         <option value="$PROJECT_DIR$/.env.local.php" />
         <option value="$PROJECT_DIR$/app/config/database.php" />
-        <option value="$PROJECT_DIR$/app/views/_layouts/admin.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/brand/add.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/productAdd.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/admin/brand/list.blade.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/controllers/ProductController.php" />
+        <option value="$PROJECT_DIR$/app/views/_layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/branch/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/storage/views/a5cc0f913a65cf40f38b4cb205233321" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/controllers/BrandController.php" />
+        <option value="$PROJECT_DIR$/app/controllers/BranchController.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/brand/list.blade.php" />
         <option value="$PROJECT_DIR$/public/admin/js/admin_js.js" />
+        <option value="$PROJECT_DIR$/app/views/admin/branch/list.blade.php" />
       </list>
     </option>
   </component>
@@ -235,7 +242,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -352,7 +358,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="_layouts" />
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="branch" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GiayMaster" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="giaymaster" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GiayMaster" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="giaymaster" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -434,6 +484,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -442,6 +493,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project\giaymaster\app\views\admin\branch" />
       <recent name="D:\Onion_Projects\PHP\GiayMaster\GiayMaster\app\database\seeds" />
       <recent name="D:\Onion_Projects\PHP\GiayMaster\GiayMaster\app\models\entities" />
       <recent name="D:\Onion_Projects\PHP\GiayMaster\GiayMaster\app\models" />
@@ -462,15 +514,15 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -534,41 +586,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/BaseModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43109152" vertical-offset="0" max-vertical-offset="1598">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_08_26_172911_create_notification_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="765">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="37" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_08_26_171933_create_order_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="782">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="38" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_08_26_172110_create_status_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="697">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_08_26_173031_create_notification_admin_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="748">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_08_27_041933_create_images_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="731">
@@ -657,13 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.0" vertical-offset="0" max-vertical-offset="833">
           <caret line="29" column="56" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/entities/Branch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="680">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -814,13 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/_layouts/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.384615" vertical-offset="2269" max-vertical-offset="3706">
-          <caret line="157" column="25" selection-start-line="147" selection-start-column="20" selection-end-line="157" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/entities/Product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="616" max-vertical-offset="2091">
@@ -837,71 +840,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/productAdd.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2385" max-vertical-offset="4131">
-          <caret line="157" column="47" selection-start-line="157" selection-start-column="36" selection-end-line="157" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/entities/Brand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="765">
+        <state vertical-scroll-proportion="0.6282195" vertical-offset="0" max-vertical-offset="893">
           <caret line="36" column="31" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/BrandController.php">
+    <entry file="file://$PROJECT_DIR$/app/models/entities/Branch.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1567" max-vertical-offset="2448">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2094065" vertical-offset="0" max-vertical-offset="893">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/productList.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/views/admin/branch/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1890" max-vertical-offset="3791">
-          <caret line="101" column="87" selection-start-line="101" selection-start-column="65" selection-end-line="101" selection-end-column="87" />
+        <state vertical-scroll-proportion="0.4913295" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="25" column="98" selection-start-line="25" selection-start-column="98" selection-end-line="25" selection-end-column="98" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/ProductController.php">
+    <entry file="file://$PROJECT_DIR$/app/storage/views/a5cc0f913a65cf40f38b4cb205233321">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2927" max-vertical-offset="5151">
-          <caret line="191" column="0" selection-start-line="169" selection-start-column="3" selection-end-line="191" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.607142" vertical-offset="1998" max-vertical-offset="3842">
+          <caret line="135" column="106" selection-start-line="135" selection-start-column="106" selection-end-line="135" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/_layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.461538" vertical-offset="2142" max-vertical-offset="3893">
+          <caret line="168" column="25" selection-start-line="168" selection-start-column="25" selection-end-line="168" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="467" max-vertical-offset="1037">
-          <caret line="55" column="116" selection-start-line="55" selection-start-column="101" selection-end-line="55" selection-end-column="116" />
+        <state vertical-scroll-proportion="-11.611111" vertical-offset="359" max-vertical-offset="1224">
+          <caret line="58" column="116" selection-start-line="58" selection-start-column="101" selection-end-line="58" selection-end-column="116" />
           <folding>
             <element signature="e#7#392#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/_layouts/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="919">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2777778" vertical-offset="3350" max-vertical-offset="5202">
+          <caret line="193" column="37" selection-start-line="193" selection-start-column="20" selection-end-line="193" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/productAdd.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.907408" vertical-offset="833" max-vertical-offset="4250">
+          <caret line="8" column="59" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BrandController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.259259" vertical-offset="562" max-vertical-offset="2703">
+          <caret line="72" column="0" selection-start-line="57" selection-start-column="2" selection-end-line="72" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/productList.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9259259" vertical-offset="902" max-vertical-offset="3859">
+          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/brand/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="938" max-vertical-offset="2159">
-          <caret line="66" column="46" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="46" />
+        <state vertical-scroll-proportion="-5.3333335" vertical-offset="1072" max-vertical-offset="2159">
+          <caret line="80" column="68" selection-start-line="80" selection-start-column="62" selection-end-line="80" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BranchController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335" vertical-offset="732" max-vertical-offset="2686">
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/branch/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.9074073" vertical-offset="987" max-vertical-offset="2159">
+          <caret line="80" column="75" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/admin/js/admin_js.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3155604" vertical-offset="7717" max-vertical-offset="9503">
-          <caret line="462" column="32" selection-start-line="462" selection-start-column="32" selection-end-line="462" selection-end-column="32" />
-          <caret line="471" column="48" selection-start-line="471" selection-start-column="48" selection-end-line="471" selection-end-column="48" />
+        <state vertical-scroll-proportion="-0.46801347" vertical-offset="10362" max-vertical-offset="12614">
+          <caret line="585" column="25" selection-start-line="585" selection-start-column="8" selection-end-line="585" selection-end-column="25" />
           <folding>
-            <marker date="1443511143942" expanded="false" signature="7867:7880" placeholder="..." />
+            <marker date="1443518883922" expanded="false" signature="8730:8743" placeholder="..." />
           </folding>
         </state>
       </provider>

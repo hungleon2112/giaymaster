@@ -56,3 +56,12 @@ Route::post("/admin/brand/postAdd",array('as'=>'admin.brand.add','uses'=>'BrandC
 Route::get("/admin/brand/list",array('as'=>'admin.brand.add','uses'=>'BrandController@ListBrand'));
 Route::get("/admin/brand/edit",array('as'=>'admin.brand.edit','uses'=>'BrandController@Edit'));
 Route::post("/admin/brand/deleteListBrand",array('as'=>'admin.brand.delete','uses'=>'BrandController@DeleteListBrand'));
+Route::post("/admin/brand/updateListBrand",array('as'=>'admin.brand.update','uses'=>'BrandController@UpdateListBrand'));
+
+// Branch Route
+Route::get("/admin/branch/add",array('as'=>'admin.branch.add','uses'=>'BranchController@Add'));
+Route::post("/admin/branch/postAdd",array('as'=>'admin.branch.add','uses'=>'BranchController@PostAdd'));
+Route::get("/admin/branch/list",array('as'=>'admin.branch.add','uses'=>'BranchController@ListBranch'));
+Route::get("/admin/branch/edit",array('as'=>'admin.branch.edit','uses'=>'BranchController@Edit'));
+Route::post("/admin/branch/deleteListBranch",array('as'=>'admin.branch.delete','uses'=>'BranchController@DeleteListBranch'));
+Route::post("/admin/branch/updateListBranch",array('as'=>'admin.branch.update','uses'=>'BranchController@UpdateListBranch'));

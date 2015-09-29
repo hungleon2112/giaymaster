@@ -55,6 +55,21 @@ class BrandController extends \BaseController {
       ->with('brand',$brand);
   }
 
+  public function UpdateListBrand()
+  {
+    $input = Input::all();
+    $listBrandID = $input['update_list_brand_id'];
+    $listBrandID = explode(",",$listBrandID);
+    foreach($listBrandID as $p)
+    {
+      if($input['name'] != '' )
+      {
+        $brand = Brand::find($p);
+        $brand->name = $input['name'];
+        $brand->save();
+      }
+    }
+  }
 
   public function DeleteListBrand()
   {

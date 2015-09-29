@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Thương hiệu <small>Danh sách</small>
+            Nhánh hàng <small>Danh sách</small>
         </h1>
     </div>
 </div>
@@ -31,23 +31,23 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <button type="button" class="btn btn-default" id="edit-button-brand">Cập nhật</button>
-        <button type="button" class="btn btn-default" id="delete-button-brand">Xóa</button>
+        <button type="button" class="btn btn-default" id="edit-button-branch">Cập nhật</button>
+        <button type="button" class="btn btn-default" id="delete-button-branch">Xóa</button>
     </div>
 </div>
 
 
 <!-- Modal Update Panel -->
-<div class="modal fade" id="update-panel-brand" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="update-panel-branch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Cập nhật thương hiệu</h4>
+        <h4 class="modal-title" id="myModalLabel">Cập nhật nhánh hàng</h4>
       </div>
       <div class="modal-body">
         <form>
-          <input type="hidden" id="update-list-brand-id" name="update-list-brand-id">
+          <input type="hidden" id="update-list-branch-id" name="update-list-branch-id">
           <div class="form-group">
             <label for="name">Tên</label>
             <input type="text" class="form-control" id="name" placeholder="tên">
@@ -56,7 +56,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="btn-update-brand">Lưu</button>
+        <button type="button" class="btn btn-primary" id="btn-update-branch">Lưu</button>
       </div>
     </div>
   </div>
@@ -64,21 +64,21 @@
 
 
 <!-- Modal Update Panel -->
-<div class="modal fade" id="delete-panel-brand" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="delete-panel-branch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Xóa thương hiệu</h4>
+        <h4 class="modal-title" id="myModalLabel">Xóa nhánh hàng</h4>
       </div>
       <div class="modal-body">
         <form>
-          <input type="hidden" id="delete-list-brand-id" name="delete-list-brand-id">
+          <input type="hidden" id="delete-list-branch-id" name="delete-list-branch-id">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="btn-delete-brand">Xóa</button>
+        <button type="button" class="btn btn-primary" id="btn-delete-branch">Xóa</button>
       </div>
     </div>
   </div>
@@ -96,12 +96,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($listBrand as $p)
+                    @foreach($listBranch as $p)
                         <tr>
                             <td></td>
                             <td>
-                                <input type="hidden" value="{{$p->id}}" id="brand_id_hidden" name="brand_id">
-                                <a href="/admin/brand/edit?id={{$p->id}}">{{$p->name}}</a>
+                                <input type="hidden" value="{{$p->id}}" id="branch_id_hidden" name="branch_id">
+                                <a href="/admin/branch/edit?id={{$p->id}}">{{$p->name}}</a>
                             </td>
                     @endforeach
                 </tbody>
