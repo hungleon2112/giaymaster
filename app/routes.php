@@ -29,6 +29,7 @@ Route::get("/cart/add",array('as'=>'cart.add','uses'=>'HomeController@AddProduct
 Route::get("/cart/show",array('as'=>'cart.show','uses'=>'HomeController@ShowCart'));
 Route::get("/cart/deleteItem/{id}",array('as'=>'cart.delete.item','uses'=>'HomeController@DeleteItemCart'));
 Route::get("/cart/approve",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
+Route::get("/order/show",array('as'=>'order.show','uses'=>'HomeController@ShowOrderList'));
 
 Route::get("/admin/dashboard",array('as'=>'admin.dashboard','uses'=>'AdminController@Dashboard'));
 Route::get("/admin/product/add",array('as'=>'admin.product.add','uses'=>'ProductController@Add'));

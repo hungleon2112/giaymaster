@@ -231,6 +231,7 @@ class HomeController extends BaseController {
         }
         $cart = array_values($cart);
         Session::put('giay.cart', $cart);
+
         return Response::json(array("cart"=>Session::get('giay.cart')));
     }
 
@@ -272,5 +273,27 @@ class HomeController extends BaseController {
         catch(Exception $ex){
             return "Fail";
         }
+    }
+
+    public function ShowOrderList()
+    {
+        $user_info = Session::get('user_info');
+
+        $list_order = $this->order->Order_List($user_info->id);
+
+        for($i = 0 ; $i < count($list_order) ; $i++)
+        {
+            $list_order_detail = $this->order_detail->Order_Detail_List($list_order[$i]->OrderId);
+            $d = date_create($list_order[$i]->OrderDate);
+            $list_order[$i]->OrderDate =  date_format($d, 'd/m/Y H:i:s');
+            $list_order[$i]->Order_Detail = $list_order_detail;
+        }
+
+        //UtilityHelper::test($list_order);
+        return View::make('home.order_list')
+            ->with('result', $this->result)
+            ->with('listBrand', $this->listBrand)
+            ->with('user_info', $this->user_info)
+            ->with('list_order' , $list_order);
     }
 }

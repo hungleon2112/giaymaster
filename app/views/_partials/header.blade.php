@@ -21,8 +21,10 @@
         {
         ?>
         <ul>
-            <li><a href="#" id="">Xin chào {{$user_info->name}}</a></li>
-            <li><a href="#" id="logout-btn">Đăng xuất</a></li>
+            {{--<li><a href="/order/show" id="">Xin chào {{$user_info->name}}</a></li>--}}
+            {{--<li><a href="#" id="logout-btn">Đăng xuất</a></li>--}}
+            <a href="/order/show" id="">Xin chào {{$user_info->name}}</a>/
+                        <a href="#" id="logout-btn">Đăng xuất</a>
         </ul>
         <?php
         }

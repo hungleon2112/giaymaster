@@ -57,7 +57,7 @@ $( document ).ready(function() {
             type: 'GET',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
-                location.reload();
+                window.location = '/';
             },
             error: function () {
                 console.log(response);
@@ -134,7 +134,11 @@ $( document ).ready(function() {
             url: '/cart/deleteItem/' + $(this).attr('cart-item-id') + '',
             type: 'GET',
             success: function (response) {
-                location.reload();
+                //console.log(response.cart.length);
+                if(response.cart.length == 0)
+                    window.location = '/';
+                else
+                    location.reload();
             },
             error: function () {
                 console.log('error');
