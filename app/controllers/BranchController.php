@@ -7,16 +7,16 @@ class BranchController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-  public function __construct(Branch $branch){
+    public function __construct(Branch $branch){
     $this->branch = $branch;
 
-  }
+    }
 
-  public function Add(){
+    public function Add(){
     return View::make('admin.branch.add')->with('branch', NULL);
-  }
+    }
 
-  public function PostAdd(){
+    public function PostAdd(){
     $input = Input::all();
 
     $final_input['id'] = $input['id'];
@@ -37,26 +37,26 @@ class BranchController extends \BaseController {
     } catch (Exception $exception) {
       return $exception->getMessage() . $exception->getLine();
     }
-  }
+    }
 
-  public function ListBranch()
-  {
-    $listBranch = $this->branch->GetAllBranch((Session::get('pagination')) != '' ? Session::get('pagination') : 50);
+    public function ListBranch()
+    {
+    $listBranch = $this->branch->GetAllBranch(50);
     //print_r($listBranch); die();
     return View::make('admin.branch.list')->with('listBranch',$listBranch);
-  }
+    }
 
-  public function Edit()
-  {
+    public function Edit()
+    {
     $input = Input::all();
     $branch_id = $input['id'];
     $branch = Branch::find($branch_id);
     return View::make('admin.branch.add')
       ->with('branch',$branch);
-  }
+    }
 
-  public function UpdateListBranch()
-  {
+    public function UpdateListBranch()
+    {
     $input = Input::all();
     $listBranchID = $input['update_list_branch_id'];
     $listBranchID = explode(",",$listBranchID);
@@ -69,15 +69,15 @@ class BranchController extends \BaseController {
         $branch->save();
       }
     }
-  }
+    }
 
 
-  public function DeleteListBranch()
-  {
+    public function DeleteListBranch()
+    {
     $input = Input::all();
     $listBranchID = $input['delete_list_branch_id'];
     DB::table('branchs')->whereIn('id', explode(",",$listBranchID))->delete();
-  }
+    }
 	public function index()
 	{
 		//

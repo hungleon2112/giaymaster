@@ -41,7 +41,7 @@ class BrandController extends \BaseController {
 
   public function ListBrand()
   {
-    $listBrand = $this->brand->GetAllBrand((Session::get('pagination')) != '' ? Session::get('pagination') : 50);
+    $listBrand = $this->brand->GetAllBrand(50);
     //print_r($listBrand); die();
     return View::make('admin.brand.list')->with('listBrand',$listBrand);
   }

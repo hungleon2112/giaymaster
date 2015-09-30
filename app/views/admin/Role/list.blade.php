@@ -7,47 +7,31 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Nhánh hàng <small>Danh sách</small>
+            Role <small>Danh sách</small>
         </h1>
     </div>
 </div>
 <!-- /.row -->
 
-<!--<div class="row">
-    <div class="col-xs-12">
-    <form class="form-inline">
-          <div class="form-group">
-            <label for="Show">Hiện dữ liệu trên 1 trang </label>
-            <select class="form-control" style="width:80px !important;" id="showing">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-          </div>
-          <button type="button" class="btn btn-default" id="showing-button">Chấp nhận</button>
-    </form>
-    </div>
-</div>-->
-
 <div class="row">
     <div class="col-xs-12">
-        <button type="button" class="btn btn-default" id="edit-button-branch">Cập nhật</button>
-        <button type="button" class="btn btn-default" id="delete-button-branch">Xóa</button>
+        <button type="button" class="btn btn-default" id="edit-button-role">Cập nhật</button>
+        <button type="button" class="btn btn-default" id="delete-button-role">Xóa</button>
     </div>
 </div>
 
 
 <!-- Modal Update Panel -->
-<div class="modal fade" id="update-panel-branch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="update-panel-role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Cập nhật nhánh hàng</h4>
+        <h4 class="modal-title" id="myModalLabel">Cập nhật Role</h4>
       </div>
       <div class="modal-body">
         <form>
-          <input type="hidden" id="update-list-branch-id" name="update-list-branch-id">
+          <input type="hidden" id="update-list-role-id" name="update-list-role-id">
           <div class="form-group">
             <label for="name">Tên</label>
             <input type="text" class="form-control" id="name" placeholder="tên">
@@ -56,7 +40,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="btn-update-branch">Lưu</button>
+        <button type="button" class="btn btn-primary" id="btn-update-role">Lưu</button>
       </div>
     </div>
   </div>
@@ -64,21 +48,21 @@
 
 
 <!-- Modal Update Panel -->
-<div class="modal fade" id="delete-panel-branch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="delete-panel-role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Xóa nhánh hàng</h4>
+        <h4 class="modal-title" id="myModalLabel">Xóa Role</h4>
       </div>
       <div class="modal-body">
         <form>
-          <input type="hidden" id="delete-list-branch-id" name="delete-list-branch-id">
+          <input type="hidden" id="delete-list-role-id" name="delete-list-role-id">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="btn-delete-branch">Xóa</button>
+        <button type="button" class="btn btn-primary" id="btn-delete-role">Xóa</button>
       </div>
     </div>
   </div>
@@ -96,12 +80,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($listBranch as $p)
+                    @foreach($listRole as $p)
                         <tr>
                             <td></td>
                             <td>
-                                <input type="hidden" value="{{$p->id}}" id="branch_id_hidden" name="branch_id">
-                                <a href="/admin/branch/edit?id={{$p->id}}">{{$p->name}}</a>
+                                <input type="hidden" value="{{$p->id}}" id="role_id_hidden" name="role_id">
+                                <a href="/admin/role/edit?id={{$p->id}}">{{$p->name}}</a>
                             </td>
                     @endforeach
                 </tbody>

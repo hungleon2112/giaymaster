@@ -168,6 +168,17 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#role"><i class=""></i> Role <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="role" class="collapse">
+                            <li>
+                                <a href="/admin/role/add">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="/admin/role/list">Danh sách</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class=""></i> Sản phẩm <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="product" class="collapse">
                             <li>

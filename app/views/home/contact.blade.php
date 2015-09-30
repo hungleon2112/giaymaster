@@ -2,19 +2,19 @@
 
 @section('content')
 
-<h3 class="title">Contact</h3>
+<h3 class="title">Liên hệ</h3>
 <div class="contact row">
   <div class="col-md-3 col-sm-3 ">
     <div class="logo">
       <h2>
-        SHop GIAY
+        MasterC
       </h2>
     </div>
     <div class="address">
-      812 Broadway <br>
-      New York, NY 10003 <br>
-      503 N Fairfax Ave <br>
-      Los Angeles, CA 90036 <br>
+      7A/43 Thành Thái <br>
+      P.14 Q.10 TP.HCM <br>
+      435 Huỳnh Văn Bánh <br>
+      P.14 Q.Phú Nhuận TP.HCM <br>
     </div>
     <div class="socail-network">
      <a href="#"><i class="icon icon-instergram"></i></a>
@@ -28,27 +28,23 @@
   <div class="col-md-9 col-sm-9">
     <form action="">
       <div class="form-group">
-        <label for="exampleInputEmail1">SUBJECT*</label>
-        <input type="text" class="form-control" id="exampleInputEmail1">
+        <label for="exampleInputEmail1">Tiêu đề</label>
+        <input type="text" class="form-control" id="subject" name="subject">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">ORDER NUMBER (IF APPLICABLE)</label>
-        <input type="text" class="form-control" id="exampleInputPassword1">
+        <label for="exampleInputEmail1">Nội dung</label>
+        <textarea class="form-control" rows="3" name="content"></textarea>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">COMMENT*</label>
-        <textarea class="form-control" rows="3"></textarea>
+        <label for="exampleInputPassword1">Tên</label>
+        <input type="text" class="form-control" id="name" name="name">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">YOUR NAME*</label>
-        <input type="text" class="form-control" id="exampleInputPassword1">
+        <label for="exampleInputPassword1">Email</label>
+        <input type="text" class="form-control" id="email" name="email">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">EMAIL*</label>
-        <input type="text" class="form-control" id="exampleInputPassword1">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn">Send your Question</button>
+        <button type="submit" class="btn">Liên hệ</button>
       </div>
     </form>
   </div>

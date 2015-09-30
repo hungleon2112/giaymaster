@@ -30,6 +30,7 @@ Route::get("/cart/show",array('as'=>'cart.show','uses'=>'HomeController@ShowCart
 Route::get("/cart/deleteItem/{id}",array('as'=>'cart.delete.item','uses'=>'HomeController@DeleteItemCart'));
 Route::get("/cart/approve",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
 Route::get("/order/show",array('as'=>'order.show','uses'=>'HomeController@ShowOrderList'));
+Route::get("/contact",array('as'=>'contact','uses'=>'HomeController@Contact'));
 
 Route::get("/admin/dashboard",array('as'=>'admin.dashboard','uses'=>'AdminController@Dashboard'));
 Route::get("/admin/product/add",array('as'=>'admin.product.add','uses'=>'ProductController@Add'));
@@ -66,3 +67,21 @@ Route::get("/admin/branch/list",array('as'=>'admin.branch.add','uses'=>'BranchCo
 Route::get("/admin/branch/edit",array('as'=>'admin.branch.edit','uses'=>'BranchController@Edit'));
 Route::post("/admin/branch/deleteListBranch",array('as'=>'admin.branch.delete','uses'=>'BranchController@DeleteListBranch'));
 Route::post("/admin/branch/updateListBranch",array('as'=>'admin.branch.update','uses'=>'BranchController@UpdateListBranch'));
+
+
+// Role Route
+Route::get("/admin/role/add",array('as'=>'admin.role.add','uses'=>'RoleController@Add'));
+Route::post("/admin/role/postAdd",array('as'=>'admin.role.add','uses'=>'RoleController@PostAdd'));
+Route::get("/admin/role/list",array('as'=>'admin.role.add','uses'=>'RoleController@ListRole'));
+Route::get("/admin/role/edit",array('as'=>'admin.role.edit','uses'=>'RoleController@Edit'));
+Route::post("/admin/role/deleteListRole",array('as'=>'admin.role.delete','uses'=>'RoleController@DeleteListRole'));
+Route::post("/admin/role/updateListRole",array('as'=>'admin.role.update','uses'=>'RoleController@UpdateListRole'));
+
+
+// User Route
+Route::get("/admin/user/add",array('as'=>'admin.user.add','uses'=>'UserController@Add'));
+Route::post("/admin/user/postAdd",array('as'=>'admin.user.add','uses'=>'UserController@PostAdd'));
+Route::get("/admin/user/list",array('as'=>'admin.user.add','uses'=>'UserController@ListUser'));
+Route::get("/admin/user/edit",array('as'=>'admin.user.edit','uses'=>'UserController@Edit'));
+Route::post("/admin/user/deleteListUser",array('as'=>'admin.user.delete','uses'=>'UserController@DeleteListUser'));
+Route::post("/admin/user/updateListUser",array('as'=>'admin.user.update','uses'=>'UserController@UpdateListUser'));

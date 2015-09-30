@@ -20,13 +20,13 @@
           <div class="banner_images_content">
             <div id="googleMap"></div>
           </div>
-          <div class="description_banner">
+          <!--<div class="description_banner">
             <p>
               Pellentesque habitant <br>
               morbi tristique <span>senectus et</span>
             </p>
             <span>Proin malesuada consectetur erat, vitae lacinia</span>
-          </div>
+          </div>-->
       </div>
       <div class="main_content">
               <div class="container">

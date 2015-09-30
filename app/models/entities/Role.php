@@ -30,7 +30,10 @@ class Role extends BaseModel {
         return $this->hasMany('Users', 'role_id', 'id');
     }
 
-
+    public function GetAllRole()
+    {
+        return Role::all();
+    }
 
     /**
 	 * The attributes excluded from the model's JSON form.

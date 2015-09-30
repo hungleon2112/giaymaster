@@ -19,11 +19,11 @@ class UserController extends \BaseController {
         $final_input['phone'] = $input['phone'];
         $final_input['email'] = $input['email'];
         $final_input['address'] = $input['address'];
+        $final_input['role_id'] = (isset($input['role_id'])) ? $input['role_id'] : 1;
 
         $user = $this->user->create($final_input);
 
         Session::put('user_info', $user);
-
 
         return Redirect::route('home.index');
     }

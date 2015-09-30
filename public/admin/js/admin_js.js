@@ -110,6 +110,32 @@ $( document ).ready(function() {
 
     });
 
+
+    //Insert Role
+    $("#role-add").click(function() {
+        var form = document.forms.namedItem("role-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/role/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-role-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+
     //Insert Branch
     $("#branch-add").click(function() {
         var form = document.forms.namedItem("branch-form"); // high importance!, here you need change "yourformname" with the name of your form
@@ -378,6 +404,41 @@ $( document ).ready(function() {
         }
     });
 
+    //Open Update  Role Panel
+    $("#edit-button-role").click(function(){
+        var listRoleID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var role_id = $(theTrTag.find("#role_id_hidden"));
+                if(listRoleID == '')
+                {
+                    //First Element
+                    listRoleID += role_id.val();
+                }
+                else
+                {
+                    listRoleID += ',' + role_id.val();
+                }
+            }
+        });
+
+        if(listRoleID == '')
+        {
+            alert('Chưa có role nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#update-list-role-id").val(listRoleID);
+            $('#update-panel-role').modal('show');
+        }
+
+    });
+
+
     //Open Update  Brand Panel
     $("#edit-button-brand").click(function(){
         var listBrandID = "";
@@ -547,6 +608,40 @@ $( document ).ready(function() {
 
     });
 
+    //Open Delete Role Panel
+    $("#delete-button-role").click(function(){
+        var listRoleID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var role_id = $(theTrTag.find("#role_id_hidden"));
+                if(listRoleID == '')
+                {
+                    //First Element
+                    listRoleID += role_id.val();
+                }
+                else
+                {
+                    listRoleID += ',' + role_id.val();
+                }
+            }
+        });
+
+        if(listRoleID == '')
+        {
+            alert('Chưa có role nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-role-id").val(listRoleID);
+            $('#delete-panel-role').modal('show');
+        }
+
+    });
+
     //Open Delete Panel
     $("#delete-button").click(function(){
         var listProductID = "";
@@ -589,13 +684,33 @@ $( document ).ready(function() {
             type: 'POST',
             data: {delete_list_branch_id : $("#delete-list-branch-id").val()},
             success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 2000);
             },
             error: function () {
                 console.log('error');
             }
         });
         $('#delete-panel-branch').modal('hide');
-        location.reload();
+    });
+
+    // Delete List Role
+    $("#btn-delete-role").click(function(){
+        $.ajax({
+            url: '/admin/role/deleteListRole',
+            type: 'POST',
+            data: {delete_list_role_id : $("#delete-list-role-id").val()},
+            success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 2000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel-role').modal('hide');
     });
 
     // Delete List Brand
@@ -605,13 +720,15 @@ $( document ).ready(function() {
             type: 'POST',
             data: {delete_list_brand_id : $("#delete-list-brand-id").val()},
             success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 2000);
             },
             error: function () {
                 console.log('error');
             }
         });
         $('#delete-panel-brand').modal('hide');
-        location.reload();
     });
     //Delete List Products
     $("#btn-delete").click(function(){
@@ -657,6 +774,27 @@ $( document ).ready(function() {
         });
         $('#update-panel').modal('hide');
     });
+
+    //Update List Roles
+    $("#btn-update-role").click(function(){
+        $.ajax({
+            url: '/admin/role/updateListRole',
+            type: 'POST',
+            data: {
+                update_list_role_id : $("#update-list-role-id").val(),
+                name : $("#name").val()
+            },
+            success: function (response) {
+                $('#update-panel-role').modal('hide');
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#update-panel-role').modal('hide');
+    });
+
 
     //Update List Brands
     $("#btn-update-brand").click(function(){

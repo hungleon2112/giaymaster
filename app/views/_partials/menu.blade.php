@@ -53,36 +53,15 @@
               <div class="col-md-2 col-xs-12">
                 <h2></h2>
                   <ul>
-                    <li>
-                      <a href="#">5TheWay</a>
-                    </li>
-                    <li>
-                      <a href="#">Nike</a>
-                    </li>
-                    <li>
-                      <a href="#">Adidas</a>
-                    </li>
-                    <li>
-                      <a href="#">Puma</a>
-                    </li>
-                    <li>
-                      <a href="#">RipCurl</a>
-                    </li>
-                    <li>
-                      <a href="#">The NorthFace</a>
-                    </li>
-                    <li>
-                      <a href="#">Overdose</a>
-                    </li>
-                    <li>
-                      <a href="#">KenStyle</a>
-                    </li>
-                    <li>
-                      <a href="#">Real Tree</a>
-                    </li>
-                    <li>
-                      <a href="#">Game Guard</a>
-                    </li>
+                    <?php
+                      foreach($listBrand as $brand){
+                      ?>
+                          <li>
+                            {{ HTML::linkRoute('product.list.brand',$brand->name, $brand->id ) }}
+                          </li>
+                      <?php
+                      }
+                    ?>
                   </ul>
               </div>
               <div class="col-md-4 col-xs-12 banner-ad-content">
@@ -93,7 +72,7 @@
             </div>
           </li>
           <li>
-            <a href="#">Liên hệ</a>
+            {{ HTML::linkRoute('contact','Liên hệ' ) }}
           </li>
         </ul>
         <div class="clearfix"></div>

@@ -163,24 +163,55 @@ src="http://maps.googleapis.com/maps/api/js">
 </script>
 
 <script>
-var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+//var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+//
+//function initialize()
+//{
+//var mapProp = {
+//  center:myCenter,
+//  zoom:5,
+//  mapTypeId:google.maps.MapTypeId.ROADMAP
+//  };
+//
+//var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+//
+//var marker=new google.maps.Marker({
+//  position:myCenter,
+//  });
+//
+//marker.setMap(map);
+//}
+//
+//google.maps.event.addDomListener(window, 'load', initialize);
 
-function initialize()
-{
-var mapProp = {
-  center:myCenter,
-  zoom:5,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
 
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+var locations = [
+      ['7A/43 Thành Thái P.14 Q.10', 10.769031,106.665747, 2],
+      ['435 Huỳnh Văn Bánh P.14 Q.Phu Nhuận', 10.791687, 106.671209, 1]
+    ];
 
-var marker=new google.maps.Marker({
-  position:myCenter,
-  });
+    var map = new google.maps.Map(document.getElementById('googleMap'), {
+      zoom: 12,
+      center: new google.maps.LatLng(10.791687, 106.671209),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
-marker.setMap(map);
-}
+    var infowindow = new google.maps.InfoWindow();
 
-google.maps.event.addDomListener(window, 'load', initialize);
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+
 </script>

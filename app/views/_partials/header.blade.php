@@ -132,7 +132,7 @@
           </div>
         </li>
         <li>
-          <a href="#">Liên hệ</a>
+          {{ HTML::linkRoute('contact','Liên hệ' ) }}
         </li>
       </ul>
       <div class="clearfix"></div>

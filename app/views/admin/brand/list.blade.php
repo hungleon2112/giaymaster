@@ -13,7 +13,7 @@
 </div>
 <!-- /.row -->
 
-<div class="row">
+<!--<div class="row">
     <div class="col-xs-12">
     <form class="form-inline">
           <div class="form-group">
@@ -27,7 +27,7 @@
           <button type="button" class="btn btn-default" id="showing-button">Chấp nhận</button>
     </form>
     </div>
-</div>
+</div>-->
 
 <div class="row">
     <div class="col-xs-12">
