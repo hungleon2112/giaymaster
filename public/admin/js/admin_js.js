@@ -110,6 +110,55 @@ $( document ).ready(function() {
 
     });
 
+    //Insert Branch
+    $("#branch-add").click(function() {
+        var form = document.forms.namedItem("branch-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/branch/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-branch-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    //Insert Brand
+    $("#brand-add").click(function() {
+        var form = document.forms.namedItem("brand-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/brand/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-brand-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+
     //Insert Product
     $("#product-add").click(function() {
 
@@ -329,8 +378,74 @@ $( document ).ready(function() {
         }
     });
 
+    //Open Update  Brand Panel
+    $("#edit-button-brand").click(function(){
+        var listBrandID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var brand_id = $(theTrTag.find("#brand_id_hidden"));
+                if(listBrandID == '')
+                {
+                    //First Element
+                    listBrandID += brand_id.val();
+                }
+                else
+                {
+                    listBrandID += ',' + brand_id.val();
+                }
+            }
+        });
 
-    //Open Update Panel
+        if(listBrandID == '')
+        {
+            alert('Chưa có thương hiệu nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#update-list-brand-id").val(listBrandID);
+            $('#update-panel-brand').modal('show');
+        }
+
+    });
+    //Open Update  Branch Panel
+    $("#edit-button-branch").click(function(){
+        var listBranchID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var branch_id = $(theTrTag.find("#branch_id_hidden"));
+                if(listBranchID == '')
+                {
+                    //First Element
+                    listBranchID += branch_id.val();
+                }
+                else
+                {
+                    listBranchID += ',' + branch_id.val();
+                }
+            }
+        });
+
+        if(listBranchID == '')
+        {
+            alert('Chưa có nhánh hàng nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#update-list-branch-id").val(listBranchID);
+            $('#update-panel-branch').modal('show');
+        }
+
+    });
+
+    //Open Update Product Panel
     $("#edit-button").click(function(){
         var listProductID = "";
         $("input[name='btSelectItem']").each(function()
@@ -364,6 +479,73 @@ $( document ).ready(function() {
 
     });
 
+    //Open Delete Branch Panel
+    $("#delete-button-branch").click(function(){
+        var listBranchID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var branch_id = $(theTrTag.find("#branch_id_hidden"));
+                if(listBranchID == '')
+                {
+                    //First Element
+                    listBranchID += branch_id.val();
+                }
+                else
+                {
+                    listBranchID += ',' + branch_id.val();
+                }
+            }
+        });
+
+        if(listBranchID == '')
+        {
+            alert('Chưa có nhánh hàng nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-branch-id").val(listBranchID);
+            $('#delete-panel-branch').modal('show');
+        }
+
+    });
+
+    //Open Delete Brand Panel
+    $("#delete-button-brand").click(function(){
+        var listBrandID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var brand_id = $(theTrTag.find("#brand_id_hidden"));
+                if(listBrandID == '')
+                {
+                    //First Element
+                    listBrandID += brand_id.val();
+                }
+                else
+                {
+                    listBrandID += ',' + brand_id.val();
+                }
+            }
+        });
+
+        if(listBrandID == '')
+        {
+            alert('Chưa có thương hiệu nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-brand-id").val(listBrandID);
+            $('#delete-panel-brand').modal('show');
+        }
+
+    });
 
     //Open Delete Panel
     $("#delete-button").click(function(){
@@ -400,6 +582,37 @@ $( document ).ready(function() {
     });
 
 
+    // Delete List Branch
+    $("#btn-delete-branch").click(function(){
+        $.ajax({
+            url: '/admin/branch/deleteListBranch',
+            type: 'POST',
+            data: {delete_list_branch_id : $("#delete-list-branch-id").val()},
+            success: function (response) {
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel-branch').modal('hide');
+        location.reload();
+    });
+
+    // Delete List Brand
+    $("#btn-delete-brand").click(function(){
+        $.ajax({
+            url: '/admin/brand/deleteListBrand',
+            type: 'POST',
+            data: {delete_list_brand_id : $("#delete-list-brand-id").val()},
+            success: function (response) {
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel-brand').modal('hide');
+        location.reload();
+    });
     //Delete List Products
     $("#btn-delete").click(function(){
         $.ajax({
@@ -443,6 +656,46 @@ $( document ).ready(function() {
             }
         });
         $('#update-panel').modal('hide');
+    });
+
+    //Update List Brands
+    $("#btn-update-brand").click(function(){
+        $.ajax({
+            url: '/admin/brand/updateListBrand',
+            type: 'POST',
+            data: {
+                update_list_brand_id : $("#update-list-brand-id").val(),
+                name : $("#name").val()
+            },
+            success: function (response) {
+                $('#update-panel-brand').modal('hide');
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#update-panel-brand').modal('hide');
+    });
+    //Update List Branchs
+    $("#btn-update-branch").click(function(){
+        $.ajax({
+            url: '/admin/branch/updateListBranch',
+            type: 'POST',
+            data: {
+                update_list_branch_id : $("#update-list-branch-id").val(),
+                name : $("#name").val()
+
+            },
+            success: function (response) {
+                $('#update-panel-branch').modal('hide');
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#update-panel-branch').modal('hide');
     });
 
 
