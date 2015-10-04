@@ -3,6 +3,8 @@
  */
 $( document ).ready(function() {
 
+    $("#size").val('');
+
     $("#authenticate-button").click(function(){
         $('#authenticate-modal').modal('show');
     });
@@ -112,16 +114,24 @@ $( document ).ready(function() {
     });
 
     $("#add-to-cart-btn").click(function(){
+        if($("#size").val() == '')
+        {
+            $("#size").val($( "a[class*='size-active']").attr('size-value'));
+        }
         $.ajax({
             url: '/cart/add',
             type: 'GET',
             data: {product_id : $("#product_id").val(), size : $("#size").val(), name : $("#name").val(),
-                   quantity : $("#quantity").val(), price : $("#price").val(), code : $("#code").val()
+                   quantity : $("#quantity").val(), price : $("#price").val(), code : $("#code").val(), image : $("#image").val()
                   },
             success: function (response) {
                 console.log(response.cart.length);
                 $("#cart-quantity").text('('+response.cart.length+')');
                 $("#cart-inform-modal").modal("show");
+
+                setTimeout(function(){
+                    location.reload();
+                }, 1000);
             },
             error: function () {
                 console.log('error');
@@ -166,4 +176,27 @@ $( document ).ready(function() {
             }
         });
     });
+
+
+    jQuery('.cart-content').click(function() {
+        if(jQuery('.shopping-cart-top').length){
+            jQuery('.shopping-cart-top').fadeToggle();
+        }
+    });
+
+    $('.bxslider').bxSlider({
+        pagerCustom: '#bx-pager'
+    });
 });
+
+
+Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
+    var n = this,
+        decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+        decSeparator = decSeparator == undefined ? "." : decSeparator,
+        thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+        sign = n < 0 ? "-" : "",
+        i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+        j = (j = i.length) > 3 ? j % 3 : 0;
+    return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
+};

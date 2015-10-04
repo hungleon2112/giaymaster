@@ -42,7 +42,7 @@
                 }
             ?>
             <div class="dropdown">
-              <select name="branch" id="branch" class="form-control">
+              <select name="branch" id="branch-dd" class="form-control">
                   <option value="0"> --- Chọn loại --- </option>
                   @foreach($listBranch as $b)
                     <option value="{{ $b['id']  }}">{{ $b['name'] }}</option>

@@ -4,19 +4,19 @@
 $( document ).ready(function() {
 
     //Show Cat Lev 1
-    $("#branch").change(function() {
+    $(document).on('change', '#branch-dd', function() {
         CleanAllCatLev();
         $.ajax({
             url: '/admin/product/add/getAllCatLev1FromBranchID',
             type: 'GET',
-            data: { branch_id: $("#branch").val()} ,
+            data: { branch_id: $("#branch-dd").val()} ,
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
                 if(response.length > 0)
                 {
                     $("#cat1").css('display', 'block')
                     $("#cat1").html('');
-                    $("#cat1").append('<option value="0"> --- Chọn loại '+$("#branch option:selected").text()+' --- </option>');
+                    $("#cat1").append('<option value="0"> --- Chọn loại '+$("#branch-dd option:selected").text()+' --- </option>');
                     for(var i = 0 ; i < response.length ; i ++)
                     {
                         $("#cat1").append('<option value="'+response[i].id+'"> '+response[i].name+' </option>');
@@ -211,7 +211,6 @@ $( document ).ready(function() {
 
     //Insert Product
     $("#product-add").click(function() {
-
         var form = document.forms.namedItem("product-form"); // high importance!, here you need change "yourformname" with the name of your form
         var formdata = new FormData(form); // high importance!
         $.ajax({

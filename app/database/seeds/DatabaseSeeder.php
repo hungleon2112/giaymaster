@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('StatusTableSeeder');
         $this->call('UsersTableSeeder');
         $this->call('OptionalTableSeeder');
+        $this->call('TranTypeTableSeeder');
 	}
 
 }

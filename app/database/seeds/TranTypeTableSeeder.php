@@ -6,17 +6,18 @@
  * Time: 5:27 PM
  */
 
-class TranTypeTableSeeder {
+class TranTypeTableSeeder extends Seeder{
+
     public function run() {
         DB::table('tran_type')->truncate();
 
-        $status = new Status();
-        $status->name = "Chuyển khoản và nhận hàng";
-        $status->save();
+        $tran_type = new Tran_Type();
+        $tran_type->name = "Chuyển khoản và nhận hàng";
+        $tran_type->save();
 
-        $status = new Status();
-        $status->name = "Nhận hàng và trả tiền cho bên chuyển hàng";
-        $status->save();
-
+        $tran_type = new Tran_Type();
+        $tran_type->name = "Nhận hàng và trả tiền cho bên chuyển hàng";
+        $tran_type->save();
     }
+
 } 

@@ -20,6 +20,8 @@ class HomeController extends BaseController {
     protected $image;
     protected $result = array();
     protected $listBrand = array();
+    protected $cart = array();
+    protected $total;
     protected $brand;
     protected $user_info;
     protected $order;
@@ -50,6 +52,14 @@ class HomeController extends BaseController {
 
             $this->listBrand = $this->brand->GetAllBrand();
             $this->user_info = Session::get('user_info');
+
+            //cart
+            $this->cart = Session::get('giay.cart');
+            $this->total = 0;
+            for($i = 0 ; $i < count($this->cart) ; $i ++)
+            {
+                $this->total += $this->cart[$i]['total'];
+            }
         });
     }
 
@@ -62,7 +72,9 @@ class HomeController extends BaseController {
         $img_url = $this->image->GetFirstImageUrl($product->id);
         $product_img[$product->id] = $img_url;
       endforeach;
+
       return View::make('home.index')
+          ->with('cart',$this->cart)
           ->with('result', $this->result)
           ->with('listBrand', $this->listBrand)
           ->with('user_info', $this->user_info)
@@ -72,6 +84,7 @@ class HomeController extends BaseController {
     public function Blog_Detail()
     {
         return View::make('home.blog_detail')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -80,6 +93,7 @@ class HomeController extends BaseController {
     public function Blog_List()
     {
         return View::make('home.blog_list')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -88,6 +102,7 @@ class HomeController extends BaseController {
     public function Contact()
     {
         return View::make('home.contact')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -96,6 +111,7 @@ class HomeController extends BaseController {
     public function Gallery_List()
     {
         return View::make('home.gallery_list')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -104,6 +120,7 @@ class HomeController extends BaseController {
     public function Gallery_Detail()
     {
         return View::make('home.gallery_detail')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -126,6 +143,7 @@ class HomeController extends BaseController {
             array_push($list_product, $product_info);
         endforeach;
         return View::make('home.product_list')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('list_product', $list_product)
@@ -150,6 +168,7 @@ class HomeController extends BaseController {
             array_push($list_product, $product_info);
         endforeach;
         return View::make('home.product_list')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('list_product', $list_product)
@@ -168,6 +187,7 @@ class HomeController extends BaseController {
         }
         array_push($product_info, $listImage, $product);
         return View::make('home.product_detail')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('product_info', $product_info)
@@ -186,13 +206,32 @@ class HomeController extends BaseController {
         $item['quantity'] = $input['quantity'];
         $item['price'] = $input['price'];
         $item['total'] = $input['quantity'] * $input['price'];
-
+        $item['image'] = $input['image'];
         $cart = Session::get('giay.cart');
-        //print_r($cart);die();
 
         if ($cart != ''){
             $cart = Session::get('giay.cart');
-            array_push($cart,$item);
+            $checkExist = false;
+            for($i = 0 ; $i < count($cart) ; $i ++)
+            {
+                if($cart[$i]['product_id'] == $item['product_id'] &&
+                   $cart[$i]['size'] == $item['size'])
+                {
+                    $checkExist =  true;
+                    break;
+
+                }
+            }
+            if($checkExist)
+            {
+                //Update Quantity & Total
+                $cart[$i]['quantity'] += $item['quantity'];
+                $cart[$i]['total'] = $cart[$i]['quantity'] * $item['price'];
+            }
+            else
+            {
+                array_push($cart,$item);
+            }
         }
         else
         {
@@ -206,15 +245,10 @@ class HomeController extends BaseController {
 
     public function ShowCart()
     {
-        $cart = Session::get('giay.cart');
-        $total = 0;
-        for($i = 0 ; $i < count($cart) ; $i ++)
-        {
-            $total += $cart[$i]['total'];
-        }
+
         return View::make('home.cart')
-            ->with('cart',$cart)
-            ->with('total',$total)
+            ->with('cart',$this->cart)
+            ->with('total',$this->total)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -291,6 +325,7 @@ class HomeController extends BaseController {
 
         //UtilityHelper::test($list_order);
         return View::make('home.order_list')
+            ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info)

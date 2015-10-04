@@ -15,22 +15,37 @@ Sản Phẩm
 <input type="hidden" id="size" />
 <input type="hidden" id="code"  value="{{$product_info[1][0]->code}}"  />
 <input type="hidden" id="name"  value="{{$product_info[1][0]->name}}"  />
-<input type="hidden" id="price" value="{{$product_info[1][0]->price_original}}" />
+<input type="hidden" id="price" value="{{($product_info[1][0]->price_original)}}" />
+<input type="hidden" id="image" value="{{$product_info[0][0]->url}}" />
+
 <div class="big-img">
-<img src="{{$product_info[0][0]->url}}" alt="">
+<ul class="bxslider">
+  <?php
+  for($i = 0 ; $i < count($product_info[0]); $i ++){
+  ?>
+      <li><img src="{{$product_info[0][$i]->url}}" alt=""></li>
+  <?php
+  }
+  ?>
+</ul>
 </div>
 <div class="small-img">
-<?php
-for($i = 1 ; $i < count($product_info[0]); $i ++){
-?>
-    <a href="#">
-      <img src="{{$product_info[0][$i]->url}}" alt="">
-    </a>
-<?php
-}
-?>
+<div id="bx-pager">
 
+  <?php
+    for($i = 0 ; $i < count($product_info[0]); $i ++){
+    ?>
+        <a data-slide-index="{{$i}}" href=""><img src="{{$product_info[0][$i]->url}}" /></a>
+    <?php
+    }
+    ?>
 </div>
+</div>
+
+
+
+
+
 </div>
 <!--
 <div class="social-content">
@@ -40,7 +55,7 @@ for($i = 1 ; $i < count($product_info[0]); $i ++){
 </div>
 <div class="col-md-6 detail-text">
 <h3>{{$product_info[1][0]->name}}</h3>
-<span class="sprice">{{$product_info[1][0]->price_original}} VNĐ</span>
+<span class="sprice">{{number_format($product_info[1][0]->price_original)}} VNĐ</span>
 <div class="size">
 <span>Size</span>
 <ul>
@@ -51,7 +66,7 @@ for($i = 0; $i < count($size_list); $i++)
 {
 ?>
 <li>
-  <a href="javascript:;" size="{{$size_list[$i]}}" class="size-href" size-value="{{$size_list[$i]}}">{{$size_list[$i]}}</a>
+  <a id="size-selector" href="javascript:;" size="{{$size_list[$i]}}" class="size-href <?php echo ($i == 0) ? "size-active" : "" ?>" size-value="{{$size_list[$i]}}">{{$size_list[$i]}}</a>
 </li>
 <?php
 }

@@ -38,9 +38,9 @@ if(isset($cart))
                         <?php echo $cart[$i]['name'] ?>
                     </td>
                     <td><?php echo $cart[$i]['size'] ?></td>
-                    <td><?php echo $cart[$i]['price'] ?></td>
+                    <td><?php echo number_format($cart[$i]['price']) ?></td>
                     <td><?php echo $cart[$i]['quantity'] ?></td>
-                    <td><?php echo $cart[$i]['total'] ?></td>
+                    <td><?php echo number_format($cart[$i]['total']) ?></td>
                     <td>
                         <input value="Xóa" type="button" class="btn primary" id="delete-item-cart-btn" cart-item-id="<?php echo $cart[$i]['id'] ?>">
                     </td>
@@ -59,7 +59,7 @@ if(isset($cart))
                 <td></td>
                 <td></td>
                 <td><b>Tổng tiền: </b></td>
-                <td>{{$total}} </td>
+                <td>{{number_format($total)}} </td>
                 <td>
                     <input value="Đặt hàng" type="button" class="btn primary" id="approve-cart-btn">
                 </td>

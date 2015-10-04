@@ -39,9 +39,10 @@
       </div>
       <div class="cart-content">
        <i class="icon icon-cart"></i>
-       <a id="show-cart" href="/cart/show"><p>GIỎ Hàng <span id="cart-quantity">({{count(Session::get('giay.cart'))}})</span></p></a>
+       <p>GIỎ Hàng <span id="cart-quantity">({{count(Session::get('giay.cart'))}})</span></p>
       </div>
       <div class="clearfix"></div>
+      @include('_partials.cart-top')
     </div>
     <div class="header-mid-bottom row">
       <div class="logo col-md-3 col-sm-3 col-xs-8">

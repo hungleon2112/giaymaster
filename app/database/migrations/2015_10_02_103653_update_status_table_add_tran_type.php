@@ -12,7 +12,7 @@ class UpdateStatusTableAddTranType extends Migration {
 	 */
     public function up()
     {
-        Schema::table('tran_type', function(Blueprint $table){
+        Schema::table('statuses', function(Blueprint $table){
             $table->integer('tran_type_id')->nullable(1);
             $table->string('color')->nullable();
         });
@@ -25,10 +25,7 @@ class UpdateStatusTableAddTranType extends Migration {
      */
     public function down()
     {
-        Schema::table('tran_type', function(Blueprint $table){
-            $table->dropColumn('tran_type_id');
-            $table->dropColumn('color');
-        });
+
     }
 
 }
