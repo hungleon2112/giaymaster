@@ -135,6 +135,30 @@ $( document ).ready(function() {
         });
     });
 
+    //Insert Role
+    $("#showing-order-button").click(function() {
+        var form = document.forms.namedItem("user-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/user/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-user-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
 
     //Insert Branch
     $("#branch-add").click(function() {
@@ -326,6 +350,44 @@ $( document ).ready(function() {
             success: function (response) {
                 //location.reload();
                 window.location = '/admin/product/list';
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    //Showing Item Per Page (User)
+    $("#showing-user-button").click(function() {
+        var showing = $("#showing").val();
+
+        $.ajax({
+            url: '/admin/user/showing',
+            type: 'GET',
+            data: { showing: $("#showing").val()} ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                //location.reload();
+                window.location = '/admin/user/list';
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    //Showing Item Per Page (Order)
+    $("#showing-order-button").click(function() {
+        var showing = $("#showing").val();
+
+        $.ajax({
+            url: '/admin/order/showing',
+            type: 'GET',
+            data: { showing: $("#showing").val()} ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                //location.reload();
+                window.location = '/admin/order/list';
             },
             error: function () {
                 console.log('error');
@@ -574,6 +636,40 @@ $( document ).ready(function() {
 
     });
 
+    //Open Delete User Panel
+    $("#delete-button-user").click(function(){
+        var listUserID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var user_id = $(theTrTag.find("#user_id_hidden"));
+                if(listUserID == '')
+                {
+                    //First Element
+                    listUserID += user_id.val();
+                }
+                else
+                {
+                    listUserID += ',' + user_id.val();
+                }
+            }
+        });
+
+        if(listUserID == '')
+        {
+            alert('Chưa có user nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-user-id").val(listUserID);
+            $('#delete-panel-user').modal('show');
+        }
+
+    });
+
     //Open Delete Brand Panel
     $("#delete-button-brand").click(function(){
         var listBrandID = "";
@@ -676,6 +772,23 @@ $( document ).ready(function() {
 
     });
 
+    // Delete List Branch
+    $("#btn-delete-user").click(function(){
+        $.ajax({
+            url: '/admin/user/deleteListUser',
+            type: 'POST',
+            data: {delete_list_user_id : $("#delete-list-user-id").val()},
+            success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 2000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel-user').modal('hide');
+    });
 
     // Delete List Branch
     $("#btn-delete-branch").click(function(){
@@ -862,6 +975,18 @@ $( document ).ready(function() {
             $("#from_date_sale").prop('disabled',true);
             $("#to_date_sale").prop('disabled',true);
         }
+    });
+
+
+    //Nested Table Order & Order Detail
+    $(document).on('click', '#show-order-detail-on-table', function() {
+        var trID = $(this).attr('trID');
+        $("#list-order-detail").html($('#'+trID+'').html());
+        $("#order-id").text('HD' + $("#order_id_hidden").val());
+        $("#order-date").text($("#order_date_hidden").val());
+        $("#order-customer").text($("#order_customer_hidden").val());
+        $("#order-status").text($("#order_status_hidden").val());
+        $("#order-detail-panel").modal("show");
     });
 
 });

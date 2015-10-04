@@ -80,8 +80,12 @@ Route::post("/admin/role/updateListRole",array('as'=>'admin.role.update','uses'=
 
 // User Route
 Route::get("/admin/user/add",array('as'=>'admin.user.add','uses'=>'UserController@Add'));
-Route::post("/admin/user/postAdd",array('as'=>'admin.user.add','uses'=>'UserController@PostAdd'));
+Route::post("/admin/user/postAdd",array('as'=>'admin.user.add','uses'=>'UserController@Register'));
 Route::get("/admin/user/list",array('as'=>'admin.user.add','uses'=>'UserController@ListUser'));
 Route::get("/admin/user/edit",array('as'=>'admin.user.edit','uses'=>'UserController@Edit'));
 Route::post("/admin/user/deleteListUser",array('as'=>'admin.user.delete','uses'=>'UserController@DeleteListUser'));
 Route::post("/admin/user/updateListUser",array('as'=>'admin.user.update','uses'=>'UserController@UpdateListUser'));
+Route::get("/admin/user/showing",array('as'=>'admin.user.showing','uses'=>'UserController@SetPagination'));
+
+//Order Route
+Route::get("/admin/order/list",array('as'=>'admin.order.list','uses'=>'OrderController@ListOrder'));

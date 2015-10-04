@@ -44,6 +44,20 @@ class Order extends BaseModel {
         return $results;
     }
 
+    public function Order_List_All($pagination)
+    {
+        $results = DB::table('orders')
+            ->leftjoin('statuses', 'orders.status_id', '=', 'statuses.id')
+            ->leftjoin('users', 'orders.user_id', '=', 'users.id')
+            ->select(
+                'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal',
+                'statuses.name as Status', 'users.name as Customer')
+            ->orderBy('date','desc')
+            ->paginate($pagination);
+
+        return $results;
+    }
+
 
     /**
 	 * The attributes excluded from the model's JSON form.

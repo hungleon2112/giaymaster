@@ -2,85 +2,48 @@
 
 class OrderController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+	protected $order;
+    protected $order_detail;
 
+    public function __construct(Order $order, Order_Detail $order_detail){
+        $this->order = $order;
+        $this->order_detail = $order_detail;
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    public function ListOrder(){
+        $list_order = $this->order->Order_List_All((Session::get('pagination_order')) != '' ? Session::get('pagination_user') : 30);
 
+        for($i = 0 ; $i < count($list_order) ; $i++)
+        {
+            $list_order_detail = $this->order_detail->Order_Detail_List($list_order[$i]->OrderId);
+            $d = date_create($list_order[$i]->OrderDate);
+            $list_order[$i]->OrderDate =  date_format($d, 'd/m/Y H:i:s');
+            $list_order[$i]->Order_Detail = $list_order_detail;
+            $list_order[$i]->Total = 0;
+            for($j = 0 ; $j < count($list_order_detail) ; $j ++)
+            {
+                $list_order[$i]->Total += $list_order_detail[$j]->OrderDetailTotal;
+            }
+        }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+        return View::make('admin.order.list')
+            ->with('list_order' , $list_order);
+    }
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+    public function SetPagination()
+    {
+        try
+        {
+            $input = Input::all();
+            if(isset($input))
+            {
+                $pagination = $input['showing'];
+                Session::put('pagination_order', $pagination);
+            }
+        }
+        catch(Exception $e)
+        {
+            return $e->getMessage();
+        }
+    }
 }

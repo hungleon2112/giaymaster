@@ -161,8 +161,6 @@ class ProductController extends \BaseController {
         }
         catch(Exception $e)
         {
-            print_r($e->getMessage());
-            die();
             return $e->getMessage();
         }
     }

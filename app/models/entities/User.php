@@ -42,11 +42,30 @@ class Users extends BaseModel {
         return $result;
     }
 
+    public function FindUser($id){
+        $query = static::where('id', '=', $id);
+        $result = $query->get();
+        return $result;
+    }
+
     public function Login($username, $password)
     {
         $query = static::where('username', '=', $username)->where('password', '=', $password);
         $result = $query->get();
         return $result;
+    }
+
+    public function GetAllUser($pagination)
+    {
+        $results = DB::table('users')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+
+
+            ->select('users.id as Id','users.name as Name', 'users.email as Email', 'users.username as Username', 'users.phone as Phone', 'users.address as Address', 'roles.name as Role' )
+
+            ->paginate($pagination);
+
+        return $results;
     }
 
     /**

@@ -19,9 +19,9 @@
           <div class="form-group">
             <label for="Show">Hiện dữ liệu trên 1 trang </label>
             <select class="form-control" style="width:80px !important;" id="showing">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                <option>10</option>
+                <option>30</option>
+                <option>50</option>
             </select>
           </div>
           <button type="button" class="btn btn-default" id="showing-button">Chấp nhận</button>

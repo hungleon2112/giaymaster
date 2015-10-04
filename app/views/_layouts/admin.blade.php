@@ -178,6 +178,18 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#user"><i class=""></i> User <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="user" class="collapse">
+                            <li>
+                                <a href="/admin/user/add">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="/admin/user/list">Danh sách</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class=""></i> Sản phẩm <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="product" class="collapse">
@@ -190,11 +202,16 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class=""></i> Đơn hàng </a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#order"><i class=""></i> Đơn hàng <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="order" class="collapse">
+                            <li>
+                                <a href="/admin/order/list">Danh sách</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#order"><i class=""></i> Đại lý <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="order" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#agent"><i class=""></i> Đại lý <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="agent" class="collapse">
                             <li>
                                 <a href="#">Thêm</a>
                             </li>
