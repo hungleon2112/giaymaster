@@ -78,6 +78,92 @@ else
 ?>
 </div>
 </div>
+
+
+
+
+
+
+<div class="row blog-content-small cart-content-page">
+  <div class="col-md-12">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2" class="prodheader">Product</th>
+          <th class="priceheader">Current Price</th>
+          <th class="quantity">Qty</th>
+          <th class="remove-item">Remove</th>
+          <th class="a-center total-each"><strong>Total</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><img src="images/pd_me_6.jpg" alt=""></td>
+          <td> dunk high premium sb "concept car"
+               US Size: 9.5 </td>
+          <td>$109</td>
+          <td>3</td>
+          <td>
+            <span class="glyphicon glyphicon-remove"></span>
+          </td>
+          <td>
+            <strong> $109</strong>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="coupon-code">
+                <p>Got a coupon code?</p>
+                <input type="text">
+                <button class="btn btn-default">Submit</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="customer-service">
+                <span>Customer service</span>
+                <p>
+                  If you are experiencing any problems, see our FAQ page for help.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 total-price">
+          <table>
+            <tr>
+              <td>Subtotal</td>
+              <td>$1,674.00</td>
+            </tr>
+            <tr>
+              <td>Tax</td>
+              <td>$0.00</td>
+            </tr>
+            <tr>
+              <td>Subtotal (excl. tax)</td>
+              <td>$1,674.00</td>
+            </tr>
+            <tr>
+              <td><strong>Subtotal (incl. tax)</strong> </td>
+              <td><strong>$1,674.00</strong></td>
+            </tr>
+          </table>
+          <button class="btn"><span class="glyphicon glyphicon-shopping-cart"></span>Continue to checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="cart-approved-modal">
   <div class="modal-dialog">

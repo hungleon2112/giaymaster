@@ -89,7 +89,7 @@ for($i = 1; $i <= $add_cart_quantity ; $i++)
 ?>
 </select>
 </div>
-<button class="btn" id="add-to-cart-btn"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
+<button class="btn" id="add-to-cart-btn"><span class="glyphicon glyphicon-shopping-cart"></span>Đặt hàng</button>
 <!--<div class="style-content">
 STYLE# 747212-818
 </div>-->
