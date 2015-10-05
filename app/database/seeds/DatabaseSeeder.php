@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('UsersTableSeeder');
         $this->call('OptionalTableSeeder');
         $this->call('TranTypeTableSeeder');
+        $this->call('CouponTableSeeder');
 	}
 
 }

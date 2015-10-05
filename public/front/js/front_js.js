@@ -139,7 +139,7 @@ $( document ).ready(function() {
         });
     });
 
-    $("#delete-item-cart-btn").click(function(){
+    $(document).on('click','#delete-item-cart-btn',function(){
         $.ajax({
             url: '/cart/deleteItem/' + $(this).attr('cart-item-id') + '',
             type: 'GET',
@@ -156,6 +156,7 @@ $( document ).ready(function() {
         });
     });
 
+
     $("#approve-cart-btn").click(function(){
         $.ajax({
             url: '/cart/approve',
@@ -169,6 +170,28 @@ $( document ).ready(function() {
                     setTimeout(function(){
                         window.location = '/';
                     }, 2000);
+                }
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    $("#coupon-btn").click(function(){
+        $.ajax({
+            url: '/coupon/'+$("#coupon-code").val()+'',
+            type: 'GET',
+            success: function (response) {
+                if(response == 0)
+                {
+                    alert('Mã giảm giá này không tồn tại hoặc đã hết hạn.');
+                }
+                else
+                {
+                    setTimeout(function(){
+                        location.reload();
+                    }, 1000);
                 }
             },
             error: function () {

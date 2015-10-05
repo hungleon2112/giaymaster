@@ -81,3 +81,28 @@
 #show-cart{
     font-weight: bold;
 }
+
+#show-cart button{
+    margin-top: 20px;
+}
+
+.cart-content-page .col-md-12 > table tr th.quantity {
+    width: 7%; }
+
+.cart-content-page .col-md-12 > table tr th {
+    border-bottom: 2px solid #e5e5e5; }
+
+.cart-content-page .col-md-12 > table tr td img {
+    width: 140px;
+    height: 100px;
+    padding: 0px !important; }
+
+#delete-item-cart-btn{
+    cursor: pointer;
+}
+
+.cart-content-page .col-md-12 > table tr th.priceheader {
+    width: 10.3%; }
+
+.cart-content-page .col-md-12 > table tr th.total-each {
+    width: 33.33%; }

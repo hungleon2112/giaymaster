@@ -2,127 +2,67 @@
 
 @section('content')
 
-<h3 class="title">Giỏ hàng</h3>
-<div class="row blog-content-small blog-detail">
-  <div class="col-md-12">
-<?php
-if(isset($cart))
-{
-    ?>
-<div class="table-responsive">
-    <table  class="table table-hover cart-table">
-        <thead>
-            <tr>
-                <th>Mã hàng</th>
-                <th>Tên</th>
-                <th>Size</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Số tiền</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="cart-item-list">
-            <?php
-            //UtilityHelper::test($cart);
-            for($i = 0 ; $i < count($cart) ; $i++)
-            {
-                if(isset($cart[$i]))
-                {
-            ?>
-                <tr>
-                    <td>
-                        <?php echo $cart[$i]['code'] ?>
-                    </td>
-                    <td>
-                        <?php echo $cart[$i]['name'] ?>
-                    </td>
-                    <td><?php echo $cart[$i]['size'] ?></td>
-                    <td><?php echo number_format($cart[$i]['price']) ?></td>
-                    <td><?php echo $cart[$i]['quantity'] ?></td>
-                    <td><?php echo number_format($cart[$i]['total']) ?></td>
-                    <td>
-                        <input value="Xóa" type="button" class="btn primary" id="delete-item-cart-btn" cart-item-id="<?php echo $cart[$i]['id'] ?>">
-                    </td>
-                </tr>
-            <?php
-                }
-            }
-            ?>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-                <td></td>
-                <td></td>
-                <td><b>Tổng tiền: </b></td>
-                <td>{{number_format($total)}} </td>
-                <td>
-                    <input value="Đặt hàng" type="button" class="btn primary" id="approve-cart-btn">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-    <?php
-}
-else
-{
-?>
-    <p class="empty-cart">{{$_ENV['Cart_Empty_Message']}}</p>
-<?php
-}
-?>
-</div>
-</div>
-
-
-
-
-
-
 <div class="row blog-content-small cart-content-page">
   <div class="col-md-12">
+
+  <?php
+  if(isset($cart))
+  {
+  ?>
+
     <table>
       <thead>
         <tr>
-          <th colspan="2" class="prodheader">Product</th>
-          <th class="priceheader">Current Price</th>
-          <th class="quantity">Qty</th>
-          <th class="remove-item">Remove</th>
-          <th class="a-center total-each"><strong>Total</strong></th>
+          <th colspan="2" class="prodheader">SẢN PHẨM</th>
+          <th class="priceheader">GIÁ</th>
+          <th class="quantity">SỐ LƯỢNG</th>
+          <th class="remove-item">XÓA</th>
+          <th class="a-center total-each"><strong>TỔNG CỘNG</strong></th>
         </tr>
       </thead>
       <tbody>
-
+        <?php
+        //UtilityHelper::test($cart);
+        for($i = 0 ; $i < count($cart) ; $i++)
+        {
+            if(isset($cart[$i]))
+            {
+        ?>
         <tr>
-          <td><img src="images/pd_me_6.jpg" alt=""></td>
-          <td> dunk high premium sb "concept car"
-               US Size: 9.5 </td>
-          <td>$109</td>
-          <td>3</td>
+          <td style="text-align: left">
+          <a href="/product/detail/<?php echo $cart[$i]['product_id'] ?>">
+            <img src="<?php echo $cart[$i]['image'] ?>" alt="">
+          </a>
+          </td>
+          <td style="text-align: left; padding-left: 20px;">
+          <a href="/product/detail/<?php echo $cart[$i]['product_id'] ?>">
+            <?php echo $cart[$i]['name'] ?>
+          </a>
+           <br>
+               Size: <?php echo $cart[$i]['size'] ?> </td>
+          <td><?php echo number_format($cart[$i]['price']) ?> VNĐ</td>
+          <td><?php echo $cart[$i]['quantity'] ?></td>
           <td>
-            <span class="glyphicon glyphicon-remove"></span>
+            <span id="delete-item-cart-btn" cart-item-id="<?php echo $cart[$i]['id'] ?>" class="glyphicon glyphicon-remove"> </span>
           </td>
           <td>
-            <strong> $109</strong>
+            <strong><?php echo number_format($cart[$i]['total']) ?> VNĐ</strong>
           </td>
         </tr>
-
+        <?php
+            }
+        }
+        ?>
       </tbody>
     </table>
-    <div class="col-md-12">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="row">
             <div class="col-md-6">
               <div class="coupon-code">
-                <p>Got a coupon code?</p>
-                <input type="text">
-                <button class="btn btn-default">Submit</button>
+                <p>Nhập mã giảm giá</p>
+                <input type="text" id="coupon-code">
+                <button class="btn btn-default" id="coupon-btn">Nhập</button>
               </div>
             </div>
             <div class="col-md-6">
@@ -135,29 +75,46 @@ else
             </div>
           </div>
         </div>
-        <div class="col-md-3 total-price">
+        <div class="col-md-4 total-price">
           <table>
             <tr>
-              <td>Subtotal</td>
-              <td>$1,674.00</td>
+              <td>Tổng giá</td>
+              <td>{{number_format($total)}} VNĐ</td>
             </tr>
             <tr>
-              <td>Tax</td>
-              <td>$0.00</td>
+              <td>Khuyến mãi giảm</td>
+              <td>
+              <?php
+              if(isset($coupon_percentage))
+              {
+                echo number_format($coupon_percentage) . '%';
+              }
+              else
+              {
+                echo '0%';
+              }
+              ?>
+              </td>
             </tr>
             <tr>
-              <td>Subtotal (excl. tax)</td>
-              <td>$1,674.00</td>
-            </tr>
-            <tr>
-              <td><strong>Subtotal (incl. tax)</strong> </td>
-              <td><strong>$1,674.00</strong></td>
+              <td><strong>Tổng giá (sau khuyến mãi)</strong> </td>
+              <td><strong>{{number_format($total_final)}} VNĐ</strong></td>
             </tr>
           </table>
-          <button class="btn"><span class="glyphicon glyphicon-shopping-cart"></span>Continue to checkout</button>
+          <button class="btn" id="approve-cart-btn"><span class="glyphicon glyphicon-shopping-cart"></span>THANH TOÁN</button>
         </div>
       </div>
-    </div>
+
+   <?php
+}
+else
+{
+?>
+    <p class="empty-cart">{{$_ENV['Cart_Empty_Message']}}</p>
+<?php
+}
+?>
+
   </div>
 </div>
 

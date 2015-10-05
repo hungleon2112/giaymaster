@@ -16,7 +16,9 @@
            ?>
              <li>
                <div class="img-content">
+               <a href="/product/detail/<?php echo $cart[$i]['product_id'] ?>">
                  <img src="<?php echo $cart[$i]['image'] ?>" alt="">
+               </a>
                </div>
                <div class="img-detail">
                  <a href="/product/detail/<?php echo $cart[$i]['product_id'] ?>">

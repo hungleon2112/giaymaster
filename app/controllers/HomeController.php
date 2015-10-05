@@ -22,17 +22,21 @@ class HomeController extends BaseController {
     protected $listBrand = array();
     protected $cart = array();
     protected $total;
+    protected $total_final;
+    protected $coupon_percentage;
     protected $brand;
     protected $user_info;
     protected $order;
     protected $order_detail;
+    protected $coupon;
     public function __construct(Branch $branch,
                                 Category $category,
                                 Product $product,
                                 Images $image,
                                 Brand $brand,
                                 Order $order,
-                                Order_Detail $order_detail
+                                Order_Detail $order_detail,
+                                Coupon $coupon
                                 ){
         $this->branch = $branch;
         $this->category = $category;
@@ -41,6 +45,7 @@ class HomeController extends BaseController {
         $this->brand = $brand;
         $this->order = $order;
         $this->order_detail = $order_detail;
+        $this->coupon = $coupon;
         $this->beforeFilter(function()
         {
             $branch_list = $this->branch->GetAllBranch();
@@ -59,6 +64,17 @@ class HomeController extends BaseController {
             for($i = 0 ; $i < count($this->cart) ; $i ++)
             {
                 $this->total += $this->cart[$i]['total'];
+            }
+
+            //coupon
+            $this->coupon_percentage = Session::get('giay.coupon');
+            if($this->coupon_percentage != '')
+            {
+                $this->total_final = $this->total - ($this->coupon_percentage * $this->total /100);
+            }
+            else
+            {
+                $this->total_final = $this->total;
             }
         });
     }
@@ -249,6 +265,9 @@ class HomeController extends BaseController {
         return View::make('home.cart')
             ->with('cart',$this->cart)
             ->with('total',$this->total)
+            ->with('total_final',$this->total_final)
+            ->with('coupon_percentage',$this->coupon_percentage)
+
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -302,6 +321,7 @@ class HomeController extends BaseController {
                 $this->order_detail->create($order_detail);
             }
             Session::forget('giay.cart');
+            Session::forget('giay.coupon');
             return "Success";
         }
         catch(Exception $ex){
@@ -330,5 +350,15 @@ class HomeController extends BaseController {
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info)
             ->with('list_order' , $list_order);
+    }
+
+    public function CheckCoupon($coupon_code)
+    {
+        $result = $this->coupon->CheckCoupon($coupon_code);
+        if(count($result) > 0)
+        {
+            Session::put('giay.coupon', $result[0]->percentage);
+        }
+        return count($result);
     }
 }
