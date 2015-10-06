@@ -13,12 +13,19 @@
             ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div class="col-md-5">
                         <h4 class="panel-title">
                             <a class="accordion-toggle "
                             data-toggle="collapse"
                             data-parent="#accordion"
                             href="#{{$list_order[$i]->OrderId}}">{{$list_order[$i]->OrderDate}} - {{$list_order[$i]->Status}}</a>
                         </h4>
+                        </div>
+                        <div class="col-md-6 col-md-offset-1" style="text-align: right">
+                        <h4>
+                            Tổng tiền (sau khuyến mãi): {{number_format($list_order[$i]->OrderTotalFinal)}} VNĐ
+                        </h4>
+                        </div>
                     </div>
                     <div id="{{$list_order[$i]->OrderId}}" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -26,7 +33,7 @@
                                 <table  class="table table-hover cart-table">
                                     <thead>
                                         <tr>
-                                            <th>Mã hàng</th>
+                                            <th></th>
                                             <th>Tên</th>
                                             <th>Size</th>
                                             <th>Giá</th>
@@ -46,15 +53,19 @@
                                         ?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $order_detail->ProductCode ?>
+                                                    <a href="product/detail/<?php echo $order_detail->ProductID ?>">
+                                                        <img src="<?php echo $order_detail->Image ?>">
+                                                    </a>
                                                 </td>
                                                 <td>
-                                                    <?php echo $order_detail->ProductName ?>
+                                                    <a href="product/detail/<?php echo $order_detail->ProductID ?>">
+                                                        <?php echo $order_detail->ProductName ?>
+                                                    </a>
                                                 </td>
                                                 <td><?php echo $order_detail->OrderDetailSize ?></td>
-                                                <td><?php echo $order_detail->ProductPrice ?></td>
+                                                <td><?php echo number_format($order_detail->ProductPrice) ?> VNĐ</td>
                                                 <td><?php echo $order_detail->Quantity ?></td>
-                                                <td><?php echo $order_detail->OrderDetailTotal ?></td>
+                                                <td><?php echo number_format($order_detail->OrderDetailTotal)  ?> VNĐ</td>
                                                 <td>
 
                                                 </td>
@@ -75,6 +86,9 @@
         }
         ?>
     </div>
+</div>
+<div class="">
+<?php echo $list_order->links(); ?>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="cart-approved-modal">

@@ -7,5 +7,6 @@ return array(
     'Product_Number_Product_List' => 24,
     'Add_Cart_Quantity' => 5,
     'Login_Fail_Message' => 'Tài khoản đăng nhập không đúng.',
-    'Cart_Empty_Message' => 'Hiện tại chưa có sản phẩm nào trong giỏ hàng.'
+    'Cart_Empty_Message' => 'Hiện tại chưa có sản phẩm nào trong giỏ hàng.',
+    'Order_List' => 4,
 );

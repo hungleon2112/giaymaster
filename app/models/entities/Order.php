@@ -35,11 +35,11 @@ class Order extends BaseModel {
         $results = DB::table('orders')
             ->join('statuses', 'orders.status_id', '=', 'statuses.id')
             ->select(
-                'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal',
+                'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal', 'orders.total_final as OrderTotalFinal',
                 'statuses.name as Status')
             ->where('orders.user_id','=',$user_id)
             ->orderBy('date','desc')
-            ->get();
+            ->paginate($_ENV['Order_List']);
 
         return $results;
     }

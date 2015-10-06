@@ -28,7 +28,7 @@ Route::get("/user/checkEmail/{email}",array('as'=>'user.check','uses'=>'UserCont
 Route::get("/cart/add",array('as'=>'cart.add','uses'=>'HomeController@AddProductToCart'));
 Route::get("/cart/show",array('as'=>'cart.show','uses'=>'HomeController@ShowCart'));
 Route::get("/cart/deleteItem/{id}",array('as'=>'cart.delete.item','uses'=>'HomeController@DeleteItemCart'));
-Route::get("/cart/approve",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
+Route::get("/cart/approve/{type_id}/{total}/{coupon_code}/{total_final}",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
 Route::get("/order/show",array('as'=>'order.show','uses'=>'HomeController@ShowOrderList'));
 Route::get("/contact",array('as'=>'contact','uses'=>'HomeController@Contact'));
 Route::get("/coupon/{coupon_code}",array('as'=>'coupon','uses'=>'HomeController@CheckCoupon'));

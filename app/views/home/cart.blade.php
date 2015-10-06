@@ -79,7 +79,12 @@
           <table>
             <tr>
               <td>Tổng giá</td>
-              <td>{{number_format($total)}} VNĐ</td>
+              <td>{{number_format($total)}} VNĐ
+              <input type="hidden" id="type" value="1">
+              <input type="hidden" id="total" value="{{($total)}}">
+              <input type="hidden" id="coupon_code" value="{{($coupon_code)}}">
+              <input type="hidden" id="total_final" value="{{($total_final)}}">
+              </td>
             </tr>
             <tr>
               <td>Khuyến mãi giảm</td>
@@ -94,6 +99,13 @@
                 echo '0%';
               }
               ?>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">Hình thức thanh toán</td>
+              <td>
+                  <input type="radio" id="type_id" name="type_id" value="1" checked> Chuyển khoản và nhận hàng <br/>
+                  <input type="radio" id="type_id" name="type_id" value="2"> Nhận hàng và trả tiền cho bên chuyển hàng
               </td>
             </tr>
             <tr>

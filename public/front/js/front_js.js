@@ -156,10 +156,13 @@ $( document ).ready(function() {
         });
     });
 
+    $("input:radio[name=type_id]").click(function() {
+        $("#type").val($(this).val());
+    });
 
     $("#approve-cart-btn").click(function(){
         $.ajax({
-            url: '/cart/approve',
+            url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
             type: 'GET',
             success: function (response) {
                 if(response == 'Authentication error'){

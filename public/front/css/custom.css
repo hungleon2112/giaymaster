@@ -106,3 +106,18 @@
 
 .cart-content-page .col-md-12 > table tr th.total-each {
     width: 33.33%; }
+
+.cart-content{
+    cursor: pointer;
+}
+
+.panel-heading
+{
+    padding-bottom: 30px;
+}
+
+#cart-item-list img{
+    width: 140px;
+    height: 100px;
+    padding: 0px;
+}

@@ -24,6 +24,7 @@ class HomeController extends BaseController {
     protected $total;
     protected $total_final;
     protected $coupon_percentage;
+    protected $coupon_code;
     protected $brand;
     protected $user_info;
     protected $order;
@@ -76,6 +77,9 @@ class HomeController extends BaseController {
             {
                 $this->total_final = $this->total;
             }
+
+            //coupon_code
+            $this->coupon_code = Session::get('giay.coupon_code');
         });
     }
 
@@ -267,7 +271,7 @@ class HomeController extends BaseController {
             ->with('total',$this->total)
             ->with('total_final',$this->total_final)
             ->with('coupon_percentage',$this->coupon_percentage)
-
+            ->with('coupon_code', $this->coupon_code)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info);
@@ -288,7 +292,7 @@ class HomeController extends BaseController {
         return Response::json(array("cart"=>Session::get('giay.cart')));
     }
 
-    public function ApproveCart()
+    public function ApproveCart($type_id, $total, $coupon_code, $total_final)
     {
         try {
             $user_info = Session::get('user_info');
@@ -307,6 +311,16 @@ class HomeController extends BaseController {
             $order['status_id'] = 5;
             $order['date'] = date('Y-m-d H:i:s');
             $order['total'] = $total;
+            $order['coupon_code'] = $coupon_code;
+            $order['total_final'] = $total_final;
+            if($type_id == 1)
+            {
+                $order['status_id'] = 1;
+            }
+            else
+            {
+                $order['status_id'] = 11;
+            }
 
             $order_obj = $this->order->create($order);
             $order_id = $order_obj->id;
@@ -322,6 +336,7 @@ class HomeController extends BaseController {
             }
             Session::forget('giay.cart');
             Session::forget('giay.coupon');
+            Session::forget('giay.coupon_code');
             return "Success";
         }
         catch(Exception $ex){
@@ -341,6 +356,11 @@ class HomeController extends BaseController {
             $d = date_create($list_order[$i]->OrderDate);
             $list_order[$i]->OrderDate =  date_format($d, 'd/m/Y H:i:s');
             $list_order[$i]->Order_Detail = $list_order_detail;
+
+            for($j = 0 ; $j < count($list_order_detail); $j ++)
+            {
+                $list_order_detail[$j]->Image = $_ENV['Domain_Name'].$this->image->GetFirstImageUrl($list_order_detail[$j]->ProductID);
+            }
         }
 
         //UtilityHelper::test($list_order);
@@ -358,6 +378,7 @@ class HomeController extends BaseController {
         if(count($result) > 0)
         {
             Session::put('giay.coupon', $result[0]->percentage);
+            Session::put('giay.coupon_code', $coupon_code);
         }
         return count($result);
     }

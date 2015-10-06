@@ -33,7 +33,7 @@ class Order_Detail extends BaseModel {
 
             ->select(
                 'order_details.quantity as Quantity', 'order_details.total as OrderDetailTotal', 'order_details.size as OrderDetailSize',
-                'products.name as ProductName', 'products.code as ProductCode', 'products.price_original as ProductPrice')
+                'products.name as ProductName', 'products.code as ProductCode', 'products.price_original as ProductPrice','products.id as ProductID')
             ->where('order_details.order_id','=',$order_id)
             ->get();
 
