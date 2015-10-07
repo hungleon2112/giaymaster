@@ -21,10 +21,9 @@
         {
         ?>
         <ul>
-            {{--<li><a href="/order/show" id="">Xin chào {{$user_info->name}}</a></li>--}}
-            {{--<li><a href="#" id="logout-btn">Đăng xuất</a></li>--}}
-            <a href="/order/show" id="">Xin chào {{$user_info->name}}</a>/
-                        <a href="#" id="logout-btn">Đăng xuất</a>
+            <a href="#" id="show-user-profile">Xin chào {{$user_info->name}}</a>/
+            <a href="/order/show" id="">Theo dõi đơn hàng</a>/
+            <a href="#" id="logout-btn">Đăng xuất</a>
         </ul>
         <?php
         }

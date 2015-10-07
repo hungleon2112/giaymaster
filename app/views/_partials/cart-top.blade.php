@@ -1,7 +1,7 @@
  <div class="shopping-cart-top">
    <div class="row">
      <div class="col-md-9 cart-main-content">
-       <p>Giỏ hàng</p>
+
        <ul id="top-cart">
        <?php
        $total = 0;

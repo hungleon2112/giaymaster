@@ -28,7 +28,7 @@ $( document ).ready(function() {
 
     $("#register-btn").click(function(){
         if($("#password").val() != $("#re-password").val()){
-            alert("Mật khẩu không trùng khớp" + $("#password").val() + '----' + $("#re-password").val());
+            alert("Mật khẩu không trùng khớp");
             return false;
         }
         $('#register-form').submit();
@@ -161,6 +161,8 @@ $( document ).ready(function() {
     });
 
     $("#approve-cart-btn").click(function(){
+        if($("#coupon_code").val() == '')
+            $("#coupon_code").val('null');
         $.ajax({
             url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
             type: 'GET',
@@ -203,6 +205,44 @@ $( document ).ready(function() {
         });
     });
 
+    $('input[type=radio][name="type_id"]').change(function() {
+        if($(this).val() == 2)
+        {
+            $("#type_id_2").css('visibility','visible');
+        }
+        else
+        {
+            $("#type_id_2").css('visibility','hidden');
+        }
+    });
+
+    $("#show-user-profile").click(function(){
+        $.ajax({
+            url: '/user/get',
+            type: 'GET',
+            success: function (response) {
+                console.log(response);
+                $("#name_update").val(response.name);
+                $("#password_update").val(response.password);
+                $("#re-password_update").val(response.password);
+                $("#phone_update").val(response.phone);
+                $("#email_update").val(response.email);
+                $("#address_update").val(response.address);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+       $("#update-user-modal").modal("show");
+    });
+
+    $("#update-user-btn").click(function(){
+        if($("#password_update").val() != $("#re-password_update").val()){
+            alert("Mật khẩu không trùng khớp");
+            return false;
+        }
+        $('#update-form').submit();
+    });
 
     jQuery('.cart-content').click(function() {
         if(jQuery('.shopping-cart-top').length){

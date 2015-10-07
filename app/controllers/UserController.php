@@ -109,7 +109,6 @@ class UserController extends \BaseController {
     {
         $input = Input::all();
 
-
         $user = User::find($input['id']);
 
         $final_input['name'] = $input['name'];
@@ -119,7 +118,7 @@ class UserController extends \BaseController {
         $final_input['email'] = $input['email'];
         $final_input['address'] = $input['address'];
         $final_input['role_id'] = (isset($input['role_id'])) ? $input['role_id'] : 1;
-        UtilityHelper::test($final_input['role_id']);
+
         if($final_input['name'] != '') $user->name = $final_input['name'];
         if($final_input['username'] != '') $user->username = $final_input['username'];
         if($final_input['password'] != '') $user->password = $final_input['password'];
@@ -128,7 +127,7 @@ class UserController extends \BaseController {
         if($final_input['address'] != '') $user->address = $final_input['address'];
         if($final_input['role_id'] != '') $user->role_id = $final_input['role_id'];
 
-        $this->user->save($user);
+        $user->save();
 
     }
 
@@ -164,6 +163,65 @@ class UserController extends \BaseController {
                 $pagination = $input['showing'];
                 Session::put('pagination_user', $pagination);
             }
+        }
+        catch(Exception $e)
+        {
+            return $e->getMessage();
+        }
+    }
+
+    public function Get()
+    {
+        try
+        {
+            $user_info = Session::get('user_info');
+            $user['id'] = $user_info->id;
+            $user['name'] = $user_info->name;
+            $user['password'] = $user_info->password;
+            $user['phone'] = $user_info->phone;
+            $user['email'] = $user_info->email;
+            $user['address'] = $user_info->address;
+
+            return $user;
+        }
+        catch(Exception $e)
+        {
+            return $e->getMessage();
+        }
+    }
+
+    public function Update()
+    {
+        try
+        {
+            $input = Input::all();
+
+            $user_info = Session::get('user_info');
+
+            $user = User::find($user_info->id);
+
+            $final_input['name'] = $input['name_update'];
+            $final_input['password'] = $input['password_update'];
+            $final_input['phone'] = $input['phone_update'];
+            $final_input['email'] = $input['email_update'];
+            $final_input['address'] = $input['address_update'];
+
+            if($final_input['name'] != '') $user->name = $final_input['name'];
+            if($final_input['password'] != '') $user->password = $final_input['password'];
+            if($final_input['phone'] != '') $user->phone = $final_input['phone'];
+            if($final_input['email'] != '') $user->email = $final_input['email'];
+            if($final_input['address'] != '') $user->address = $final_input['address'];
+
+            $user->save();
+
+            $user = $this->user->Login($user_info->username, $final_input['password']);
+
+            if(count($user) != 0){
+                Session::put('user_info', $user[0]);
+                return Redirect::route('home.index');
+            }
+
+            return Redirect::route('home.index');
         }
         catch(Exception $e)
         {

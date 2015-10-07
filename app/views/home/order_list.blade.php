@@ -2,7 +2,24 @@
 
 @section('content')
 
-<h3 class="title">Danh sách đơn hàng</h3>
+<h3 class="title">THEO DÕI ĐƠN HÀNG ĐÃ ĐẶT</h3>
+<div class="row" style="font-size: 20px; font-weight: bold">
+    <div class="col-md-2">
+        Thời gian đặt
+    </div>
+    <div class="col-md-2">
+        Trạng thái
+    </div>
+    <div class="col-md-4">
+        Tổng tiền hàng (Sau giảm giá)
+    </div>
+    <div class="col-md-2">
+        Tiền ship
+    </div>
+    <div class="col-md-2">
+        Tổng cộng
+    </div>
+</div>
 <div class="row blog-content-small blog-detail">
     <div class="col-md-12">
         <?php
@@ -13,19 +30,28 @@
             ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="col-md-5">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle "
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#{{$list_order[$i]->OrderId}}">{{$list_order[$i]->OrderDate}} - {{$list_order[$i]->Status}}</a>
-                        </h4>
+
+                        <div class="col-md-2" style="padding-left: 0px;">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle "
+                                data-toggle="collapse"
+                                data-parent="#accordion"
+                                href="#{{$list_order[$i]->OrderId}}">{{$list_order[$i]->OrderDate}}</a>
+                            </h4>
                         </div>
-                        <div class="col-md-6 col-md-offset-1" style="text-align: right">
-                        <h4>
-                            Tổng tiền (sau khuyến mãi): {{number_format($list_order[$i]->OrderTotalFinal)}} VNĐ
-                        </h4>
+                        <div class="col-md-2" style="padding-left: 0px;">
+                            <h4 class="panel-title">{{$list_order[$i]->Status}}</h4>
                         </div>
+                        <div class="col-md-4">
+                            <h4 class="panel-title">{{number_format($list_order[$i]->OrderTotalFinal)}} VNĐ</h4>
+                        </div>
+                        <div class="col-md-2" style="text-align: center;">
+                            <h4 class="panel-title">{{number_format($list_order[$i]->ShipFee)}} VNĐ</h4>
+                        </div>
+                        <div class="col-md-2" style="text-align: center; padding-right: 0px;">
+                            <h4 class="panel-title">{{number_format($list_order[$i]->OrderTotal)}} VNĐ</h4>
+                        </div>
+
                     </div>
                     <div id="{{$list_order[$i]->OrderId}}" class="panel-collapse collapse">
                         <div class="panel-body">

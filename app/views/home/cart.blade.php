@@ -60,7 +60,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="coupon-code">
-                <p>Nhập mã giảm giá</p>
+                <p>Nhập mã giảm giá (nếu có)</p>
                 <input type="text" id="coupon-code">
                 <button class="btn btn-default" id="coupon-btn">Nhập</button>
               </div>
@@ -78,7 +78,7 @@
         <div class="col-md-4 total-price">
           <table>
             <tr>
-              <td>Tổng giá</td>
+              <td>Tổng tiền hàng</td>
               <td>{{number_format($total)}} VNĐ
               <input type="hidden" id="type" value="1">
               <input type="hidden" id="total" value="{{($total)}}">
@@ -87,7 +87,7 @@
               </td>
             </tr>
             <tr>
-              <td>Khuyến mãi giảm</td>
+              <td>Giảm giá</td>
               <td>
               <?php
               if(isset($coupon_percentage))
@@ -101,17 +101,24 @@
               ?>
               </td>
             </tr>
+
             <tr>
-              <td style="vertical-align: top">Hình thức thanh toán</td>
-              <td>
-                  <input type="radio" id="type_id" name="type_id" value="1" checked> Chuyển khoản và nhận hàng <br/>
-                  <input type="radio" id="type_id" name="type_id" value="2"> Nhận hàng và trả tiền cho bên chuyển hàng
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Tổng giá (sau khuyến mãi)</strong> </td>
+              <td><strong>Tổng tiền hàng (Đã giảm giá và chưa tính phí vận chuyển)</strong> </td>
               <td><strong>{{number_format($total_final)}} VNĐ</strong></td>
             </tr>
+
+            <tr>
+              <td style="vertical-align: top">Hình thức thanh toán và vận chuyển</td>
+              <td>
+                  <input type="radio" id="type_id" name="type_id" value="1" checked> Chuyển khoản và nhận hàng <br/>
+                  <input type="radio" id="type_id" name="type_id" value="2"> Nhận hàng và trả tiền cho bên chuyển hàng<br/><br/>
+                  <span id="type_id_2" style="visibility:hidden">
+                    (Phí vận chuyển sẽ được chúng tôi liên hệ với bạn để thông báo.)
+                  </span>
+
+              </td>
+            </tr>
+
           </table>
           <button class="btn" id="approve-cart-btn"><span class="glyphicon glyphicon-shopping-cart"></span>THANH TOÁN</button>
         </div>

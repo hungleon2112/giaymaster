@@ -21,6 +21,8 @@ Route::get("/product/list/{brand}",array('as'=>'product.list.brand','uses'=>'Hom
 Route::get("/product/list/{gender}/{category}",array('as'=>'product.list','uses'=>'HomeController@Product_List'));
 Route::get("/product/detail/{id}",array('as'=>'product.detail','uses'=>'HomeController@Product_Detail'));
 Route::post("/user/login",array('as'=>'user.login','uses'=>'UserController@Login'));
+Route::post("/user/edit",array('as'=>'user.edit','uses'=>'UserController@Update'));
+Route::get("/user/get",array('as'=>'user.get','uses'=>'UserController@Get'));
 Route::get("/user/logout",array('as'=>'user.logout','uses'=>'UserController@Logout'));
 Route::post("/user/register",array('as'=>'user.register','uses'=>'UserController@Register'));
 Route::get("/user/checkUsername/{username}",array('as'=>'user.check','uses'=>'UserController@CheckUsername'));

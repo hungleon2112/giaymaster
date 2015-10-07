@@ -36,6 +36,7 @@ class Order extends BaseModel {
             ->join('statuses', 'orders.status_id', '=', 'statuses.id')
             ->select(
                 'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal', 'orders.total_final as OrderTotalFinal',
+                'orders.ship_fee as ShipFee',
                 'statuses.name as Status')
             ->where('orders.user_id','=',$user_id)
             ->orderBy('date','desc')

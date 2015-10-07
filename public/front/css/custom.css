@@ -121,3 +121,7 @@
     height: 100px;
     padding: 0px;
 }
+
+.panel-heading{
+    min-height: 50px;
+}

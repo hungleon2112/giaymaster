@@ -361,6 +361,11 @@ class HomeController extends BaseController {
             {
                 $list_order_detail[$j]->Image = $_ENV['Domain_Name'].$this->image->GetFirstImageUrl($list_order_detail[$j]->ProductID);
             }
+
+            //Update Status Name
+            if($list_order[$i]->Status == 'Đơn hàng mới'){
+                $list_order[$i]->Status = 'Đang xử lý';
+            }
         }
 
         //UtilityHelper::test($list_order);
