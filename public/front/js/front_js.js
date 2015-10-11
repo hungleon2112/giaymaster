@@ -125,12 +125,31 @@ $( document ).ready(function() {
                    quantity : $("#quantity").val(), price : $("#price").val(), code : $("#code").val(), image : $("#image").val()
                   },
             success: function (response) {
-                console.log(response.cart.length);
+                console.log(response.cart);
+
                 $("#cart-quantity").text('('+response.cart.length+')');
                 $("#cart-inform-modal").modal("show");
 
+                var str = '<li>+
+                    '<div class="img-content">'+
+                '<a href="/product/detail/<?php echo $cart[$i]["product_id"] ?>">'+
+                    '<img src="<?php echo $cart[$i]["image"] ?>" alt="">'+
+                    '</a>'+
+                '</div>'+
+                '<div class="img-detail">'+
+                '<a href="/product/detail/<?php echo $cart[$i]["product_id"] ?>">'+
+                    '<h2><?php echo $cart[$i]["name"] ?></h2>'+
+                '</a>'+
+                '<span>Size: <?php echo $cart[$i]["size"] ?></span><br/>'+
+                 '<span>Số lượng: <?php echo $cart[$i]["quantity"] ?></span><br/>'+
+                 '<span class="price-cart-top"><?php echo'+
+                 'number_format($cart[$i]["price"] * $cart[$i]["quantity"] * 1.0) ?> VNĐ</span>'+
+              '</div>'+
+             '</li>';
+
+
                 setTimeout(function(){
-                    location.reload();
+                    //location.reload();
                 }, 1000);
             },
             error: function () {
