@@ -281,22 +281,6 @@ $( document ).ready(function() {
     });
 
     $(document).on('keyup','#quantity-change',function(){
-        var product_id = $(this).attr("product_id");
-        var order_detail_id = $(this).attr("order_detail_id");
-        var quantity = $(this).val();
-        delay(function(){
-            $.ajax({
-                url: '/cart/updateQuantity/'+product_id+'/'+order_detail_id+'/'+quantity+'',
-                type: 'GET',
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function () {
-                    console.log('error');
-                }
-            });
-        }, 1000 );
-        console.log(product_id);
     });
 
     $('#quantity-change').keyup(function() {
@@ -304,7 +288,32 @@ $( document ).ready(function() {
     });
 
     $("#update-cart-btn").click(function(){
-        location.reload();
+
+        $("#loading-modal-cart").modal("show");
+
+        var product_id = "";
+        var order_detail_id = "";
+        var quantity = "";
+
+        $( "tr.order_detail_list" ).each(function( index ) {
+            product_id += $(this).attr("product_id") + ' ';
+            order_detail_id += $( this ).attr('order_detail_id') + ' ';
+            quantity += $( this).find('#quantity-change').val() + ' ';
+        });
+        $.ajax({
+            url: '/cart/updateQuantity/'+product_id+'/'+order_detail_id+'/'+quantity+'',
+            type: 'GET',
+            success: function (response) {
+                setTimeout(function(){
+                    $("#loading-modal-cart").modal("hide");
+                    location.reload(true);
+                }, 1000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+
     });
 
 });

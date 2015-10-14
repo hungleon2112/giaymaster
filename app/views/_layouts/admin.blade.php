@@ -209,6 +209,20 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#coupon"><i class=""></i> Coupon <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="coupon" class="collapse">
+                            <li>
+                                <a href="/admin/coupon/add">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="/admin/coupon/list">Danh sách</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#agent"><i class=""></i> Đại lý <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="agent" class="collapse">

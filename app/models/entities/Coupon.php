@@ -35,4 +35,12 @@ class Coupon extends BaseModel {
         return $results;
     }
 
+    public function Coupon_List()
+    {
+        $results = DB::table('coupons')
+            ->paginate($_ENV['Order_List']);
+
+        return $results;
+    }
+
 }

@@ -65,6 +65,7 @@ class Order extends BaseModel {
                 'coupons.to_date as CouponToDate',
                 'statuses.id as StatusId',
                 'statuses.name as Status',
+                'statuses.color as Color',
                 'users.name as Customer',
                 'tran_type.name as TranType',
                 'tran_type.id as TranTypeId'

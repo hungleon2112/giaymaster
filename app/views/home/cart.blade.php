@@ -28,7 +28,7 @@
             if(isset($cart[$i]))
             {
         ?>
-        <tr>
+        <tr class="order_detail_list" order_detail_id="<?php echo $cart[$i]['id'] ?>" product_id="<?php echo $cart[$i]['product_id'] ?>">
           <td style="text-align: left">
           <a href="/product/detail/<?php echo $cart[$i]['product_id'] ?>">
             <img src="<?php echo $cart[$i]['image'] ?>" alt="">
@@ -46,7 +46,7 @@
             <span id="delete-item-cart-btn" cart-item-id="<?php echo $cart[$i]['id'] ?>" class="glyphicon glyphicon-remove"> </span>
           </td>
           <td>
-            <strong order_detail_id="<?php echo $cart[$i]['id'] ?>"><?php echo number_format($cart[$i]['total']) ?> VNĐ</strong>
+            <strong><?php echo number_format($cart[$i]['total']) ?> VNĐ</strong>
           </td>
         </tr>
         <?php
@@ -178,4 +178,17 @@ else
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="loading-modal-cart">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img width="300px; height:300px;" src="http://www.mastertokoonline.com/wp-content/plugins/wp-lazy-load/images/loading.gif">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @stop

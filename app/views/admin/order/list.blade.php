@@ -42,7 +42,7 @@
                         <th data-field="code"  data-sortable="true">Khuyến mãi</th>
                         <th data-field="total_final"  data-sortable="true">Tổng cộng</th>
                         <th data-field="ship_fee"  data-sortable="true">Tiền ship</th>
-                        <th data-field="role"  data-sortable="true">Trạng thái</th>
+                        <th data-field="status"  data-sortable="true">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,20 +50,20 @@
                         <tr>
                             <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> </td>
                             <td>
-                                <input type="hidden" value="{{$p->OrderId}}" id="order_id_hidden" name="order_id">
-                                <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden">
-                                <input type="hidden" value="{{$p->OrderTotal}}" id="order_total_hidden">
-                                <input type="hidden" value="{{$p->Customer}}" id="order_customer_hidden" >
-                                <input type="hidden" value="{{$p->OrderTotalFinal}}" id="order_total_final_hidden" >
-                                <input type="hidden" value="{{$p->CouponCode}}" id="order_coupon_code_hidden" >
-                                <input type="hidden" value="{{$p->Status}}" id="order_status_hidden">
-                                <input type="hidden" value="{{$p->TranType}}" id="order_tran_type_hidden">
+                                <input type="hidden" value="{{$p->OrderId}}" id="order_id_hidden_order_detail_of_{{$p->OrderId}}" name="order_id">
+                                <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden_order_detail_of_{{$p->OrderId}}">
+                                <input type="hidden" value="{{$p->OrderTotal}}" id="order_total_hidden_order_detail_of_{{$p->OrderId}}">
+                                <input type="hidden" value="{{$p->Customer}}" id="order_customer_hidden_order_detail_of_{{$p->OrderId}}" >
+                                <input type="hidden" value="{{$p->OrderTotalFinal}}" id="order_total_final_hidden_order_detail_of_{{$p->OrderId}}" >
+                                <input type="hidden" value="{{$p->CouponCode}}" id="order_coupon_code_hidden_order_detail_of_{{$p->OrderId}}" >
+                                <input type="hidden" value="{{$p->Status}}" id="order_status_hidden_order_detail_of_{{$p->OrderId}}">
+                                <input type="hidden" value="{{$p->TranType}}" id="order_tran_type_hidden_order_detail_of_{{$p->OrderId}}">
 
-                                <input type="hidden" value="{{$p->Note}}" id="order_note_hidden">
-                                <input type="hidden" value="{{$p->Storage}}" id="order_storage_hidden">
-                                <input type="hidden" value="{{$p->ShipFee}}" id="order_ship_fee_hidden">
+                                <input type="hidden" value="{{$p->Note}}" id="order_note_hidden_order_detail_of_{{$p->OrderId}}">
+                                <input type="hidden" value="{{$p->Storage}}" id="order_storage_hidden_order_detail_of_{{$p->OrderId}}">
+                                <input type="hidden" value="{{$p->ShipFee}}" id="order_ship_fee_hidden_order_detail_of_{{$p->OrderId}}">
 
-                                <input type="hidden" value="{{$p->TranTypeId}}" id="order_tran_type_id_hidden">
+                                <input type="hidden" value="{{$p->TranTypeId}}" id="order_tran_type_id_hidden_order_detail_of_{{$p->OrderId}}">
                                 <a href="/admin/user/edit?id={{$p->OrderId}}">HD{{$p->OrderId}}</a>
                             </td>
                             <td>
@@ -95,7 +95,8 @@
                                 {{number_format($p->ShipFee)}}
                             </td>
                             <td>
-                                {{$p->Status}}
+                                <span class="badge" style="color:white; padding: 10px; background-color: {{$p->Color}}">{{$p->Status}}</span>
+
                             </td>
                         </tr>
 
@@ -232,8 +233,13 @@
             <div class="row">
 
             </div>
-            <div class="row">
+            <div class="modal-footer" style="text-align:left">
+                <div class="form-group">
+                    <label style="text-transform: uppercase">Cập nhật trạng thái đơn hàng</label>
+                </div>
+                <ul id="status-section">
 
+                </ul>
             </div>
         </div>
       </div>

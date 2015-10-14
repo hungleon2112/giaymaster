@@ -208,6 +208,30 @@ $( document ).ready(function() {
         });
     });
 
+    //Insert Coupon
+    $("#coupon-add").click(function() {
+        var form = document.forms.namedItem("coupon-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/coupon/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-coupon-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
 
     //Insert Product
     $("#product-add").click(function() {
@@ -981,26 +1005,39 @@ $( document ).ready(function() {
     $(document).on('click', '#show-order-detail-on-table', function() {
         var trID = $(this).attr('trID');
         $("#list-order-detail").html($('#'+trID+'').html());
-        $("#order-id").text('HD' + $("#order_id_hidden").val());
-        $("#order-id-update").val($("#order_id_hidden").val());
-        $("#order-date").text($("#order_date_hidden").val());
-        $("#order-customer").text($("#order_customer_hidden").val());
-        $("#order-status").text($("#order_status_hidden").val());
-        $("#order-tran-type").text($("#order_tran_type_hidden").val());
+        $("#order-id").text('HD' + $("#order_id_hidden_"+trID+"").val());
+        $("#order-id-update").val($("#order_id_hidden_"+trID+"").val());
+        $("#order-date").text($("#order_date_hidden_"+trID+"").val());
+        $("#order-customer").text($("#order_customer_hidden_"+trID+"").val());
+        $("#order-status").text($("#order_status_hidden_"+trID+"").val());
+        $("#order-tran-type").text($("#order_tran_type_hidden_"+trID+"").val());
 
-        $("#order-note").text($("#order_note_hidden").val());
-        $("#order-store").val($("#order_storage_hidden").val());
-        $("#order-ship-fee").val($("#order_ship_fee_hidden").val());
+        $("#order-note").text($("#order_note_hidden_"+trID+"").val());
+        $("#order-store").val($("#order_storage_hidden_"+trID+"").val());
+        $("#order-ship-fee").val($("#order_ship_fee_hidden_"+trID+"").val());
 
 
         //Render Status
         $.ajax({
-            url: '/admin/order/getAllStatus/'+$("#order_tran_type_id_hidden").val()+'',
+            url: '/admin/order/getAllStatus/'+$("#order_tran_type_id_hidden_"+trID+"").val()+'',
             type: 'GET',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
                 //location.reload();
                 console.log(response);
+                $("#status-section").html('');
+                for(var i = 0 ; i < response.length ; i ++)
+                {
+                    var activeClass = '';
+                    if($("#order_status_hidden_"+trID+"").val() == response[i].name){
+                        activeClass = 'size-active';
+                    }
+                    else{
+                        activeClass = '';
+                    }
+                    var status = '<li><a id="size-selector" style="color:white;background-color:'+response[i].color+'" href="javascript:;" class="size-href '+activeClass+'" status-id="'+response[i].id+'">'+response[i].name+'</a></li>';
+                    $("#status-section").append(status);
+                }
             },
             error: function () {
                 console.log('error');
@@ -1022,6 +1059,29 @@ $( document ).ready(function() {
                 storage : $("#order-store").val(),
                 ship_fee : $("#order-ship-fee").val()
             },
+            success: function (response) {
+                location.reload(true);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    $(document).on('click', '.size-href', function() {
+        $( ".size-href" ).each(function( index ) {
+            $( this ).removeClass("size-active");
+        });
+        $( this ).addClass("size-active");
+
+        //Update status
+        var status_id = $( this).attr('status-id');
+        var order_id = $("#order-id-update").val();
+
+        $.ajax({
+            url: '/admin/order/updateStatus/'+order_id+'/'+status_id+'',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
             success: function (response) {
                 location.reload(true);
             },

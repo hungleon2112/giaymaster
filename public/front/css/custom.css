@@ -128,10 +128,10 @@
 
 .update-cart-btn{
     padding: 15px;
+    padding-left: 0px;
 }
 
 #update-cart-btn{
-    margin-top: 10px;
     width: 100%;
     font-size: 15px;
 }
@@ -162,4 +162,12 @@
 
 .btn-link:hover{
     color: black;
+}
+
+#loading-modal-cart .modal-content{
+    text-align: center;
+}
+
+#loading-modal-cart .modal-dialog{
+    width: 20%;
 }

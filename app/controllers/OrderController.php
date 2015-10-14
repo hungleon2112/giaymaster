@@ -81,4 +81,11 @@ class OrderController extends \BaseController {
     public function GetAllStatusByTranType($tran_type_id){
         return $this->status->GetAllStatusByTranType($tran_type_id);
     }
+
+    public function UpdateStatus($order_id, $status_id)
+    {
+        $order = Order::find($order_id);
+        $order->status_id = $status_id;
+        $order->save();
+    }
 }
