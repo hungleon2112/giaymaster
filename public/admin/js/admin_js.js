@@ -221,6 +221,8 @@ $( document ).ready(function() {
             processData: false,
             success: function (response) {
                 $("#id").val(response['id']);
+                $("#coupon-add").text('Cập nhật coupon');
+                $("#modify-type").text('Cập nhật');
                 $('#modify-coupon-modal').modal('show');
                 setTimeout(function(){
                     $("#modify-type-modal").text('Cập nhật');
@@ -524,6 +526,41 @@ $( document ).ready(function() {
     });
 
 
+    //Open Update  Coupon Panel
+    $("#edit-button-coupon").click(function(){
+        var listCouponID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var coupon_id = $(theTrTag.find("#coupon_id_hidden"));
+                if(listCouponID == '')
+                {
+                    //First Element
+                    listCouponID += coupon_id.val();
+                }
+                else
+                {
+                    listCouponID += ',' + coupon_id.val();
+                }
+            }
+        });
+
+        if(listCouponID == '')
+        {
+            alert('Chưa có coupon nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#update-list-coupon-id").val(listCouponID);
+            $('#update-panel-coupon').modal('show');
+        }
+
+    });
+
+
     //Open Update  Brand Panel
     $("#edit-button-brand").click(function(){
         var listBrandID = "";
@@ -727,6 +764,41 @@ $( document ).ready(function() {
 
     });
 
+
+    //Open Delete Coupon Panel
+    $("#delete-button-coupon").click(function(){
+        var listCouponID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var coupon_id = $(theTrTag.find("#coupon_id_hidden"));
+                if(listCouponID == '')
+                {
+                    //First Element
+                    listCouponID += coupon_id.val();
+                }
+                else
+                {
+                    listCouponID += ',' + coupon_id.val();
+                }
+            }
+        });
+
+        if(listCouponID == '')
+        {
+            alert('Chưa có coupon nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-coupon-id").val(listCouponID);
+            $('#delete-panel-coupon').modal('show');
+        }
+
+    });
+
     //Open Delete Role Panel
     $("#delete-button-role").click(function(){
         var listRoleID = "";
@@ -847,6 +919,25 @@ $( document ).ready(function() {
             }
         });
         $('#delete-panel-role').modal('hide');
+    });
+
+
+    // Delete List Coupon
+    $("#btn-delete-coupon").click(function(){
+        $.ajax({
+            url: '/admin/coupon/deleteListCoupon',
+            type: 'POST',
+            data: {delete_list_coupon_id : $("#delete-list-coupon-id").val()},
+            success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 1000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel-coupon').modal('hide');
     });
 
     // Delete List Brand

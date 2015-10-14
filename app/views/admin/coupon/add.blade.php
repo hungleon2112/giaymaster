@@ -20,22 +20,22 @@
          <!-- Name -->
           <div class="form-group">
             {{ Form::label('code', 'Code') }}
-            {{ Form::input('text','code',isset($coupon)?$coupon->name:'',array('class'=>'form-control','id'=>'code','placeholder'=>'Code')) }}
+            {{ Form::input('text','code',isset($coupon)?$coupon->code:'',array('class'=>'form-control','id'=>'code','placeholder'=>'Code')) }}
           </div>
 
             <div class="form-group">
               {{ Form::label('code', 'Mô tả') }}
-              {{ Form::input('text','description',isset($coupon)?$coupon->name:'',array('class'=>'form-control','id'=>'description','placeholder'=>'Mô tả')) }}
+              {{ Form::input('text','description',isset($coupon)?$coupon->description:'',array('class'=>'form-control','id'=>'description','placeholder'=>'Mô tả')) }}
             </div>
 
             <div class="form-group">
               {{ Form::label('from_date', 'Từ ngày') }}
-              {{ Form::input('text','from_date',isset($coupon)?$coupon->name:'',array('class'=>'form-control date-picker','id'=>'from_date', 'data-date-format'=>"yyyy/mm/dd")) }}
+              {{ Form::input('text','from_date',isset($coupon)?$coupon->from_date:'',array('class'=>'form-control date-picker','id'=>'from_date', 'data-date-format'=>"yyyy/mm/dd")) }}
             </div>
 
             <div class="form-group">
               {{ Form::label('to_date', 'Đến ngày') }}
-              {{ Form::input('text','to_date',isset($coupon)?$coupon->name:'',array('class'=>'form-control date-picker','id'=>'to_date', 'data-date-format'=>"yyyy/mm/dd")) }}
+              {{ Form::input('text','to_date',isset($coupon)?$coupon->to_date:'',array('class'=>'form-control date-picker','id'=>'to_date', 'data-date-format'=>"yyyy/mm/dd")) }}
             </div>
 
           <button type="button" id="coupon-add" class="btn btn-default"><?php echo (!isset($coupon) ? 'Thêm coupon' : 'Cập nhật coupon')  ?></button>

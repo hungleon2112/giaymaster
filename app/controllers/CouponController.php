@@ -58,6 +58,7 @@ class CouponController  extends BaseController {
         $input = Input::all();
         $coupon_id = $input['id'];
         $coupon = Coupon::find($coupon_id);
+
         return View::make('admin.coupon.add')
             ->with('coupon',$coupon);
     }

@@ -13,25 +13,10 @@
 </div>
 <!-- /.row -->
 
-<!--<div class="row">
-    <div class="col-xs-12">
-    <form class="form-inline">
-          <div class="form-group">
-            <label for="Show">Hiện dữ liệu trên 1 trang </label>
-            <select class="form-control" style="width:80px !important;" id="showing">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-          </div>
-          <button type="button" class="btn btn-default" id="showing-button">Chấp nhận</button>
-    </form>
-    </div>
-</div>-->
 
 <div class="row">
     <div class="col-xs-12">
-        <button type="button" class="btn btn-default" id="edit-button-coupon">Cập nhật</button>
+        {{--<button type="button" class="btn btn-default" id="edit-button-coupon">Cập nhật</button>--}}
         <button type="button" class="btn btn-default" id="delete-button-coupon">Xóa</button>
     </div>
 </div>
@@ -49,9 +34,13 @@
         <form>
           <input type="hidden" id="update-list-coupon-id" name="update-list-coupon-id">
           <div class="form-group">
-            <label for="name">Tên</label>
-            <input type="text" class="form-control" id="name" placeholder="tên">
+            <label for="name">Code</label>
+            <input type="text" class="form-control" id="code" placeholder="Code">
           </div>
+          <div class="form-group">
+              <label for="name">Mô tả</label>
+              <input type="text" class="form-control" id="name" placeholder="tên">
+            </div>
         </form>
       </div>
       <div class="modal-footer">

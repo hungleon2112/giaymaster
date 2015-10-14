@@ -102,7 +102,7 @@ Route::get("/admin/order/updateStatus/{order_id}/{status_id}",array('as'=>'admin
 // Coupon Route
 Route::get("/admin/coupon/add",array('as'=>'admin.coupon.add','uses'=>'CouponController@Add'));
 Route::post("/admin/coupon/postAdd",array('as'=>'admin.coupon.add','uses'=>'CouponController@PostAdd'));
-Route::get("/admin/coupon/list",array('as'=>'admin.coupon.add','uses'=>'CouponController@ListRole'));
+Route::get("/admin/coupon/list",array('as'=>'admin.coupon.add','uses'=>'CouponController@ListCoupon'));
 Route::get("/admin/coupon/edit",array('as'=>'admin.coupon.edit','uses'=>'CouponController@Edit'));
-Route::post("/admin/coupon/deleteListRole",array('as'=>'admin.coupon.delete','uses'=>'CouponController@DeleteListRole'));
-Route::post("/admin/coupon/updateListRole",array('as'=>'admin.coupon.update','uses'=>'CouponController@UpdateListRole'));
+Route::post("/admin/coupon/deleteListCoupon",array('as'=>'admin.coupon.delete','uses'=>'CouponController@DeleteListCoupon'));
+Route::post("/admin/coupon/updateListCoupon",array('as'=>'admin.coupon.update','uses'=>'CouponController@UpdateListCoupon'));
