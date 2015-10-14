@@ -125,32 +125,39 @@ $( document ).ready(function() {
                    quantity : $("#quantity").val(), price : $("#price").val(), code : $("#code").val(), image : $("#image").val()
                   },
             success: function (response) {
+                $("#top-cart").html('');
                 console.log(response.cart);
 
                 $("#cart-quantity").text('('+response.cart.length+')');
                 $("#cart-inform-modal").modal("show");
 
-                var str = '<li>+
-                    '<div class="img-content">'+
-                '<a href="/product/detail/<?php echo $cart[$i]["product_id"] ?>">'+
-                    '<img src="<?php echo $cart[$i]["image"] ?>" alt="">'+
-                    '</a>'+
-                '</div>'+
-                '<div class="img-detail">'+
-                '<a href="/product/detail/<?php echo $cart[$i]["product_id"] ?>">'+
-                    '<h2><?php echo $cart[$i]["name"] ?></h2>'+
-                '</a>'+
-                '<span>Size: <?php echo $cart[$i]["size"] ?></span><br/>'+
-                 '<span>Số lượng: <?php echo $cart[$i]["quantity"] ?></span><br/>'+
-                 '<span class="price-cart-top"><?php echo'+
-                 'number_format($cart[$i]["price"] * $cart[$i]["quantity"] * 1.0) ?> VNĐ</span>'+
-              '</div>'+
-             '</li>';
+                var total_top_cart = 0;
+                for(var i = 0 ; i < response.cart.length; i ++)
+                {
+                    var str = '<li>'+
+                        '<div class="img-content">'+
+                            '<a href="/product/detail/'+response.cart[i].product_id+'">'+
+                                '<img src="'+response.cart[i].image+'" alt="">'+
+                                '</a>'+
+                            '</div>'+
+                            '<div class="img-detail">'+
+                            '<a href="/product/detail/'+response.cart[i].product_id+'">'+
+                                '<h2>'+response.cart[i].name+'</h2>'+
+                            '</a>'+
+                            '<span>Size: '+response.cart[i].size+'</span><br/>'+
+                             '<span>Số lượng: '+response.cart[i].quantity+'</span><br/>'+
+                             '<span class="price-cart-top">'+addCommas(response.cart[i].quantity * response.cart[i].price)+' VNĐ</span>'+
+                          '</div>'+
+                         '</li>';
 
+                    $("#top-cart").append(str);
+                    total_top_cart += response.cart[i].quantity * response.cart[i].price;
+                }
 
+                $(".total-top-cart").text('TỔNG CỘNG '+addCommas(total_top_cart)+' VNĐ');
                 setTimeout(function(){
-                    //location.reload();
-                }, 1000);
+                    $("#cart-inform-modal").modal("hide");
+                }, 3000);
             },
             error: function () {
                 console.log('error');
@@ -167,7 +174,7 @@ $( document ).ready(function() {
                 if(response.cart.length == 0)
                     window.location = '/';
                 else
-                    location.reload();
+                    location.reload(true);
             },
             error: function () {
                 console.log('error');
@@ -181,7 +188,7 @@ $( document ).ready(function() {
 
     $("#approve-cart-btn").click(function(){
         if($("#coupon_code").val() == '')
-            $("#coupon_code").val('null');
+            $("#coupon_code").val('0');
         $.ajax({
             url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
             type: 'GET',
@@ -272,8 +279,58 @@ $( document ).ready(function() {
     $('.bxslider').bxSlider({
         pagerCustom: '#bx-pager'
     });
+
+    $(document).on('keyup','#quantity-change',function(){
+        var product_id = $(this).attr("product_id");
+        var order_detail_id = $(this).attr("order_detail_id");
+        var quantity = $(this).val();
+        delay(function(){
+            $.ajax({
+                url: '/cart/updateQuantity/'+product_id+'/'+order_detail_id+'/'+quantity+'',
+                type: 'GET',
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+        }, 1000 );
+        console.log(product_id);
+    });
+
+    $('#quantity-change').keyup(function() {
+
+    });
+
+    $("#update-cart-btn").click(function(){
+        location.reload();
+    });
+
 });
 
+var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+
+
+
+function addCommas(nStr)
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 
 Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
     var n = this,

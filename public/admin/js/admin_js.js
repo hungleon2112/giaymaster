@@ -982,10 +982,53 @@ $( document ).ready(function() {
         var trID = $(this).attr('trID');
         $("#list-order-detail").html($('#'+trID+'').html());
         $("#order-id").text('HD' + $("#order_id_hidden").val());
+        $("#order-id-update").val($("#order_id_hidden").val());
         $("#order-date").text($("#order_date_hidden").val());
         $("#order-customer").text($("#order_customer_hidden").val());
         $("#order-status").text($("#order_status_hidden").val());
+        $("#order-tran-type").text($("#order_tran_type_hidden").val());
+
+        $("#order-note").text($("#order_note_hidden").val());
+        $("#order-store").val($("#order_storage_hidden").val());
+        $("#order-ship-fee").val($("#order_ship_fee_hidden").val());
+
+
+        //Render Status
+        $.ajax({
+            url: '/admin/order/getAllStatus/'+$("#order_tran_type_id_hidden").val()+'',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                //location.reload();
+                console.log(response);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+
+
+
         $("#order-detail-panel").modal("show");
+    });
+
+    $("#update-order-btn").click(function(){
+        $.ajax({
+            url: '/admin/order/updateNoteStorage',
+            type: 'POST',
+            data: {
+                order_id : $("#order-id-update").val(),
+                note : $("#order-note").val(),
+                storage : $("#order-store").val(),
+                ship_fee : $("#order-ship-fee").val()
+            },
+            success: function (response) {
+                location.reload(true);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
     });
 
 });

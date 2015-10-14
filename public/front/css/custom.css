@@ -125,3 +125,41 @@
 .panel-heading{
     min-height: 50px;
 }
+
+.update-cart-btn{
+    padding: 15px;
+}
+
+#update-cart-btn{
+    margin-top: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+
+#update-cart-btn .glyphicon{
+    float: left;
+    margin-right: 10px;
+}
+
+.btn-link{
+    display: inline-block !important;
+    padding: 6px 12px !important;
+    margin-bottom: 0px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.42857 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
+    -moz-user-select: none !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    background: none;
+    color: black;
+}
+
+.btn-link:hover{
+    color: black;
+}

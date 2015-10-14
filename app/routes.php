@@ -29,6 +29,7 @@ Route::get("/user/checkUsername/{username}",array('as'=>'user.check','uses'=>'Us
 Route::get("/user/checkEmail/{email}",array('as'=>'user.check','uses'=>'UserController@CheckEmail'));
 Route::get("/cart/add",array('as'=>'cart.add','uses'=>'HomeController@AddProductToCart'));
 Route::get("/cart/show",array('as'=>'cart.show','uses'=>'HomeController@ShowCart'));
+Route::get("/cart/updateQuantity/{product_id}/{order_detail_id}/{quantity}",array('as'=>'cart.update.quantity','uses'=>'HomeController@UpdateQuantity'));
 Route::get("/cart/deleteItem/{id}",array('as'=>'cart.delete.item','uses'=>'HomeController@DeleteItemCart'));
 Route::get("/cart/approve/{type_id}/{total}/{coupon_code}/{total_final}",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
 Route::get("/order/show",array('as'=>'order.show','uses'=>'HomeController@ShowOrderList'));
@@ -92,3 +93,6 @@ Route::get("/admin/user/showing",array('as'=>'admin.user.showing','uses'=>'UserC
 
 //Order Route
 Route::get("/admin/order/list",array('as'=>'admin.order.list','uses'=>'OrderController@ListOrder'));
+Route::post("/admin/order/updateNoteStorage",array('as'=>'admin.order.update','uses'=>'OrderController@UpdateNoteStorage'));
+Route::get("/admin/order/getAllStatus/{tran_type_id}",array('as'=>'admin.order.status','uses'=>'OrderController@GetAllStatusByTranType'));
+//Coupon Route

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            User <small>Danh sách</small>
+            Đơn hàng <small>Danh sách</small>
         </h1>
     </div>
 </div>
@@ -31,14 +31,17 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="table-responsive">
-            <table data-toggle="table" data-search="true"   class="table table-hover" data-sort-order="desc" data-sort-name="name" data-click-to-select="true" >
+            <table data-toggle="table" data-search="true"   class="table table-hover" data-sort-order="desc" data-sort-name="date" data-click-to-select="true" >
                 <thead>
                     <tr>
                         <th></th>
                         <th data-field="name"  data-sortable="true">Mã hóa đơn</th>
-                        <th data-field="phone"  data-sortable="true">Thời gian</th>
+                        <th data-field="date"  data-sortable="true">Thời gian</th>
                         <th data-field="email"  data-sortable="true">Khách hàng</th>
-                        <th data-field="address"  data-sortable="true">Tổng cộng</th>
+                        <th data-field="total"  data-sortable="true">Tổng đơn</th>
+                        <th data-field="code"  data-sortable="true">Khuyến mãi</th>
+                        <th data-field="total_final"  data-sortable="true">Tổng cộng</th>
+                        <th data-field="ship_fee"  data-sortable="true">Tiền ship</th>
                         <th data-field="role"  data-sortable="true">Trạng thái</th>
                     </tr>
                 </thead>
@@ -49,9 +52,18 @@
                             <td>
                                 <input type="hidden" value="{{$p->OrderId}}" id="order_id_hidden" name="order_id">
                                 <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden">
-                                <input type="hidden" value="{{$p->Total}}" id="order_total_hidden">
+                                <input type="hidden" value="{{$p->OrderTotal}}" id="order_total_hidden">
                                 <input type="hidden" value="{{$p->Customer}}" id="order_customer_hidden" >
+                                <input type="hidden" value="{{$p->OrderTotalFinal}}" id="order_total_final_hidden" >
+                                <input type="hidden" value="{{$p->CouponCode}}" id="order_coupon_code_hidden" >
                                 <input type="hidden" value="{{$p->Status}}" id="order_status_hidden">
+                                <input type="hidden" value="{{$p->TranType}}" id="order_tran_type_hidden">
+
+                                <input type="hidden" value="{{$p->Note}}" id="order_note_hidden">
+                                <input type="hidden" value="{{$p->Storage}}" id="order_storage_hidden">
+                                <input type="hidden" value="{{$p->ShipFee}}" id="order_ship_fee_hidden">
+
+                                <input type="hidden" value="{{$p->TranTypeId}}" id="order_tran_type_id_hidden">
                                 <a href="/admin/user/edit?id={{$p->OrderId}}">HD{{$p->OrderId}}</a>
                             </td>
                             <td>
@@ -61,7 +73,26 @@
                                 {{$p->Customer}}
                             </td>
                             <td>
-                                {{$p->Total}}
+                                {{number_format($p->OrderTotal)}}
+                            </td>
+                            <td>
+                                <?php
+                                if($p->CouponCode != '0' && $p->CouponCode != 'null')
+                                {
+                                    echo '<a href="/admin/coupon/edit?id='.$p->CouponId.'">'.$p->CouponCode.'</a> - '.$p->CouponPercentage.'%
+                                    <br/>
+                                    Từ ngày: '.$p->CouponFromDate.'
+                                    <br/>
+                                    Đến ngày: '.$p->CouponToDate.'
+                                    ';
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                {{number_format($p->OrderTotalFinal)}}
+                            </td>
+                            <td>
+                                {{number_format($p->ShipFee)}}
                             </td>
                             <td>
                                 {{$p->Status}}
@@ -107,13 +138,13 @@
                                         <?php echo $order_detail->OrderDetailSize ?>
                                     </div>
                                     <div class="col-md-2">
-                                        <?php echo $order_detail->ProductPrice ?>
+                                        <?php echo number_format($order_detail->ProductPrice) ?>
                                     </div>
                                     <div class="col-md-2">
                                         <?php echo $order_detail->Quantity ?>
                                     </div>
                                     <div class="col-md-2">
-                                        <?php echo $order_detail->OrderDetailTotal ?>
+                                        <?php echo number_format($order_detail->OrderDetailTotal) ?>
                                     </div>
                                 </div>
                             <?php
@@ -143,50 +174,54 @@
 
 <!-- Modal Update Panel -->
 <div class="modal fade" id="order-detail-panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document" style="width: 65%">
+  <div class="modal-dialog" role="document" style="width: 80%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Thông tin</h4>
       </div>
       <div class="modal-body">
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid">
+            <div class="row order-info">
                 <div class="col-md-4">
-                  <div class="form-group">
-                    <table>
-                        <tr>
-                            <td>Mã hóa đơn: </td>
-                            <td><span class="margin-left-10" id="order-id"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Thời gian: </td>
-                            <td><span class="margin-left-10" id="order-date"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Khách hàng: </td>
-                            <td><span class="margin-left-10" id="order-customer"></span></td>
-                        </tr>
-                    </table>
-                  </div>
+                    <div class="form-group">
+                        <label>Mã hóa đơn: </label>
+                        <input type="hidden" id="order-id-update">
+                        <span class="margin-left-10" id="order-id"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Thời gian: </label>
+                        <span class="margin-left-10" id="order-date"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Khách hàng: </label>
+                        <span class="margin-left-10" id="order-customer"></span>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <table>
-                        <tr>
-                            <td>Trạng thái: </td>
-                            <td><span class="margin-left-10" id="order-status"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Chi nhánh: </td>
-                            <td><span class="margin-left-10" id="order-store"></span></td>
-                        </tr>
-                        <tr>
+                    <div class="form-group">
+                        <label>Trạng thái: </label>
+                        <span class="margin-left-10" id="order-status"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Hình thức: </label>
+                        <span class="margin-left-10" id="order-tran-type"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Chi nhánh: </label>
+                        <input type="text" name="order-store" id="order-store" class="form-control storage">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Ghi chú: </label>
+                        <textarea class="form-control" style="display: inline-block" id="order-note" placeholder="Ghi chú"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tiền ship: </label>
+                        <input type="text" name="order-ship-fee" id="order-ship-fee" class="form-control storage">
+                    </div>
 
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-4">
-                    <textarea class="form-control" placeholder="Ghi chú"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -203,6 +238,7 @@
         </div>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="update-order-btn">Cập nhật</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
       </div>
     </div>

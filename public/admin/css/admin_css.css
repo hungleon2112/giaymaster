@@ -47,3 +47,21 @@ select{
 .margin-left-10{
     margin-left:10px;
 }
+
+.label-order{
+    font-weight: bold;
+}
+
+.order-info label{
+    min-width: 90px;
+}
+
+.order-info .storage{
+    width: 40%;
+    display: inline-block;
+}
+
+#list-order-detail .row:first-child{
+    background-color: darkgrey;
+    color: #ffffff;
+}

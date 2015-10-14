@@ -820,7 +820,7 @@ STYLE# 747212-818
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><b id="modify-type-modal">Thêm vào giỏ hàng thành công.</h4>
+        <h4 class="modal-title"><b id="modify-type-modal">SẢN PHẨM THÊM VÀO GIỎ HÀNG THÀNH CÔNG.</h4>
       </div>
       <!--<div class="modal-body">
         <p></p>

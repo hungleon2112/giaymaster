@@ -50,9 +50,25 @@ class Order extends BaseModel {
         $results = DB::table('orders')
             ->leftjoin('statuses', 'orders.status_id', '=', 'statuses.id')
             ->leftjoin('users', 'orders.user_id', '=', 'users.id')
+            ->leftjoin('coupons', 'orders.coupon_code', '=', 'coupons.code')
+            ->leftjoin('tran_type', 'statuses.tran_type_id', '=', 'tran_type.id')
             ->select(
                 'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal',
-                'statuses.name as Status', 'users.name as Customer')
+                'orders.coupon_code as CouponCode',
+                'orders.total_final as OrderTotalFinal',
+                'orders.note as Note',
+                'orders.storage as Storage',
+                'orders.ship_fee as ShipFee',
+                'coupons.id as CouponId',
+                'coupons.percentage as CouponPercentage',
+                'coupons.from_date as CouponFromDate',
+                'coupons.to_date as CouponToDate',
+                'statuses.id as StatusId',
+                'statuses.name as Status',
+                'users.name as Customer',
+                'tran_type.name as TranType',
+                'tran_type.id as TranTypeId'
+                )
             ->orderBy('date','desc')
             ->paginate($pagination);
 

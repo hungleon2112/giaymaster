@@ -387,4 +387,20 @@ class HomeController extends BaseController {
         }
         return count($result);
     }
+
+    public function UpdateQuantity($product_id, $order_detail_id, $quantity)
+    {
+        $cart = Session::get('giay.cart');
+        for($i = 0 ; $i < count($cart) ; $i ++)
+        {
+            if($cart[$i]['id'] == $order_detail_id){
+                $cart[$i]['quantity'] = $quantity;
+                $cart[$i]['total'] = $cart[$i]['quantity'] * $cart[$i]['price'];
+            }
+        }
+
+        Session::put('giay.cart', $cart);
+
+        return Response::json(array("cart"=>Session::get('giay.cart')));
+    }
 }

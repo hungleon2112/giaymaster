@@ -41,12 +41,12 @@
            <br>
                Size: <?php echo $cart[$i]['size'] ?> </td>
           <td><?php echo number_format($cart[$i]['price']) ?> VNĐ</td>
-          <td><?php echo $cart[$i]['quantity'] ?></td>
+          <td><input class="form-control number-only" id="quantity-change" order_detail_id="<?php echo $cart[$i]['id'] ?>" product_id="<?php echo $cart[$i]['product_id'] ?>" value="<?php echo $cart[$i]['quantity'] ?>" ></td>
           <td>
             <span id="delete-item-cart-btn" cart-item-id="<?php echo $cart[$i]['id'] ?>" class="glyphicon glyphicon-remove"> </span>
           </td>
           <td>
-            <strong><?php echo number_format($cart[$i]['total']) ?> VNĐ</strong>
+            <strong order_detail_id="<?php echo $cart[$i]['id'] ?>"><?php echo number_format($cart[$i]['total']) ?> VNĐ</strong>
           </td>
         </tr>
         <?php
@@ -55,17 +55,38 @@
         ?>
       </tbody>
     </table>
-      <div class="row">
-        <div class="col-md-8">
+
+
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 update-cart-btn">
+          <button class="btn" id="update-cart-btn"><span class="glyphicon glyphicon-ok"></span>CẬP NHẬT GIỎ HÀNG</button>
+        </div>
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
               <div class="coupon-code">
                 <p>Nhập mã giảm giá (nếu có)</p>
                 <input type="text" id="coupon-code">
                 <button class="btn btn-default" id="coupon-btn">Nhập</button>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="customer-service">
                 <span>Customer service</span>
                 <p>
@@ -75,7 +96,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 total-price">
+        <div class="col-md-4 col-sm-4 total-price">
           <table>
             <tr>
               <td>Tổng tiền hàng</td>

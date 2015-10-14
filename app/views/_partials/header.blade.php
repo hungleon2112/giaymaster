@@ -20,11 +20,17 @@
         if (isset($user_info))
         {
         ?>
-        <ul>
-            <a href="#" id="show-user-profile">Xin chào {{$user_info->name}}</a>/
-            <a href="/order/show" id="">Theo dõi đơn hàng</a>/
-            <a href="#" id="logout-btn">Đăng xuất</a>
-        </ul>
+        <div class="btn-group">
+                    <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Xin chào {{$user_info->name}}
+                    </button>
+
+          <ul class="dropdown-menu">
+            <li><a href="#" id="show-user-profile">Cập nhật thông tin</a></li>
+            <li><a href="/order/show" id="">Theo dõi đơn hàng</a></li>
+            <li><a href="#" id="logout-btn">Đăng xuất</a></li>
+          </ul>
+        </div>
         <?php
         }
         else

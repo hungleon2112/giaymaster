@@ -30,6 +30,14 @@ class Status extends BaseModel {
         return $this->hasMany('Order', 'status_id', 'id');
     }
 
+    public function GetAllStatusByTranType($tran_type_id)
+    {
+        $results = DB::table('statuses')
+            ->select('statuses.*')
+            ->where('tran_type_id','=',$tran_type_id)
+            ->get();
+        return $results;
+    }
 
     /**
 	 * The attributes excluded from the model's JSON form.

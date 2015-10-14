@@ -1,6 +1,6 @@
  <div class="shopping-cart-top">
    <div class="row">
-     <div class="col-md-9 cart-main-content">
+     <div class="col-md-9 col-sm-9 cart-main-content">
 
        <ul id="top-cart">
        <?php
@@ -40,7 +40,7 @@
        ?>
        </ul>
      </div>
-     <div class="col-md-3 cart-detail">
+     <div class="col-md-3 col-sm-3 cart-detail">
        <p class="total-top-cart">Tổng cộng <?php echo number_format($total); ?> VNĐ</p>
        <input type="hidden" name="total-top-cart" id="total-top-cart" value="<?php echo ($total); ?>">
        <!--<p>Final price is guaranteed only at checkout</p>-->
