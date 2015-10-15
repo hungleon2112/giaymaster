@@ -60,8 +60,88 @@ class Users extends BaseModel {
         $results = DB::table('users')
             ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
 
+            ->select('users.id as Id','users.name as Name', 'users.email as Email', 'users.username as Username', 'users.phone as Phone', 'users.address as Address', 'roles.name as Role' )
+
+            ->paginate($pagination);
+
+        return $results;
+    }
+
+    public function GetAllOrderBeginner($user_id){
+        $results = DB::table('orders')
+
+            ->select('orders.id as Id')
+
+            ->where('user_id', '=' , $user_id)
+
+            ->get();
+
+        return $results;
+    }
+
+    public function SumOrderDetailTotalBeginner($order_id, $branch_id){
+        if($branch_id != 0)
+        {
+            $results = DB::table('order_details')
+                ->leftJoin('products', 'order_details.product_id', '=', 'products.id')
+                ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+                ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
+
+                ->select(DB::raw('sum(order_details.total) as total'))
+
+                ->where('order_details.order_id', '=' , $order_id)
+
+                ->where('branchs.id', '=' , $branch_id)
+
+                ->get();
+
+            return $results;
+        }
+        else
+        {
+            $results = DB::table('order_details')
+                ->leftJoin('products', 'order_details.product_id', '=', 'products.id')
+                ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+                ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
+
+                ->select(DB::raw('sum(order_details.total) as total'))
+
+                ->where('order_details.order_id', '=' , $order_id)
+
+                ->get();
+
+            return $results;
+        }
+    }
+
+    public function GetAllAgentBeginner($pagination)
+    {
+        $results = DB::table('users')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+
+            ->select('users.id as Id',
+                'users.name as Name',
+                'users.email as Email',
+                'users.username as Username',
+                'users.phone as Phone',
+                'users.address as Address',
+                'roles.name as Role')
+
+            ->where('users.role_id', '=' , '2')
+
+            ->paginate($pagination);
+
+        return $results;
+    }
+
+    public function GetAllAgentOfficial($pagination)
+    {
+        $results = DB::table('users')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
 
             ->select('users.id as Id','users.name as Name', 'users.email as Email', 'users.username as Username', 'users.phone as Phone', 'users.address as Address', 'roles.name as Role' )
+
+            ->where('users.role_id', '=' , '5')
 
             ->paginate($pagination);
 

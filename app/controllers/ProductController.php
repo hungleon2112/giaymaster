@@ -123,7 +123,10 @@ class ProductController extends \BaseController {
         $input = Input::all();
         $img = Images::find($input['image_id']);
         if(isset($img))
+        {
+            unlink($img->url);
             $img->delete();
+        }
     }
 
     public function ListProduct()

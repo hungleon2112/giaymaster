@@ -106,3 +106,19 @@ Route::get("/admin/coupon/list",array('as'=>'admin.coupon.add','uses'=>'CouponCo
 Route::get("/admin/coupon/edit",array('as'=>'admin.coupon.edit','uses'=>'CouponController@Edit'));
 Route::post("/admin/coupon/deleteListCoupon",array('as'=>'admin.coupon.delete','uses'=>'CouponController@DeleteListCoupon'));
 Route::post("/admin/coupon/updateListCoupon",array('as'=>'admin.coupon.update','uses'=>'CouponController@UpdateListCoupon'));
+
+//Agent Route
+Route::get("/admin/agentBeginner/list",array('as'=>'admin.agent.beginner.list','uses'=>'UserController@ListAgentBeginner'));
+Route::get("/admin/agentBeginner/order/list/{user_id}",array('as'=>'admin.agent.beginner.order.list','uses'=>'OrderController@ListOrderBeginner'));
+Route::get("/admin/agentBeginner/order/list/setDateFromTo/{from_date}/{to_date}",array('as'=>'admin.agent.beginner.order.set','uses'=>'OrderController@SetDateFromTo'));
+
+
+Route::get("/admin/agentOfficial/list",array('as'=>'admin.agent.official.list','uses'=>'UserController@ListAgentOfficial'));
+
+
+// Discount Route
+Route::get("/admin/discount/add",array('as'=>'admin.discount.add','uses'=>'DiscountController@Add'));
+Route::post("/admin/discount/postAdd",array('as'=>'admin.discount.add','uses'=>'DiscountController@PostAdd'));
+Route::get("/admin/discount/list",array('as'=>'admin.discount.add','uses'=>'DiscountController@ListDiscount'));
+Route::get("/admin/discount/edit",array('as'=>'admin.discount.edit','uses'=>'DiscountController@Edit'));
+Route::post("/admin/discount/deleteListDiscount",array('as'=>'admin.discount.delete','uses'=>'DiscountController@DeleteListDiscount'));

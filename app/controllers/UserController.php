@@ -6,9 +6,15 @@ class UserController extends \BaseController {
     protected $user;
     protected $role;
 
-    public function __construct(Users $user, Role $role){
+    protected $order;
+    protected $order_detail;
+
+    public function __construct(Users $user, Role $role, Order $order, Order_Detail $order_detail){
         $this->user = $user;
         $this->role = $role;
+
+        $this->order = $order;
+        $this->order_detail = $order_detail;
     }
 
 
@@ -103,6 +109,40 @@ class UserController extends \BaseController {
         $listUser = $this->user->GetAllUser((Session::get('pagination_user')) != '' ? Session::get('pagination_user') : 50);
 
         return View::make('admin.user.list')->with('listUser',$listUser);
+    }
+
+    public function ListAgentBeginner()
+    {
+        $listUser = $this->user->GetAllAgentBeginner((Session::get('pagination_user')) != '' ? Session::get('pagination_user') : 50);
+
+        $listOrderDetailGiayDep = 0;
+        $listOrderDetailAoQuan = 0;
+        $listOrderDetailPhuKien = 0;
+        $listOrderDetail = 0;
+
+        for($i = 0 ; $i < count($listUser) ; $i++){
+            $listOrder = $this->user->GetAllOrderBeginner($listUser[$i]->Id);
+            for($j = 0 ; $j < count($listOrder) ; $j ++)
+            {
+                $listOrderDetailGiayDep += $this->user->SumOrderDetailTotalBeginner($listOrder[$j]->Id, 1)[0]->total;
+                $listOrderDetailAoQuan += $this->user->SumOrderDetailTotalBeginner($listOrder[$j]->Id, 2)[0]->total;
+                $listOrderDetailPhuKien += $this->user->SumOrderDetailTotalBeginner($listOrder[$j]->Id, 3)[0]->total;
+                $listOrderDetail += $this->user->SumOrderDetailTotalBeginner($listOrder[$j]->Id, 0)[0]->total;
+            }
+            $listUser[$i]->TotalAoQuan = $listOrderDetailAoQuan;
+            $listUser[$i]->TotalGiayDep = $listOrderDetailGiayDep;
+            $listUser[$i]->TotalPhuKien = $listOrderDetailPhuKien;
+            $listUser[$i]->Total = $listOrderDetail;
+        }
+
+        return View::make('admin.agent.beginner.list')->with('listUser',$listUser);
+    }
+
+    public function ListAgentOfficial()
+    {
+        $listUser = $this->user->GetAllAgentOfficial((Session::get('pagination_user')) != '' ? Session::get('pagination_user') : 50);
+
+        return View::make('admin.agent.official.list')->with('listUser',$listUser);
     }
 
     public function PostEdit()

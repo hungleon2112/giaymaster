@@ -35,6 +35,11 @@ class Role extends BaseModel {
         return Role::all();
     }
 
+    public function GetAllRoleAgent()
+    {
+        return Role::where('id','=',2)->orWhere('id','=',5)->get();
+    }
+
     /**
 	 * The attributes excluded from the model's JSON form.
 	 *

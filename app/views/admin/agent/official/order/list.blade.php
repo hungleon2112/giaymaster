@@ -12,21 +12,21 @@
     </div>
 </div>
 <!-- /.row -->
-{{--<div class="row">--}}
-    {{--<div class="col-xs-12">--}}
-    {{--<form class="form-inline">--}}
-          {{--<div class="form-group">--}}
-            {{--<label for="Show">Hiện dữ liệu trên 1 trang </label>--}}
-            {{--<select class="form-control" style="width:80px !important;" id="showing">--}}
-                {{--<option>10</option>--}}
-                {{--<option>30</option>--}}
-                {{--<option>50</option>--}}
-            {{--</select>--}}
-          {{--</div>--}}
-          {{--<button type="button" class="btn btn-default" id="showing-order-button">Chấp nhận</button>--}}
-    {{--</form>--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div class="row">
+    <div class="col-xs-12">
+    <form class="form-inline">
+          <div class="form-group">
+            <label for="Show">Hiện dữ liệu trên 1 trang </label>
+            <select class="form-control" style="width:80px !important;" id="showing">
+                <option>10</option>
+                <option>30</option>
+                <option>50</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-default" id="showing-order-button">Chấp nhận</button>
+    </form>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-xs-12">

@@ -208,6 +208,32 @@ $( document ).ready(function() {
         });
     });
 
+    //Insert Discount
+    $("#discount-add").click(function() {
+        var form = document.forms.namedItem("discount-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/discount/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-discount-modal').modal('show');
+                $("#discount-add").text('Cập nhật discount');
+                $("#modify-type").text('Cập nhật');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
     //Insert Coupon
     $("#coupon-add").click(function() {
         var form = document.forms.namedItem("coupon-form"); // high importance!, here you need change "yourformname" with the name of your form
@@ -765,6 +791,40 @@ $( document ).ready(function() {
     });
 
 
+    //Open Delete Discount Panel
+    $("#delete-button-discount").click(function(){
+        var listDiscountID = "";
+        $("input[name='btSelectItem']").each(function()
+        {
+            if($(this).is(':checked'))
+            {
+                var theTrTag = $(this).parent().parent();
+                var discount_id = $(theTrTag.find("#discount_id_hidden"));
+                if(listDiscountID == '')
+                {
+                    //First Element
+                    listDiscountID += discount_id.val();
+                }
+                else
+                {
+                    listDiscountID += ',' + discount_id.val();
+                }
+            }
+        });
+
+        if(listDiscountID == '')
+        {
+            alert('Chưa có discount nào được chọn. ');
+            return false;
+        }
+        else
+        {
+            $("#delete-list-discount-id").val(listDiscountID);
+            $('#delete-panel-discount').modal('show');
+        }
+
+    });
+
     //Open Delete Coupon Panel
     $("#delete-button-coupon").click(function(){
         var listCouponID = "";
@@ -894,7 +954,7 @@ $( document ).ready(function() {
             success: function (response) {
                 setTimeout(function(){
                     location.reload();
-                }, 2000);
+                }, 500);
             },
             error: function () {
                 console.log('error');
@@ -912,7 +972,7 @@ $( document ).ready(function() {
             success: function (response) {
                 setTimeout(function(){
                     location.reload();
-                }, 2000);
+                }, 500);
             },
             error: function () {
                 console.log('error');
@@ -931,13 +991,31 @@ $( document ).ready(function() {
             success: function (response) {
                 setTimeout(function(){
                     location.reload();
-                }, 1000);
+                }, 500);
             },
             error: function () {
                 console.log('error');
             }
         });
         $('#delete-panel-coupon').modal('hide');
+    });
+
+    // Delete List Discount
+    $("#btn-delete-discount").click(function(){
+        $.ajax({
+            url: '/admin/discount/deleteListDiscount',
+            type: 'POST',
+            data: {delete_list_discount_id : $("#delete-list-discount-id").val()},
+            success: function (response) {
+                setTimeout(function(){
+                    location.reload();
+                }, 500);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+        $('#delete-panel-discount').modal('hide');
     });
 
     // Delete List Brand
@@ -949,7 +1027,7 @@ $( document ).ready(function() {
             success: function (response) {
                 setTimeout(function(){
                     location.reload();
-                }, 2000);
+                }, 500);
             },
             error: function () {
                 console.log('error');
@@ -966,7 +1044,7 @@ $( document ).ready(function() {
             success: function (response) {
                 setTimeout(function(){
                     location.reload();
-                }, 2000);
+                }, 500);
             },
             error: function () {
                 console.log('error');
@@ -1101,6 +1179,7 @@ $( document ).ready(function() {
         $("#order-date").text($("#order_date_hidden_"+trID+"").val());
         $("#order-customer").text($("#order_customer_hidden_"+trID+"").val());
         $("#order-status").text($("#order_status_hidden_"+trID+"").val());
+        $("#order-status-id").val($("#order_status_id_hidden_"+trID+"").val());
         $("#order-tran-type").text($("#order_tran_type_hidden_"+trID+"").val());
 
         $("#order-note").text($("#order_note_hidden_"+trID+"").val());
@@ -1148,7 +1227,8 @@ $( document ).ready(function() {
                 order_id : $("#order-id-update").val(),
                 note : $("#order-note").val(),
                 storage : $("#order-store").val(),
-                ship_fee : $("#order-ship-fee").val()
+                ship_fee : $("#order-ship-fee").val(),
+                status_id : $("#order-status-id").val()
             },
             success: function (response) {
                 location.reload(true);
@@ -1169,8 +1249,24 @@ $( document ).ready(function() {
         var status_id = $( this).attr('status-id');
         var order_id = $("#order-id-update").val();
 
+        $("#order-status-id").val(status_id);
+
+        //$.ajax({
+        //    url: '/admin/order/updateStatus/'+order_id+'/'+status_id+'',
+        //    type: 'GET',
+        //    contentType: 'application/json; charset=utf-8',
+        //    success: function (response) {
+        //        location.reload(true);
+        //    },
+        //    error: function () {
+        //        console.log('error');
+        //    }
+        //});
+    });
+
+    $("#agent-beginner-filter-date-button").click(function(){
         $.ajax({
-            url: '/admin/order/updateStatus/'+order_id+'/'+status_id+'',
+            url: '/admin/agentBeginner/order/list/setDateFromTo/'+$("#agent-beginner-from-date").val()+'/'+$("#agent-beginner-to-date").val()+'',
             type: 'GET',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {

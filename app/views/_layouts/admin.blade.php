@@ -227,10 +227,22 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#agent"><i class=""></i> Đại lý <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="agent" class="collapse">
                             <li>
-                                <a href="#">Thêm</a>
+                                <a href="/admin/agentBeginner/list">Danh sách đại lý mới</a>
                             </li>
                             <li>
-                                <a href="#">Danh sách</a>
+                                <a href="/admin/agentOfficial/list">Danh sách đại lý chính thức</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#discount"><i class=""></i> Discount <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="discount" class="collapse">
+                            <li>
+                                <a href="/admin/discount/add">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="/admin/discount/list">Danh sách</a>
                             </li>
                         </ul>
                     </li>

@@ -27,6 +27,7 @@ class UsersTableSeeder extends Seeder{
         $user->phone = "0933113304";
         $user->email = "viethung.nguyen.2112@gmail.com";
         $user->address = "209/16c Lê Văn Sỹ P.13 Q.3 Tp.HCM";
+        $user->role_id = 2;
         $user->save();
     }
 }

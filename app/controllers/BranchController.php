@@ -41,9 +41,9 @@ class BranchController extends \BaseController {
 
     public function ListBranch()
     {
-    $listBranch = $this->branch->GetAllBranch(50);
-    //print_r($listBranch); die();
-    return View::make('admin.branch.list')->with('listBranch',$listBranch);
+        $listBranch = $this->branch->GetAllBranch(50);
+        //print_r($listBranch); die();
+        return View::make('admin.branch.list')->with('listBranch',$listBranch);
     }
 
     public function Edit()

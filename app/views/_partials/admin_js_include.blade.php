@@ -14,5 +14,5 @@
 <script src="/admin/js/plugins/morris/morris.min.js"></script>
 <script src="/admin/js/plugins/morris/morris-data.js"></script>
 <?php endif;?>
-
+<script src="/admin/js/validate-number.js"></script>
 <script src="/admin/js/admin_js.js"></script>

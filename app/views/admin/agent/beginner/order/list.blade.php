@@ -27,6 +27,21 @@
     {{--</form>--}}
     {{--</div>--}}
 {{--</div>--}}
+<br>
+<div class="row">
+    <div class="col-xs-12">
+    <form class="form-inline">
+          <div class="form-group">
+            <label for="Show">Từ ngày </label>
+            <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd"  id="agent-beginner-from-date" name="agent-beginner-from-date">
+
+            <label for="Show">Đến ngày </label>
+            <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd"  id="agent-beginner-to-date" name="agent-beginner-to-date">
+          </div>
+          <button type="button" class="btn btn-default" id="agent-beginner-filter-date-button">Chấp nhận</button>
+    </form>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-xs-12">

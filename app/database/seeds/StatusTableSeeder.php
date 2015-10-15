@@ -50,7 +50,7 @@ class StatusTableSeeder extends Seeder{
         $status = new Status();
         $status->name = "Đã nhận hàng";
         $status->tran_type_id = 1;
-        $status->color = "Red";
+        $status->color = "Green";
         $status->save();
 
         $status = new Status();
@@ -106,7 +106,7 @@ class StatusTableSeeder extends Seeder{
         $status = new Status();
         $status->name = "Đã nhận hàng và thanh toán";
         $status->tran_type_id = 2;
-        $status->color = "Red";
+        $status->color = "Green";
         $status->save();
 
         $status = new Status();
