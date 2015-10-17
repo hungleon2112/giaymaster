@@ -7,23 +7,37 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Đơn hàng <small>Danh sách</small>
+            Đơn hàng <small>Đại lý chính thức </small>
         </h1>
     </div>
 </div>
-<!-- /.row -->
+{{--<div class="row">--}}
+    {{--<div class="col-xs-12">--}}
+    {{--<form class="form-inline">--}}
+          {{--<div class="form-group">--}}
+            {{--<label for="Show">Hiện dữ liệu trên 1 trang </label>--}}
+            {{--<select class="form-control" style="width:80px !important;" id="showing">--}}
+                {{--<option>10</option>--}}
+                {{--<option>30</option>--}}
+                {{--<option>50</option>--}}
+            {{--</select>--}}
+          {{--</div>--}}
+          {{--<button type="button" class="btn btn-default" id="showing-order-button">Chấp nhận</button>--}}
+    {{--</form>--}}
+    {{--</div>--}}
+{{--</div>--}}
+<br>
 <div class="row">
     <div class="col-xs-12">
     <form class="form-inline">
           <div class="form-group">
-            <label for="Show">Hiện dữ liệu trên 1 trang </label>
-            <select class="form-control" style="width:80px !important;" id="showing">
-                <option>10</option>
-                <option>30</option>
-                <option>50</option>
-            </select>
+            <label for="Show">Từ ngày </label>
+            <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy"  id="agent-official-from-date" name="agent-official-from-date">
+
+            <label for="Show">Đến ngày </label>
+            <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy"  id="agent-official-to-date" name="agent-official-to-date">
           </div>
-          <button type="button" class="btn btn-default" id="showing-order-button">Chấp nhận</button>
+          <button type="button" class="btn btn-default" id="agent-official-filter-date-button">Chấp nhận</button>
     </form>
     </div>
 </div>
@@ -37,7 +51,6 @@
                         <th></th>
                         <th data-field="name"  data-sortable="true">Mã hóa đơn</th>
                         <th data-field="date"  data-sortable="true">Thời gian</th>
-                        <th data-field="email"  data-sortable="true">Khách hàng</th>
                         <th data-field="total"  data-sortable="true">Tổng đơn</th>
                         <th data-field="code"  data-sortable="true">Khuyến mãi</th>
                         <th data-field="total_final"  data-sortable="true">Tổng cộng</th>
@@ -48,7 +61,9 @@
                 <tbody>
                     @foreach($list_order as $p)
                         <tr>
-                            <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> </td>
+                            <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> 
+							<span style="color:white; font-size: 1px;"> {{($p->StatusType)}} </span>
+							</td>
                             <td>
                                 <input type="hidden" value="{{$p->OrderId}}" id="order_id_hidden_order_detail_of_{{$p->OrderId}}" name="order_id">
                                 <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden_order_detail_of_{{$p->OrderId}}">
@@ -70,9 +85,6 @@
                             </td>
                             <td>
                                 {{$p->OrderDate}}
-                            </td>
-                            <td>
-                                {{$p->Customer}}
                             </td>
                             <td>
                                 {{number_format($p->OrderTotal)}}

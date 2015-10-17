@@ -50,4 +50,16 @@ class Discount extends BaseModel {
         return $results;
     }
 
+    public function GetPercentageFromBranchAndRateAndRole($branch_id, $rate, $role_id)
+    {
+        $results = DB::table('discounts')
+            ->where('branch_id', '=', $branch_id)
+            ->where('role_id', '=', $role_id)
+            ->where('from_rate', '<', $rate)
+            ->where('to_rate', '>', $rate)
+            ->get();
+
+        return $results;
+    }
+
 }

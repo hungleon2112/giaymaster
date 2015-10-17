@@ -1264,13 +1264,41 @@ $( document ).ready(function() {
         //});
     });
 
+    $("#agent-official-filter-date-button").click(function(){
+        $.ajax({
+            url: '/admin/agentOfficial/order/list/setDateFromTo/'+$("#agent-official-from-date").val()+'/'+$("#agent-official-to-date").val()+'',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
     $("#agent-beginner-filter-date-button").click(function(){
         $.ajax({
             url: '/admin/agentBeginner/order/list/setDateFromTo/'+$("#agent-beginner-from-date").val()+'/'+$("#agent-beginner-to-date").val()+'',
             type: 'GET',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
-                location.reload(true);
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+	$("#filter-month-date-agent-button").click(function(){
+        $.ajax({
+            url: '/admin/agentOfficial/setMonthYear/'+$("#filter-month-agent").val()+'/'+$("#filter-year-agent").val()+'',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
             },
             error: function () {
                 console.log('error');

@@ -33,6 +33,8 @@ Route::get("/cart/updateQuantity/{product_id}/{order_detail_id}/{quantity}",arra
 Route::get("/cart/deleteItem/{id}",array('as'=>'cart.delete.item','uses'=>'HomeController@DeleteItemCart'));
 Route::get("/cart/approve/{type_id}/{total}/{coupon_code}/{total_final}",array('as'=>'cart.approve','uses'=>'HomeController@ApproveCart'));
 Route::get("/order/show",array('as'=>'order.show','uses'=>'HomeController@ShowOrderList'));
+Route::get("/order/show/setDateFromTo/{from_date}/{to_date}",array('as'=>'order.set','uses'=>'HomeController@SetDateFromToOrder'));
+Route::get("/order/show/setMonthYear/{month}/{year}",array('as'=>'order.set.month','uses'=>'HomeController@SetMonthYearOrder'));
 Route::get("/contact",array('as'=>'contact','uses'=>'HomeController@Contact'));
 Route::get("/coupon/{coupon_code}",array('as'=>'coupon','uses'=>'HomeController@CheckCoupon'));
 
@@ -110,11 +112,12 @@ Route::post("/admin/coupon/updateListCoupon",array('as'=>'admin.coupon.update','
 //Agent Route
 Route::get("/admin/agentBeginner/list",array('as'=>'admin.agent.beginner.list','uses'=>'UserController@ListAgentBeginner'));
 Route::get("/admin/agentBeginner/order/list/{user_id}",array('as'=>'admin.agent.beginner.order.list','uses'=>'OrderController@ListOrderBeginner'));
-Route::get("/admin/agentBeginner/order/list/setDateFromTo/{from_date}/{to_date}",array('as'=>'admin.agent.beginner.order.set','uses'=>'OrderController@SetDateFromTo'));
+Route::get("/admin/agentBeginner/order/list/setDateFromTo/{from_date}/{to_date}",array('as'=>'admin.agent.beginner.order.set','uses'=>'OrderController@SetDateFromToBeginner'));
 
-
+Route::get("/admin/agentOfficial/setMonthYear/{month}/{year}",array('as'=>'admin.agent.official.monthyear.set','uses'=>'OrderController@SetMonthYear'));
+Route::get("/admin/agentOfficial/order/list/setDateFromTo/{from_date}/{to_date}",array('as'=>'admin.agent.official.order.set','uses'=>'OrderController@SetDateFromToOfficial'));
 Route::get("/admin/agentOfficial/list",array('as'=>'admin.agent.official.list','uses'=>'UserController@ListAgentOfficial'));
-
+Route::get("/admin/agentOfficial/order/list/{user_id}",array('as'=>'admin.agent.official.order.list','uses'=>'OrderController@ListOrderOfficial'));
 
 // Discount Route
 Route::get("/admin/discount/add",array('as'=>'admin.discount.add','uses'=>'DiscountController@Add'));

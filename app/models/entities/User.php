@@ -79,7 +79,55 @@ class Users extends BaseModel {
         return $results;
     }
 
+    public function GetAllOrderOfficial($user_id, $month, $year){
+        $results = DB::table('orders')
+
+            ->select('orders.id as Id')
+
+            ->where('user_id', '=' , $user_id)
+            ->where( DB::raw('MONTH(orders.date)'), '=', $month )
+            ->where( DB::raw('YEAR(orders.date)'), '=', $year )
+            ->get();
+
+        return $results;
+    }
+
     public function SumOrderDetailTotalBeginner($order_id, $branch_id){
+        if($branch_id != 0)
+        {
+            $results = DB::table('order_details')
+                ->leftJoin('products', 'order_details.product_id', '=', 'products.id')
+                ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+                ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
+
+                ->select(DB::raw('sum(order_details.total) as total'))
+
+                ->where('order_details.order_id', '=' , $order_id)
+
+                ->where('branchs.id', '=' , $branch_id)
+
+                ->get();
+
+            return $results;
+        }
+        else
+        {
+            $results = DB::table('order_details')
+                ->leftJoin('products', 'order_details.product_id', '=', 'products.id')
+                ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+                ->leftJoin('branchs', 'categories.branch_id', '=', 'branchs.id')
+
+                ->select(DB::raw('sum(order_details.total) as total'))
+
+                ->where('order_details.order_id', '=' , $order_id)
+
+                ->get();
+
+            return $results;
+        }
+    }
+
+    public function SumOrderDetailTotalOfficial($order_id, $branch_id){
         if($branch_id != 0)
         {
             $results = DB::table('order_details')

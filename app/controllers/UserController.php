@@ -9,12 +9,20 @@ class UserController extends \BaseController {
     protected $order;
     protected $order_detail;
 
-    public function __construct(Users $user, Role $role, Order $order, Order_Detail $order_detail){
+    protected $discount;
+
+    public function __construct(Users $user,
+                                Role $role,
+                                Order $order,
+                                Order_Detail $order_detail,
+                                Discount $discount){
         $this->user = $user;
         $this->role = $role;
 
         $this->order = $order;
         $this->order_detail = $order_detail;
+
+        $this->discount = $discount;
     }
 
 
@@ -141,6 +149,49 @@ class UserController extends \BaseController {
     public function ListAgentOfficial()
     {
         $listUser = $this->user->GetAllAgentOfficial((Session::get('pagination_user')) != '' ? Session::get('pagination_user') : 50);
+
+
+        $month = (Session::get('month_order') == '' ? date("n") : Session::get('month_order'));
+        $year = (Session::get('year_order') == '' ? date("Y") : Session::get('year_order'));
+
+        for($i = 0 ; $i < count($listUser) ; $i++){
+            $listOrder = $this->user->GetAllOrderOfficial($listUser[$i]->Id, $month, $year);
+			
+			$listOrderDetailGiayDep = 0;
+			$listOrderDetailAoQuan = 0;
+			$listOrderDetailPhuKien = 0;
+			$listOrderDetail = 0;
+			$discountGiayDep = 0;
+			$discountAoQuan = 0;
+			$discountPhuKien = 0;
+		
+            for($j = 0 ; $j < count($listOrder) ; $j ++)
+            {
+                $listOrderDetailGiayDep += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 1)[0]->total;
+                $listOrderDetailAoQuan += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 2)[0]->total;
+                $listOrderDetailPhuKien += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 3)[0]->total;
+                $listOrderDetail += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 0)[0]->total;
+            }
+			
+			$discountGiayDep = (count($this->discount->GetPercentageFromBranchAndRateAndRole(1, $listOrderDetailGiayDep, 5))) > 0 ? $this->discount->GetPercentageFromBranchAndRateAndRole(1, $listOrderDetailGiayDep, 5)[0]->percentage : 0;
+			$discountAoQuan = (count($this->discount->GetPercentageFromBranchAndRateAndRole(2, $listOrderDetailAoQuan, 5))) > 0 ? $this->discount->GetPercentageFromBranchAndRateAndRole(2, $listOrderDetailAoQuan, 5)[0]->percentage : 0;
+			$discountPhuKien = (count($this->discount->GetPercentageFromBranchAndRateAndRole(3, $listOrderDetailPhuKien, 5))) > 0 ? $this->discount->GetPercentageFromBranchAndRateAndRole(3, $listOrderDetailPhuKien, 5)[0]->percentage : 0;
+			
+			$listUser[$i]->DiscountGiayDep = $discountGiayDep;
+			$listUser[$i]->DiscountAoQuan = $discountAoQuan;
+			$listUser[$i]->DiscountPhuKien = $discountPhuKien;
+			
+            $listUser[$i]->TotalAoQuan = $listOrderDetailAoQuan;
+            $listUser[$i]->TotalGiayDep = $listOrderDetailGiayDep;
+            $listUser[$i]->TotalPhuKien = $listOrderDetailPhuKien;
+			
+			$listUser[$i]->TotalAoQuanDiscount = $listOrderDetailAoQuan * $discountAoQuan / 100;
+			$listUser[$i]->TotalGiayDepDiscount = $listOrderDetailGiayDep * $discountGiayDep / 100;
+			$listUser[$i]->TotalPhuKienDiscount = $listOrderDetailPhuKien * $discountPhuKien / 100;
+			
+            $listUser[$i]->Total = $listOrderDetail;
+			$listUser[$i]->TotalDiscount = $listUser[$i]->TotalAoQuanDiscount + $listUser[$i]->TotalGiayDepDiscount + $listUser[$i]->TotalPhuKienDiscount;
+        }
 
         return View::make('admin.agent.official.list')->with('listUser',$listUser);
     }

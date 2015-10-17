@@ -171,3 +171,44 @@
 #loading-modal-cart .modal-dialog{
     width: 20%;
 }
+
+#order-list, #discount{
+    font-size: 16px;
+}
+
+.order-discount label{
+    min-width: 250px;
+}
+
+.main_content .category-content .product-main.product-detail .detail-text .quantity {
+
+    padding-left: 0px;}
+
+.main_content .category-content .product-main.product-detail .detail-text .quantity label {
+
+    padding-top: 0px; }
+.main_content .category-content .product-main.product-detail .detail-text .size span {
+    font-size: 25px; }
+
+.main_content .category-content .product-main.product-detail .detail-text .quantity label {
+    font-size: 25px; }
+
+.main_content .category-content .product-main.product-detail .detail-text {
+    font-family: "bebas", sans-serif;
+    }
+.size-chart, .size-chart span{
+    font-family: "bebas", sans-serif !important;
+    font-size: 15px;
+}
+
+p{
+    font-family: "bebas", sans-serif !important;
+}
+
+#sort-by-price a{
+    color: #f00;
+}
+
+#sort-by-price a:hover{
+    color: #34bad9;
+}

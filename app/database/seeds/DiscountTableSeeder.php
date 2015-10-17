@@ -12,15 +12,27 @@ class DiscountTableSeeder extends Seeder{
         DB::table('discounts')->truncate();
 
         $discount = new Discount();
-        $discount->percentage = 50;
-        $discount->name = "official";
-        $discount->rate = 6000000;
+        $discount->role_id = 5; //Đại lý chính thức
+        $discount->branch_id = 1; //Giày dép
+        $discount->from_rate = 0;
+        $discount->to_rate = 3000000;
+        $discount->percentage = 5;
         $discount->save();
 
         $discount = new Discount();
-        $discount->percentage = 20;
-        $discount->name = "beginner";
-        $discount->rate = 3000000;
+        $discount->role_id = 5; //Đại lý chính thức
+        $discount->branch_id = 1; //Giày dép
+        $discount->from_rate = 3000001;
+        $discount->to_rate = 6000000;
+        $discount->percentage = 15;
+        $discount->save();
+
+        $discount = new Discount();
+        $discount->role_id = 5; //Đại lý chính thức
+        $discount->branch_id = 1; //Giày dép
+        $discount->from_rate = 6000001;
+        $discount->to_rate = 300000000;
+        $discount->percentage = 25;
         $discount->save();
 
     }

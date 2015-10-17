@@ -23,7 +23,7 @@ Sản Phẩm
   <?php
   for($i = 0 ; $i < count($product_info[0]); $i ++){
   ?>
-      <li><img src="{{$product_info[0][$i]->url}}" alt=""></li>
+      <li><img class="img-responsive" src="{{$product_info[0][$i]->url}}" alt=""></li>
   <?php
   }
   ?>
@@ -101,13 +101,13 @@ STYLE# 747212-818
 <div class="panel panel-default">
   <div class="panel-heading" role="tab" id="headingOne">
     <h4 class="panel-title">
-      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <a style="font-size: 25px" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         Size Chart
-        <i class="pull-right glyphicon glyphicon-plus"></i>
+        {{--<i class="pull-right glyphicon glyphicon-plus"></i>--}}
       </a>
     </h4>
   </div>
-  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
     <div class="panel-body">
       <div class="tab-size-chart">
         <!-- Nav tabs -->
@@ -124,16 +124,16 @@ STYLE# 747212-818
                 <tbody>
                 <tr>
                 <td valign="top">
-                <p><span style="color: #000000; font-family: Helvetica;"><strong>US</strong></span></p>
+                <p><span style="color: #000000; "><strong>US</strong></span></p>
                 </td>
                 <td valign="top">
-                <p><span style="color: #000000; font-family: Helvetica;"><strong>UK</strong></span></p>
+                <p><span style="color: #000000; ;"><strong>UK</strong></span></p>
                 </td>
                 <td valign="top">
-                <p><span style="color: #000000; font-family: Helvetica;"><strong>Europe</strong></span></p>
+                <p><span style="color: #000000; "><strong>Europe</strong></span></p>
                 </td>
                 <td valign="top">
-                <p><span style="color: #000000; font-family: Helvetica;"><strong>CM</strong></span></p>
+                <p><span style="color: #000000; "><strong>CM</strong></span></p>
                 </td>
                 </tr>
                 <tr>

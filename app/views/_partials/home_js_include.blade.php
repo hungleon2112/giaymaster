@@ -9,6 +9,7 @@
 <script src="/front/js/front_js.js"></script>
 <script src="/front/js/validator.js"></script>
 <script src="/front/js/validate-number.js"></script>
+<script src="/front/js/bootstrap-datepicker.js"></script>
 <!-- Select menus on Android -->
 <script>
 $(function () {

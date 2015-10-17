@@ -91,19 +91,21 @@ class ProductController extends \BaseController {
     {
         if(Input::file())
         {
-            $image = Input::file('image');
-            $filename  = time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('uploads/' . $filename);
-            Image::make($image->getRealPath())->save($path);
+            $images = Input::file('images');
+            foreach($images as $image) {
 
-            $input = Input::all();
-            $product_id = $input['id'];
+                $filename  = time() . '.' . $image->getClientOriginalExtension();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->save($path);
 
-            $final_input['url'] = 'uploads/' . $filename;
-            $final_input['product_id'] = $product_id;
+                $input = Input::all();
+                $product_id = $input['id'];
 
-            $this->image->create($final_input);
+                $final_input['url'] = 'uploads/' . $filename;
+                $final_input['product_id'] = $product_id;
 
+                $this->image->create($final_input);
+            }
         }
     }
 

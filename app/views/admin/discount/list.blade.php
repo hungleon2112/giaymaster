@@ -73,13 +73,13 @@
                                 {{$p->Branch}}
                             </td>
                             <td>
-                                {{$p->From}}
+                                {{number_format($p->From)}}
                             </td>
                             <td>
-                                {{$p->To}}
+                                {{number_format($p->To)}}
                             </td>
                             <td>
-                                {{$p->Percentage}}
+                                {{$p->Percentage}}%
                             </td>
                     @endforeach
                 </tbody>

@@ -67,7 +67,6 @@
                         <th data-field="phone"  data-sortable="true">Điện thoại</th>
                         <th data-field="email"  data-sortable="true">Email</th>
                         <th data-field="address"  data-sortable="true">Địa chỉ</th>
-                        <th data-field="role"  data-sortable="true">Role</th>
                         <th data-field="aoquan-branch"  data-sortable="true">Tổng ngành hàng Quần áo</th>
                         <th data-field="giaydep-branch"  data-sortable="true">Tổng ngành hàng Giày dép</th>
                         <th data-field="phukien-branch"  data-sortable="true">Tổng ngành hàng Phụ kiện</th>
@@ -90,9 +89,6 @@
                             </td>
                             <td>
                                 {{$p->Address}}
-                            </td>
-                            <td>
-                                {{$p->Role}}
                             </td>
                             <td>
                                 {{number_format($p->TotalAoQuan)}}

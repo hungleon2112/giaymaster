@@ -30,19 +30,40 @@ class Order extends BaseModel {
         return $this->hasMany('Order_Detail', 'order_id', 'id');
     }
 
-    public function Order_List($user_id)
+    public function Order_List($user_id, $from_date, $to_date)
     {
-        $results = DB::table('orders')
-            ->join('statuses', 'orders.status_id', '=', 'statuses.id')
-            ->select(
-                'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal', 'orders.total_final as OrderTotalFinal',
-                'orders.ship_fee as ShipFee',
-                'statuses.name as Status')
-            ->where('orders.user_id','=',$user_id)
-            ->orderBy('date','desc')
-            ->paginate($_ENV['Order_List']);
+        if($from_date == '' || $to_date == '') {
+            $results = DB::table('orders')
+                ->join('statuses', 'orders.status_id', '=', 'statuses.id')
+                ->select(
+                    'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal', 'orders.total_final as OrderTotalFinal',
+                    'orders.ship_fee as ShipFee',
+                    'statuses.name as Status',
+                    'statuses.type as StatusType')
+                ->where('orders.user_id','=',$user_id)
+                ->orderBy('date','desc')
+                ->paginate($_ENV['Order_List']);
 
-        return $results;
+            return $results;
+        }
+        else
+        {
+
+            $results = DB::table('orders')
+                ->join('statuses', 'orders.status_id', '=', 'statuses.id')
+                ->select(
+                    'orders.id as OrderId', 'orders.date as OrderDate', 'orders.total as OrderTotal', 'orders.total_final as OrderTotalFinal',
+                    'orders.ship_fee as ShipFee',
+                    'statuses.name as Status',
+                    'statuses.type as StatusType')
+                ->where('orders.user_id','=',$user_id)
+                ->where('orders.date', '>', $from_date)
+                ->where('orders.date', '<', $to_date)
+                ->orderBy('date','desc')
+                ->paginate($_ENV['Order_List']);
+
+            return $results;
+        }
     }
 
     public function Order_List_All($pagination)
@@ -66,6 +87,7 @@ class Order extends BaseModel {
                 'statuses.id as StatusId',
                 'statuses.name as Status',
                 'statuses.color as Color',
+				'statuses.type as StatusType',
                 'users.name as Customer',
                 'tran_type.name as TranType',
                 'tran_type.id as TranTypeId'
@@ -98,6 +120,7 @@ class Order extends BaseModel {
                     'statuses.id as StatusId',
                     'statuses.name as Status',
                     'statuses.color as Color',
+					'statuses.type as StatusType',
                     'users.name as Customer',
                     'tran_type.name as TranType',
                     'tran_type.id as TranTypeId'
@@ -105,7 +128,6 @@ class Order extends BaseModel {
                 ->where('users.id', '=', $user_id)
                 ->orderBy('date', 'desc')
                 ->paginate($pagination);
-
             return $results;
         }
         else
@@ -129,6 +151,7 @@ class Order extends BaseModel {
                     'statuses.id as StatusId',
                     'statuses.name as Status',
                     'statuses.color as Color',
+					'statuses.type as StatusType',
                     'users.name as Customer',
                     'tran_type.name as TranType',
                     'tran_type.id as TranTypeId'
@@ -138,7 +161,6 @@ class Order extends BaseModel {
                 ->where('orders.date', '<', $to_date)
                 ->orderBy('date', 'desc')
                 ->paginate($pagination);
-
             return $results;
         }
     }

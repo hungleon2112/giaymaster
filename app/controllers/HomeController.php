@@ -30,6 +30,8 @@ class HomeController extends BaseController {
     protected $order;
     protected $order_detail;
     protected $coupon;
+    protected $user;
+    protected $discount;
     public function __construct(Branch $branch,
                                 Category $category,
                                 Product $product,
@@ -37,7 +39,9 @@ class HomeController extends BaseController {
                                 Brand $brand,
                                 Order $order,
                                 Order_Detail $order_detail,
-                                Coupon $coupon
+                                Coupon $coupon,
+                                Users $user,
+                                Discount $discount
                                 ){
         $this->branch = $branch;
         $this->category = $category;
@@ -47,6 +51,8 @@ class HomeController extends BaseController {
         $this->order = $order;
         $this->order_detail = $order_detail;
         $this->coupon = $coupon;
+        $this->user = $user;
+        $this->discount = $discount;
         $this->beforeFilter(function()
         {
             $branch_list = $this->branch->GetAllBranch();
@@ -344,11 +350,31 @@ class HomeController extends BaseController {
         }
     }
 
+    public function SetMonthYearOrder($month, $year)
+    {
+        Session::put('client_month_order', $month);
+        Session::put('client_year_order', $year);
+
+        Session::flash('tab2', 'true');
+        return Response::json(array("cart"=>Session::get('year_order_client')));
+    }
+
+    public function SetDateFromToOrder($from_date, $to_date)
+    {
+        Session::put('client_from_date_order', $from_date);
+        Session::put('client_to_date_order', $to_date);
+
+        return Response::json(array("cart"=>Session::get('giay.cart')));
+    }
+
     public function ShowOrderList()
     {
         $user_info = Session::get('user_info');
 
-        $list_order = $this->order->Order_List($user_info->id);
+        $from_date = date("Y-m-d", strtotime(Session::get('client_from_date_order')));
+        $to_date = date("Y-m-d", strtotime(Session::get('client_to_date_order'))) . ' 23:59:59';
+
+        $list_order = $this->order->Order_List($user_info->id, $from_date, $to_date);
 
         for($i = 0 ; $i < count($list_order) ; $i++)
         {
@@ -368,13 +394,51 @@ class HomeController extends BaseController {
             }
         }
 
-        //UtilityHelper::test($list_order);
+        $list_user = $this->Discount();
+        $list_order_discount_tab = $this->ShowOrderListByMonthYear();
+
         return View::make('home.order_list')
             ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
             ->with('user_info', $this->user_info)
-            ->with('list_order' , $list_order);
+            ->with('list_order' , $list_order)
+            ->with('list_user' , $list_user)
+            ->with('list_order_discount_tab' , $list_order_discount_tab)
+            ;
+    }
+
+    public function ShowOrderListByMonthYear(){
+
+        $user_id = Session::get('user_info')->id;
+        $month = (Session::get('month_order') == '' ? date("n") : Session::get('month_order'));
+        $year = (Session::get('year_order') == '' ? date("Y") : Session::get('year_order'));
+
+        $list_order = $this->user->GetAllOrderOfficial($user_id, $month, $year);
+
+        for($i = 0 ; $i < count($list_order) ; $i++)
+        {
+            $list_order_detail = $this->order_detail->Order_Detail_List($list_order[$i]->Id);
+            $d = date_create($list_order[$i]->OrderDate);
+            $list_order[$i]->OrderDate =  date_format($d, 'd/m/Y H:i:s');
+
+            $d = date_create($list_order[$i]->CouponFromDate);
+            $list_order[$i]->CouponFromDate =  date_format($d, 'd/m/Y');
+
+            $d = date_create($list_order[$i]->CouponToDate);
+            $list_order[$i]->CouponToDate =  date_format($d, 'd/m/Y');
+
+            $list_order[$i]->Order_Detail = $list_order_detail;
+            //$list_order[$i]->Total = 0;
+            for($j = 0 ; $j < count($list_order_detail) ; $j ++)
+            {
+                //$list_order[$i]->Total += $list_order_detail[$j]->OrderDetailTotal;
+            }
+
+            //UtilityHelper::test($this->status->GetAllStatusByTranType($list_order[$i]->TranTypeId));
+        }
+
+        return $list_order;
     }
 
     public function CheckCoupon($coupon_code)
@@ -409,5 +473,53 @@ class HomeController extends BaseController {
         Session::put('giay.cart', $cart);
 
         return Response::json(array("cart"=>Session::get('giay.cart')));
+    }
+
+    public function Discount()
+    {
+        $listUser = new stdClass();
+        $listUser->id = Session::get('user_info')->id;
+
+        $month = (Session::get('client_month_order') == '' ? date("n") : Session::get('client_month_order'));
+        $year = (Session::get('client_year_order') == '' ? date("Y") : Session::get('client_year_order'));
+
+        $listOrder = $this->user->GetAllOrderOfficial($listUser->id, $month, $year);
+
+        $listOrderDetailGiayDep = 0;
+        $listOrderDetailAoQuan = 0;
+        $listOrderDetailPhuKien = 0;
+        $listOrderDetail = 0;
+        $discountGiayDep = 0;
+        $discountAoQuan = 0;
+        $discountPhuKien = 0;
+
+        for($j = 0 ; $j < count($listOrder) ; $j ++)
+        {
+            $listOrderDetailGiayDep += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 1)[0]->total;
+            $listOrderDetailAoQuan += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 2)[0]->total;
+            $listOrderDetailPhuKien += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 3)[0]->total;
+            $listOrderDetail += $this->user->SumOrderDetailTotalOfficial($listOrder[$j]->Id, 0)[0]->total;
+        }
+
+        $discountGiayDep = (count($this->discount->GetPercentageFromBranchAndRateAndRole(1, $listOrderDetailGiayDep, 5))) > 0 ? $this->discount->GetPercentageFromBranchAndRateAndRole(1, $listOrderDetailGiayDep, 5)[0]->percentage : 0;
+        $discountAoQuan = (count($this->discount->GetPercentageFromBranchAndRateAndRole(2, $listOrderDetailAoQuan, 5))) > 0 ? $this->discount->GetPercentageFromBranchAndRateAndRole(2, $listOrderDetailAoQuan, 5)[0]->percentage : 0;
+        $discountPhuKien = (count($this->discount->GetPercentageFromBranchAndRateAndRole(3, $listOrderDetailPhuKien, 5))) > 0 ? $this->discount->GetPercentageFromBranchAndRateAndRole(3, $listOrderDetailPhuKien, 5)[0]->percentage : 0;
+
+        $listUser->DiscountGiayDep = $discountGiayDep;
+        $listUser->DiscountAoQuan = $discountAoQuan;
+        $listUser->DiscountPhuKien = $discountPhuKien;
+
+        $listUser->TotalAoQuan = $listOrderDetailAoQuan;
+        $listUser->TotalGiayDep = $listOrderDetailGiayDep;
+        $listUser->TotalPhuKien = $listOrderDetailPhuKien;
+
+        $listUser->TotalAoQuanDiscount = $listOrderDetailAoQuan * $discountAoQuan / 100;
+        $listUser->TotalGiayDepDiscount = $listOrderDetailGiayDep * $discountGiayDep / 100;
+        $listUser->TotalPhuKienDiscount = $listOrderDetailPhuKien * $discountPhuKien / 100;
+
+        $listUser->Total = $listOrderDetail;
+        $listUser->TotalDiscount = $listUser->TotalAoQuanDiscount + $listUser->TotalGiayDepDiscount + $listUser->TotalPhuKienDiscount;
+
+        return $listUser;
     }
 }

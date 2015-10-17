@@ -186,7 +186,7 @@
                   {{ Form::label('image', 'Hình ảnh') }}
                   {{ Form::open(array('url' => 'upload', 'files' => true, 'id' => 'upload-form')) }}
                      <input type="hidden" value="{{ isset($product)?$product->id:'' }}" id="product_id" name="id">
-                    {{ Form::file('image', array('class'=>'form-control', 'id'=>'image')) }}
+                    {{ Form::file('images[]', array('class'=>'form-control', 'id'=>'image', 'multiple'=> true)) }}
                   {{ Form::close() }}
             </div>
 

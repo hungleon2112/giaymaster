@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Đơn hàng <small>Danh sách</small>
+            Đơn hàng <small>Đại lý mới</small>
         </h1>
     </div>
 </div>
@@ -33,10 +33,10 @@
     <form class="form-inline">
           <div class="form-group">
             <label for="Show">Từ ngày </label>
-            <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd"  id="agent-beginner-from-date" name="agent-beginner-from-date">
+            <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy"  id="agent-beginner-from-date" name="agent-beginner-from-date">
 
             <label for="Show">Đến ngày </label>
-            <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd"  id="agent-beginner-to-date" name="agent-beginner-to-date">
+            <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy"  id="agent-beginner-to-date" name="agent-beginner-to-date">
           </div>
           <button type="button" class="btn btn-default" id="agent-beginner-filter-date-button">Chấp nhận</button>
     </form>
@@ -52,7 +52,6 @@
                         <th></th>
                         <th data-field="name"  data-sortable="true">Mã hóa đơn</th>
                         <th data-field="date"  data-sortable="true">Thời gian</th>
-                        <th data-field="email"  data-sortable="true">Khách hàng</th>
                         <th data-field="total"  data-sortable="true">Tổng đơn</th>
                         <th data-field="code"  data-sortable="true">Khuyến mãi</th>
                         <th data-field="total_final"  data-sortable="true">Tổng cộng</th>
@@ -63,7 +62,9 @@
                 <tbody>
                     @foreach($list_order as $p)
                         <tr>
-                            <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> </td>
+                            <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> 
+							<span style="color:white; font-size: 1px;"> {{($p->StatusType)}} </span>
+							</td>
                             <td>
                                 <input type="hidden" value="{{$p->OrderId}}" id="order_id_hidden_order_detail_of_{{$p->OrderId}}" name="order_id">
                                 <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden_order_detail_of_{{$p->OrderId}}">
@@ -85,9 +86,6 @@
                             </td>
                             <td>
                                 {{$p->OrderDate}}
-                            </td>
-                            <td>
-                                {{$p->Customer}}
                             </td>
                             <td>
                                 {{number_format($p->OrderTotal)}}
@@ -113,7 +111,6 @@
                             </td>
                             <td>
                                 <span class="badge" style="color:white; padding: 10px; background-color: {{$p->Color}}">{{$p->Status}}</span>
-
                             </td>
                         </tr>
 
@@ -170,8 +167,6 @@
                             }
                             ?>
                         </div>
-
-
                     @endforeach
                 </tbody>
             </table>

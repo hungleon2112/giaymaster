@@ -27,6 +27,39 @@
     </form>
     </div>
 </div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+    <form class="form-inline">
+          <div class="form-group">
+            <label for="Show">Chọn tháng</label>
+            <select class="form-control" style="width:80px !important;" id="filter-month-agent">
+                <?php
+                for($i = 1; $i <= 12; $i ++)
+                {
+                ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php
+                }
+                ?>
+            </select>
+			<label for="Show">Chọn năm</label>
+            <select class="form-control" style="width:90px !important;" id="filter-year-agent">
+                <?php
+                for($i = 2010; $i <= 2050; $i ++)
+                {
+                ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php
+                }
+                ?>
+            </select>
+          </div>
+          <button type="button" class="btn btn-default" id="filter-month-date-agent-button">Chấp nhận</button>
+    </form>
+    </div>
+</div>
+<br>
 <div class="row">
     <div class="col-xs-12">
         <button type="button" class="btn btn-default" id="delete-button-user">Xóa</button>
@@ -67,11 +100,10 @@
                         <th data-field="phone"  data-sortable="true">Điện thoại</th>
                         <th data-field="email"  data-sortable="true">Email</th>
                         <th data-field="address"  data-sortable="true">Địa chỉ</th>
-                        <th data-field="role"  data-sortable="true">Role</th>
-                        <th data-field="aoquan-branch"  data-sortable="true">Tổng ngành hàng Quần áo<br/> (<?php echo date("m/Y"); ?>)</th>
-                        <th data-field="giaydep-branch"  data-sortable="true">Tổng ngành hàng Giày dép<br/> (<?php echo date("m/Y"); ?>)</th>
-                        <th data-field="phukien-branch"  data-sortable="true">Tổng ngành hàng Phụ kiện <br/>(<?php echo date("m/Y"); ?>)</th>
-                        <th data-field="all-branch"  data-sortable="true">Tổng đơn hàng<br/> (<?php echo date("m/Y"); ?>)</th>
+                        <th data-field="aoquan-branch"  data-sortable="true">Tổng ngành hàng Quần áo<br/> (<?php echo (Session::get('month_order')) != '' ? Session::get('month_order') : date("m"); ?>/<?php echo (Session::get('year_order')) != '' ? Session::get('year_order') : date("Y"); ?>)</th>
+                        <th data-field="giaydep-branch"  data-sortable="true">Tổng ngành hàng Giày dép<br/> (<?php echo (Session::get('month_order')) != '' ? Session::get('month_order') : date("m"); ?>/<?php echo (Session::get('year_order')) != '' ? Session::get('year_order') : date("Y"); ?>)</th>
+                        <th data-field="phukien-branch"  data-sortable="true">Tổng ngành hàng Phụ kiện <br/>(<?php echo (Session::get('month_order')) != '' ? Session::get('month_order') : date("m"); ?>/<?php echo (Session::get('year_order')) != '' ? Session::get('year_order') : date("Y"); ?>)</th>
+                        <th data-field="all-branch"  data-sortable="true">Tổng đơn hàng<br/> (<?php echo (Session::get('month_order')) != '' ? Session::get('month_order') : date("m"); ?>/<?php echo (Session::get('year_order')) != '' ? Session::get('year_order') : date("Y"); ?>)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,7 +112,7 @@
                             <td></td>
                             <td>
                                 <input type="hidden" value="{{$p->Id}}" id="user_id_hidden" name="user_id">
-                                <a href="/admin/user/edit?id={{$p->Id}}">{{$p->Name}}</a>
+                                <a href="/admin/agentOfficial/order/list/{{$p->Id}}">{{$p->Name}}</a>
                             </td>
                             <td>
                                 {{$p->Phone}}
@@ -92,7 +124,23 @@
                                 {{$p->Address}}
                             </td>
                             <td>
-                                {{$p->Role}}
+                                {{number_format($p->TotalAoQuan)}} <br>
+								Mức discount: {{number_format($p->DiscountAoQuan)}}% <br>
+								Tiền discount: {{number_format($p->TotalAoQuanDiscount)}}
+                            </td>
+                            <td>
+                                {{number_format($p->TotalGiayDep)}} <br>
+								Mức discount: {{number_format($p->DiscountGiayDep)}}% <br>
+								Tiền discount: {{number_format($p->TotalGiayDepDiscount)}}
+                            </td>
+                            <td>
+                                {{number_format($p->TotalPhuKien)}} <br>
+								Mức discount: {{number_format($p->DiscountPhuKien)}}% <br>
+								Tiền discount: {{number_format($p->TotalPhuKienDiscount)}}
+                            </td>
+                            <td>
+                                {{number_format($p->Total)}} <br>
+								Tiền discount: {{number_format($p->TotalDiscount)}}
                             </td>
                         </tr>
                     @endforeach

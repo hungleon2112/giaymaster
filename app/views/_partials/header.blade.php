@@ -1,9 +1,9 @@
 
-<div class="header-top">
-  <div class="container">
-    <p>Free Shipping</p>
-  </div>
-</div>
+{{--<div class="header-top">--}}
+  {{--<div class="container">--}}
+    {{--<p>Free Shipping</p>--}}
+  {{--</div>--}}
+{{--</div>--}}
 <div class="header-middle">
   <div class="container">
     <div class="header-mid-top">

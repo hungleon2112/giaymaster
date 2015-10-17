@@ -48,7 +48,9 @@
                 <tbody>
                     @foreach($list_order as $p)
                         <tr>
-                            <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> </td>
+                            <td><input class="form-control" type="button" id="show-order-detail-on-table" trID="order_detail_of_{{$p->OrderId}}" value="View"/> 
+								<span style="color:white; font-size: 1px;"> {{($p->StatusType)}} </span>
+							</td>
                             <td>
                                 <input type="hidden" value="{{$p->OrderId}}" id="order_id_hidden_order_detail_of_{{$p->OrderId}}" name="order_id">
                                 <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden_order_detail_of_{{$p->OrderId}}">
@@ -98,7 +100,6 @@
                             </td>
                             <td>
                                 <span class="badge" style="color:white; padding: 10px; background-color: {{$p->Color}}">{{$p->Status}}</span>
-
                             </td>
                         </tr>
 

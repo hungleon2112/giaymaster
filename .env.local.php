@@ -8,5 +8,5 @@ return array(
     'Add_Cart_Quantity' => 5,
     'Login_Fail_Message' => 'Tài khoản đăng nhập không đúng.',
     'Cart_Empty_Message' => 'Hiện tại chưa có sản phẩm nào trong giỏ hàng.',
-    'Order_List' => 4,
+    'Order_List' => 20,
 );

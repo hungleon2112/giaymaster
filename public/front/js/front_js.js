@@ -316,6 +316,48 @@ $( document ).ready(function() {
 
     });
 
+
+    $("#order-filter-date-button").click(function(){
+        $.ajax({
+            url: '/order/show/setDateFromTo/'+$("#agent-official-from-date").val()+'/'+$("#agent-official-to-date").val()+'',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    $("#filter-month-date-client-button").click(function(){
+        $.ajax({
+            url: '/order/show/setMonthYear/'+$("#filter-month-client").val()+'/'+$("#filter-year-client").val()+'',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    //Date Picker
+    $('.date-picker').datepicker();
+
+    $('.date-picker').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+
+    $('.date-picker-modal').datepicker();
+
+    $('.date-picker-modal').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+
 });
 
 var delay = (function(){
