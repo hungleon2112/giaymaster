@@ -47,6 +47,7 @@ class ProductController extends \BaseController {
         $final_input['description_short'] = $input['description_short'];
         $final_input['description_full'] = $input['description_full'];
         $final_input['code'] = $input['code'];
+        $final_input['recommend'] = $input['recommend'];
         try
         {
             if (!isset($final_input['id']) || $final_input['id'] == '') { //Create
@@ -66,7 +67,7 @@ class ProductController extends \BaseController {
                 $product->description_short = $final_input['description_short'];
                 $product->description_full = $final_input['description_full'];
                 $product->code = $final_input['code'];
-
+                $product->recommend = $final_input['recommend'];
                 $product->save();
                 return $product;
             }

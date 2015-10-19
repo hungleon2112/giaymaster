@@ -211,7 +211,16 @@ class HomeController extends BaseController {
         {
             $i['url'] = $_ENV['Domain_Name'].$i['url'];
         }
-        array_push($product_info, $listImage, $product);
+        $product_recommend_code_list = explode(",", $product[0]->recommend);
+        $product_recommend = $this->product->FindMultipleProduct($product_recommend_code_list);
+        //GetImage for Recommend Product
+        for($i = 0 ; $i < count($product_recommend) ; $i ++)
+        {
+            $imageRecUrl = $this->image->GetFirstImageUrl($product_recommend[$i]->id);
+            $product_recommend[$i]->image = $_ENV['Domain_Name'].$imageRecUrl;
+        }
+        array_push($product_info, $listImage, $product, $product_recommend);
+
         return View::make('home.product_detail')
             ->with('cart',$this->cart)
             ->with('result', $this->result)

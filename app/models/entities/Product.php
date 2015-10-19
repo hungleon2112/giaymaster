@@ -110,6 +110,14 @@ class Product extends BaseModel {
         return $results;
     }
 
+    public function FindMultipleProduct($product_id_list)
+    {
+        $results = DB::table('products')
+            ->whereIn('products.code', $product_id_list)
+            ->get();
+        return $results;
+    }
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

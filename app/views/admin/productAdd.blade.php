@@ -162,6 +162,12 @@
                  {{ Form::input('text','size',isset($product)?$product->size:'',array('class'=>'form-control','id'=>'size','placeholder'=>'Size (cách nhau bằng dấu "  , " )')) }}
           </div>
 
+          <!-- Recommend -->
+            <div class="form-group">
+                   {{ Form::label('recommend', 'Recommended Product ') }}
+                   {{ Form::input('text','recommend',isset($product)?$product->recommend:'',array('class'=>'form-control','id'=>'size','placeholder'=>'Mã hàng (cách nhau bằng dấu "  , " )')) }}
+            </div>
+
           <button type="button" id="product-add" class="btn btn-default"><?php echo (!isset($product) ? 'Thêm sản phẩm' : 'Cập nhật sản phẩm')  ?></button>
 
         {{ Form::close() }}

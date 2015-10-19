@@ -212,3 +212,48 @@ p{
 #sort-by-price a:hover{
     color: #34bad9;
 }
+
+.top-nav button, .top-nav a
+{
+    font-family: "bebas", sans-serif !important;
+    font-size: 16px !important;
+}
+
+#update-user-modal{
+    font-family: "bebas", sans-serif !important;
+}
+
+#update-user-modal .tab-content{
+    font-size: 15px;
+}
+
+#update-user-modal .tab-content input, #update-user-modal .tab-content button, #update-user-modal .modal-footer button{
+    font-size: 15px;
+}
+
+.tab-content #order-list, .tab-content #discount{
+    font-family: "bebas", sans-serif !important;
+}
+
+#top-cart .img-detail{
+    font-family: "bebas", sans-serif !important;
+    font-size: 15px;
+}
+
+#show-cart button{
+    font-family: "bebas", sans-serif !important;
+    font-size: 18px;
+}
+
+.cart-content-page{
+    font-family: "bebas", sans-serif !important;
+    font-size: 15px;
+}
+
+.cart-content-page button{
+    font-size: 18px !important;
+}
+
+.cart-content-page th{
+    font-size: 20px;
+}

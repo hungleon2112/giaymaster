@@ -759,59 +759,40 @@ STYLE# 747212-818
 </div>
 </div>
 <div class="clearfix"></div>
+
+<?php
+if(count($product_info[2]) > 0)
+{
+?>
 <div class="col-md-12 recommened">
 <h4> RECOMMENDED </h4>
 <div class="product-main sub-list-product">
-<div class="pd-content">
-<a href="#" class="img-content">
-  <img src="/front/images/pd_me_1.jpg" alt="">
-</a>
-<div class="content-product-detail">
-  <a href="">
-    <h2>AIR JORDANS </h2>
-    <p>air jordan 13 retro "grey toe"</p>
-    <span>$275</span>
-  </a>
+<?php
+for($i = 0 ; $i < count($product_info[2]); $i ++)
+{
+?>
+    <div class="pd-content">
+    <a href="/product/detail/{{$product_info[2][$i]->id}}" class="img-content">
+      <img src="{{$product_info[2][$i]->image}}" alt="">
+    </a>
+    <div class="content-product-detail">
+      <a href="">
+        <h2>{{$product_info[2][$i]->name}} </h2>
+        <p>{{$product_info[2][$i]->description_short}}</p>
+        <span>{{number_format($product_info[2][$i]->price_original)}} VNĐ</span>
+      </a>
+    </div>
+    </div>
+<?php
+}
+?>
+
 </div>
 </div>
-<div class="pd-content">
-<a href="#" class="img-content">
-  <img src="/front/images/pd_me_1.jpg" alt="">
-</a>
-<div class="content-product-detail">
-  <a href="">
-    <h2>AIR JORDANS </h2>
-    <p>air jordan 13 retro "grey toe"</p>
-    <span>$275</span>
-  </a>
-</div>
-</div>
-<div class="pd-content">
-<a href="#" class="img-content">
-  <img src="/front/images/pd_me_1.jpg" alt="">
-</a>
-<div class="content-product-detail">
-  <a href="">
-    <h2>AIR JORDANS </h2>
-    <p>air jordan 13 retro "grey toe"</p>
-    <span>$275</span>
-  </a>
-</div>
-</div>
-<div class="pd-content">
-<a href="#" class="img-content">
-  <img src="/front/images/pd_me_1.jpg" alt="">
-</a>
-<div class="content-product-detail">
-  <a href="">
-    <h2>AIR JORDANS </h2>
-    <p>air jordan 13 retro "grey toe"</p>
-    <span>$275</span>
-  </a>
-</div>
-</div>
-</div>
-</div>
+<?php
+}
+?>
+
 </div>
 </div>
 <!-- Modal -->

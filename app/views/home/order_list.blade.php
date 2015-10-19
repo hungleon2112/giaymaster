@@ -63,7 +63,7 @@
         <br>
 
         <div class="row" style="font-size: 20px; font-weight: bold">
-            <div class="col-md-2 col-sm-2">
+            <div class="col-md-2 col-sm-2" style="padding-left: 30px;">
                 Thời gian đặt
             </div>
             <div class="col-md-2 col-sm-2">
@@ -72,7 +72,7 @@
             <div class="col-md-4 col-sm-4">
                 Tổng tiền hàng (Sau giảm giá)
             </div>
-            <div class="col-md-2 col-sm-2">
+            <div class="col-md-2 col-sm-2" style="padding-left: 30px;">
                 Tiền ship
             </div>
             <div class="col-md-2 col-sm-2">
@@ -221,9 +221,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>
-                        Tháng / Năm
-                    </label>
+                    {{--<label>--}}
+                        {{--Tháng / Năm--}}
+                    {{--</label>--}}
                     <span style="    font-weight: bold;
                                      font-size: 24px;">
                         <?php echo (Session::get('client_month_order') == '' ? date("n") : Session::get('client_month_order')) ?> / <?php echo (Session::get('client_year_order') == '' ? date("Y") : Session::get('client_year_order')) ?>

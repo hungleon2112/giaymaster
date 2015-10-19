@@ -145,8 +145,8 @@
                             <td>{{$p->branch}} - {{$p->category}}</td>
                             <td>{{$p->size}}</td>
                             <td>{{$p->gender}}</td>
-                            <td>{{$p->price_original}}</td>
-                            <td>{{$p->price_new}}</td>
+                            <td>{{number_format($p->price_original)}}</td>
+                            <td>{{number_format($p->price_new)}}</td>
                             <td>
                             <div class="form-group">
                                 <form name="optional-form-1-{{$p->id}}" id="optional-form-1-{{$p->id}}">
