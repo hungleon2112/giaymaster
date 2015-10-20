@@ -89,6 +89,8 @@ class Order extends BaseModel {
                 'statuses.color as Color',
 				'statuses.type as StatusType',
                 'users.name as Customer',
+                'users.phone as Phone',
+                'users.address as Address',
                 'tran_type.name as TranType',
                 'tran_type.id as TranTypeId'
                 )

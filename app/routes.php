@@ -46,6 +46,7 @@ Route::get("/admin/product/add/getAllCatLev1FromBranchID",array('as'=>'admin.pro
 Route::get("/admin/product/add/getAllCatFromParentID",array('as'=>'admin.product.add','uses'=>'ProductController@GetAllCatFromParentID'));
 Route::get("/admin/product/getAllImage",array('as'=>'admin.product.add','uses'=>'ProductController@GetAllImage'));
 Route::get("/admin/product/deleteImage",array('as'=>'admin.product.add','uses'=>'ProductController@DeleteImage'));
+Route::get("/admin/product/setMainImage",array('as'=>'admin.product.image.set','uses'=>'ProductController@SetMainImage'));
 
 Route::get("/admin/product/list",array('as'=>'admin.product.list','uses'=>'ProductController@ListProduct'));
 
@@ -78,7 +79,7 @@ Route::post("/admin/branch/updateListBranch",array('as'=>'admin.branch.update','
 // Role Route
 Route::get("/admin/role/add",array('as'=>'admin.role.add','uses'=>'RoleController@Add'));
 Route::post("/admin/role/postAdd",array('as'=>'admin.role.add','uses'=>'RoleController@PostAdd'));
-Route::get("/admin/role/list",array('as'=>'admin.role.add','uses'=>'RoleController@ListRole'));
+Route::get("/admin/role/list",array('as'=>'admin.role.list','uses'=>'RoleController@ListRole'));
 Route::get("/admin/role/edit",array('as'=>'admin.role.edit','uses'=>'RoleController@Edit'));
 Route::post("/admin/role/deleteListRole",array('as'=>'admin.role.delete','uses'=>'RoleController@DeleteListRole'));
 Route::post("/admin/role/updateListRole",array('as'=>'admin.role.update','uses'=>'RoleController@UpdateListRole'));
@@ -86,8 +87,8 @@ Route::post("/admin/role/updateListRole",array('as'=>'admin.role.update','uses'=
 
 // User Route
 Route::get("/admin/user/add",array('as'=>'admin.user.add','uses'=>'UserController@Add'));
-Route::post("/admin/user/postAdd",array('as'=>'admin.user.add','uses'=>'UserController@Register'));
-Route::get("/admin/user/list",array('as'=>'admin.user.add','uses'=>'UserController@ListUser'));
+Route::post("/admin/user/postAdd",array('as'=>'admin.user.postAdd','uses'=>'UserController@Register'));
+Route::get("/admin/user/list",array('as'=>'admin.user.list','uses'=>'UserController@ListUser'));
 Route::get("/admin/user/edit",array('as'=>'admin.user.edit','uses'=>'UserController@Edit'));
 Route::post("/admin/user/deleteListUser",array('as'=>'admin.user.delete','uses'=>'UserController@DeleteListUser'));
 Route::post("/admin/user/updateListUser",array('as'=>'admin.user.update','uses'=>'UserController@UpdateListUser'));

@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-xs-6">
-        {{ Form::open(array('method' => 'POST','route' => 'admin.user.add','role'=>'form', 'id'=>'user-form', 'name'=>'user-form')) }}
+        {{ Form::open(array('method' => 'POST','route' => 'admin.user.postAdd','role'=>'form', 'id'=>'user-form', 'name'=>'user-form')) }}
           <input type="hidden" value="{{ isset($user)?$user->id:'' }}" id="id" name="id">
          <!-- Name -->
           <div class="form-group">

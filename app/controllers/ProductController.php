@@ -42,8 +42,8 @@ class ProductController extends \BaseController {
         $final_input['brand_id'] = $input['brand'];
         $final_input['size'] = $input['size'];
         $final_input['gender'] = $input['gender'];
-        $final_input['price_original'] = $input['price_original'];
-        $final_input['price_new'] = $input['price_new'];
+        $final_input['price_original'] = str_replace(',','',$input['price_original']);
+//        $final_input['price_new'] = $input['price_new'];
         $final_input['description_short'] = $input['description_short'];
         $final_input['description_full'] = $input['description_full'];
         $final_input['code'] = $input['code'];
@@ -62,8 +62,8 @@ class ProductController extends \BaseController {
                 $product->brand_id = $final_input['brand_id'];
                 $product->size = $final_input['size'];
                 $product->gender = $final_input['gender'];
-                $product->price_original = $final_input['price_original'];
-                $product->price_new = $final_input['price_new'];
+                $product->price_original = str_replace(',','',$final_input['price_original']);
+//                $product->price_new = $final_input['price_new'];
                 $product->description_short = $final_input['description_short'];
                 $product->description_full = $final_input['description_full'];
                 $product->code = $final_input['code'];
@@ -95,7 +95,8 @@ class ProductController extends \BaseController {
             $images = Input::file('images');
             foreach($images as $image) {
 
-                $filename  = time() . '.' . $image->getClientOriginalExtension();
+                //$filename  = time() . '.' . $image->getClientOriginalExtension();
+                $filename  = UtilityHelper::guid() . '.' . $image->getClientOriginalExtension();
                 $path = public_path('uploads/' . $filename);
                 Image::make($image->getRealPath())->save($path);
 
@@ -108,6 +109,18 @@ class ProductController extends \BaseController {
                 $this->image->create($final_input);
             }
         }
+    }
+
+    public function SetMainImage()
+    {
+        $input = Input::all();
+        $img = Images::find($input['image_id']);
+
+        $product_id = $input['product_id'];
+        $product = Product::find($product_id);
+
+        $product->main_image_url = $img->url;
+        $product->save();
     }
 
     public function GetAllImage()

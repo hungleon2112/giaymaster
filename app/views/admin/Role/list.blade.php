@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <button type="button" class="btn btn-default" id="edit-button-role">Cập nhật</button>
+        {{--<button type="button" class="btn btn-default" id="edit-button-role">Cập nhật</button>--}}
         <button type="button" class="btn btn-default" id="delete-button-role">Xóa</button>
     </div>
 </div>

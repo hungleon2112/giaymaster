@@ -129,9 +129,22 @@
                    >
                      Nữ
                 </label>
+                <label>
+                   <input type="radio" name="gender" id="gender" value="Nam,Nữ"
+                   <?php
+                     if(isset($product))
+                     {
+                       if($product->gender == 'Nam,Nữ')
+                       {
+                          echo 'checked';
+                       }
+                     }
+                   ?>
+                   >
+                     Nam, Nữ
+                </label>
               </div>
           </div>
-
           <!-- Short Description -->
           <div class="form-group">
                 {{ Form::label('description_short', 'Tóm tắt') }}
@@ -147,14 +160,14 @@
           <!-- Price Original -->
           <div class="form-group">
                 {{ Form::label('price_original', 'Giá') }}
-                {{ Form::input('text','price_original',isset($product)?$product->price_original:'',array('class'=>'form-control','id'=>'price_original','placeholder'=>'Giá')) }}
+                {{ Form::input('text','price_original',isset($product)?$product->price_original:'',array('class'=>'form-control currency-only','id'=>'price_original','placeholder'=>'Giá')) }}
           </div>
 
           <!-- Price Original -->
-          <div class="form-group">
-                 {{ Form::label('price_new', 'Giá mới') }}
-                 {{ Form::input('text','price_new',isset($product)?$product->price_new:'',array('class'=>'form-control','id'=>'price_new','placeholder'=>'Giá mới')) }}
-          </div>
+          {{--<div class="form-group">--}}
+                 {{--{{ Form::label('price_new', 'Giá mới') }}--}}
+                 {{--{{ Form::input('text','price_new',isset($product)?$product->price_new:'',array('class'=>'form-control','id'=>'price_new','placeholder'=>'Giá mới')) }}--}}
+          {{--</div>--}}
 
           <!-- Price Original -->
           <div class="form-group">
@@ -206,7 +219,13 @@
                     {
                         foreach($listImage as $i)
                         {
+                            $active = '';
+                            if($i->url == $_ENV['Domain_Name'].$product->main_image_url)
+                            {
+                                $active = "main-image";
+                            }
                             echo '<tr><td><img class="product-image" src='.$i->url.' /> </td>'.
+                                 '<td> <button class="btn btn-default '.$active.'" type="button" id="set-main-image" product-id='.$product->id.' image-id = '.$i->id.'>Chọn làm hình đại diện</button> </td> ' .
                                  '<td> <button class="btn btn-default" type="button" id="delete-image" image-id = '.$i->id.'>Delete</button> </td> ' .
                                  '</tr>';
                         }

@@ -232,7 +232,7 @@ $( document ).ready(function() {
     });
 
     $('input[type=radio][name="type_id"]').change(function() {
-        if($(this).val() == 2)
+        if($(this).val() == 2 || $(this).val() == 1)
         {
             $("#type_id_2").css('visibility','visible');
         }

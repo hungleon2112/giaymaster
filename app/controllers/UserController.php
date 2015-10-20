@@ -29,7 +29,7 @@ class UserController extends \BaseController {
 	public function Register()
     {
         $input = Input::all();
-        if(!isset($input['id'])) {
+        if(!isset($input['id']) || $input['id'] == '') {
 
             $final_input['name'] = $input['name'];
             $final_input['username'] = $input['username'];
@@ -48,7 +48,6 @@ class UserController extends \BaseController {
         else
         {
             $input = Input::all();
-
 
             $user = User::find($input['id']);
 

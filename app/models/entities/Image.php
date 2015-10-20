@@ -40,11 +40,21 @@ class Images extends BaseModel {
 
 
     public function GetFirstImageUrl($product_id){
-        $query = static::where('product_id', '=', $product_id)->first();
-        if (!is_object($query)) {
-            return 'front/images/no-image.jpg';
+        $query = Product::where('id', '=', $product_id)->first();
+        $main_image_url = $query->main_image_url;
+        if($main_image_url != '')
+        {
+            return $main_image_url;
         }
-        return $query->url;
+        else
+        {
+            $query = static::where('product_id', '=', $product_id)->first();
+            if (!is_object($query)) {
+                return 'front/images/no-image.jpg';
+            }
+            return $query->url;
+        }
+
     }
 
 

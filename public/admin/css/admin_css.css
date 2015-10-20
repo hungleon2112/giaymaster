@@ -94,3 +94,8 @@ ul#status-section,ul#status-section li {
     vertical-align: middle !important;
     text-align: center;
 }
+
+.main-image{
+    background-color: #337AB7;
+    color: white;
+}

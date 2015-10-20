@@ -56,6 +56,10 @@
                                 <input type="hidden" value="{{$p->OrderDate}}" id="order_date_hidden_order_detail_of_{{$p->OrderId}}">
                                 <input type="hidden" value="{{$p->OrderTotal}}" id="order_total_hidden_order_detail_of_{{$p->OrderId}}">
                                 <input type="hidden" value="{{$p->Customer}}" id="order_customer_hidden_order_detail_of_{{$p->OrderId}}" >
+
+                                <input type="hidden" value="{{$p->Phone}}" id="order_phone_hidden_order_detail_of_{{$p->OrderId}}" >
+                                <input type="hidden" value="{{$p->Address}}" id="order_address_hidden_order_detail_of_{{$p->OrderId}}" >
+
                                 <input type="hidden" value="{{$p->OrderTotalFinal}}" id="order_total_final_hidden_order_detail_of_{{$p->OrderId}}" >
                                 <input type="hidden" value="{{$p->CouponCode}}" id="order_coupon_code_hidden_order_detail_of_{{$p->OrderId}}" >
                                 <input type="hidden" value="{{$p->Status}}" id="order_status_hidden_order_detail_of_{{$p->OrderId}}">
@@ -105,22 +109,22 @@
 
                         <div class="container" id="order_detail_of_{{$p->OrderId}}" style="display: none">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-2">
                                     <b>Mã sản phẩm</b>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-2">
                                     <b>Tên sản phẩm</b>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-2">
                                     <b>Size</b>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-2">
                                     <b>Đơn giá</b>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-2">
                                     <b>Số lượng</b>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-2">
                                     <b>Thành tiền</b>
                                 </div>
                             </div>
@@ -132,22 +136,22 @@
                                 {
                             ?>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <?php echo $order_detail->ProductCode ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <?php echo $order_detail->ProductName ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <?php echo $order_detail->OrderDetailSize ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <?php echo number_format($order_detail->ProductPrice) ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <?php echo $order_detail->Quantity ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <?php echo number_format($order_detail->OrderDetailTotal) ?>
                                     </div>
                                 </div>
@@ -201,7 +205,15 @@
                     <div class="form-group">
                         <label>Khách hàng: </label>
                         <span class="margin-left-10" id="order-customer"></span>
-                    </div>
+                     </div>
+                     <div class="form-group">
+                        <label>Điện thoại: </label>
+                        <span class="margin-left-10" id="order-phone"></span>
+                      </div>
+                      <div class="form-group">
+                        <label>Địa chỉ: </label>
+                        <span class="margin-left-10" id="order-address"></span>
+                      </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">

@@ -136,7 +136,8 @@ $( document ).ready(function() {
     });
 
     //Insert Role
-    $("#showing-order-button").click(function() {
+    //$("#showing-order-button").click(function() {
+    $("#user-add").click(function() {
         var form = document.forms.namedItem("user-form"); // high importance!, here you need change "yourformname" with the name of your form
         var formdata = new FormData(form); // high importance!
         $.ajax({
@@ -387,6 +388,26 @@ $( document ).ready(function() {
             });
         });
         return false;
+    });
+
+
+    $(document).on('click','#set-main-image',function(){
+        $('#loading-modal').modal('show');
+        var image_id = $(this).attr('image-id');
+        var product_id = $(this).attr('product-id');
+
+        $.ajax({
+            url: '/admin/product/setMainImage',
+            type: 'GET',
+            data: { image_id: image_id, product_id: product_id} ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
     });
 
     //Showing Item Per Page
@@ -1178,6 +1199,10 @@ $( document ).ready(function() {
         $("#order-id-update").val($("#order_id_hidden_"+trID+"").val());
         $("#order-date").text($("#order_date_hidden_"+trID+"").val());
         $("#order-customer").text($("#order_customer_hidden_"+trID+"").val());
+
+        $("#order-phone").text($("#order_phone_hidden_"+trID+"").val());
+        $("#order-address").text($("#order_address_hidden_"+trID+"").val());
+
         $("#order-status").text($("#order_status_hidden_"+trID+"").val());
         $("#order-status-id").val($("#order_status_id_hidden_"+trID+"").val());
         $("#order-tran-type").text($("#order_tran_type_hidden_"+trID+"").val());

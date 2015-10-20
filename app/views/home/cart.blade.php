@@ -71,7 +71,7 @@
         <div class="col-md-4 col-sm-4 update-cart-btn">
           <button class="btn" id="update-cart-btn"><span class="glyphicon glyphicon-ok"></span>CẬP NHẬT GIỎ HÀNG</button>
         </div>
-      </div>
+    </div>
 
 
 
@@ -133,7 +133,7 @@
               <td>
                   <input type="radio" id="type_id" name="type_id" value="1" checked> Chuyển khoản và nhận hàng <br/>
                   <input type="radio" id="type_id" name="type_id" value="2"> Nhận hàng và trả tiền cho bên chuyển hàng<br/><br/>
-                  <span id="type_id_2" style="visibility:hidden">
+                  <span id="type_id_2" style="visibility:visible">
                     (Phí vận chuyển sẽ được chúng tôi liên hệ với bạn để thông báo.)
                   </span>
 

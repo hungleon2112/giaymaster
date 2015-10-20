@@ -35,6 +35,12 @@ function RegisterKeyEvents() {
     });
 
     $(".currency-only").keydown(function (e) {
-        keych(e)
+        keych(e);
     });
+
+    $(".currency-only").keyup(function (e) {
+        $(this).val($(this).val().toString().replace(/,/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    });
+
 }
+
