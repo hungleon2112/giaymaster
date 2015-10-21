@@ -44,7 +44,36 @@ $( document ).ready(function() {
                     alert(response);
                     return false;
                 }else{
-                    location.reload();
+
+                    $('#authenticate-modal').modal('hide');
+                    //Check if come from approve cart
+                    if($("#is-from-approve").val() == "true")
+                    {
+                        if($("#coupon_code").val() == '')
+                            $("#coupon_code").val('0');
+                        $.ajax({
+                            url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
+                            type: 'GET',
+                            success: function (response) {
+                                if(response == 'Authentication error'){
+                                    $('#authenticate-modal').modal('show');
+                                }
+                                if(response == 'Success'){
+                                    $("#cart-approved-modal").modal("show");
+                                    setTimeout(function(){
+                                        window.location = '/';
+                                    }, 2000);
+                                }
+                            },
+                            error: function () {
+                                console.log('error');
+                            }
+                        });
+                    }
+                    else
+                    {
+                        location.reload();
+                    }
                 }
             },
             error: function () {
@@ -195,6 +224,7 @@ $( document ).ready(function() {
             success: function (response) {
                 if(response == 'Authentication error'){
                     $('#authenticate-modal').modal('show');
+                    $("#is-from-approve").val("true");
                 }
                 if(response == 'Success'){
                     $("#cart-approved-modal").modal("show");

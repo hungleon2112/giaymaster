@@ -28,6 +28,7 @@
 
                   <button type="button" id="login-btn" class="btn btn-default">Đăng nhập</button>
             {{ Form::close() }}
+            <input type="hidden" id="is-from-approve" value="false" />
           </div>
           <div id="menu1" class="tab-pane fade">
             <h3>Đăng ký</h3>
