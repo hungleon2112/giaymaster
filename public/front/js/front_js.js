@@ -155,9 +155,9 @@ $( document ).ready(function() {
                 }
 
                 $(".total-top-cart").text('TỔNG CỘNG '+addCommas(total_top_cart)+' VNĐ');
-                setTimeout(function(){
-                    $("#cart-inform-modal").modal("hide");
-                }, 3000);
+                //setTimeout(function(){
+                //    $("#cart-inform-modal").modal("hide");
+                //}, 3000);
             },
             error: function () {
                 console.log('error');

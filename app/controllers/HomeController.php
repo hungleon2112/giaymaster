@@ -380,8 +380,8 @@ class HomeController extends BaseController {
     {
         $user_info = Session::get('user_info');
 
-        $from_date = date("Y-m-d", strtotime(Session::get('client_from_date_order')));
-        $to_date = date("Y-m-d", strtotime(Session::get('client_to_date_order'))) . ' 23:59:59';
+        $from_date = (Session::get('client_from_date_order') != '') ? date("Y-m-d", strtotime(Session::get('client_from_date_order'))) : '';
+        $to_date = (Session::get('client_to_date_order') != '') ? date("Y-m-d", strtotime(Session::get('client_to_date_order'))) : '';
 
         $list_order = $this->order->Order_List($user_info->id, $from_date, $to_date);
 

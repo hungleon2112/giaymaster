@@ -48,7 +48,6 @@ class Order extends BaseModel {
         }
         else
         {
-
             $results = DB::table('orders')
                 ->join('statuses', 'orders.status_id', '=', 'statuses.id')
                 ->select(
@@ -58,7 +57,7 @@ class Order extends BaseModel {
                     'statuses.type as StatusType')
                 ->where('orders.user_id','=',$user_id)
                 ->where('orders.date', '>', $from_date)
-                ->where('orders.date', '<', $to_date)
+                ->where('orders.date', '<', $to_date . ' 23:59:59')
                 ->orderBy('date','desc')
                 ->paginate($_ENV['Order_List']);
 

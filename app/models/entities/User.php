@@ -82,7 +82,31 @@ class Users extends BaseModel {
     public function GetAllOrderOfficial($user_id, $month, $year){
         $results = DB::table('orders')
 
-            ->select('orders.id as Id')
+            ->leftjoin('statuses', 'orders.status_id', '=', 'statuses.id')
+            ->leftjoin('users', 'orders.user_id', '=', 'users.id')
+            ->leftjoin('coupons', 'orders.coupon_code', '=', 'coupons.code')
+            ->leftjoin('tran_type', 'statuses.tran_type_id', '=', 'tran_type.id')
+            ->select(
+                'orders.id as Id', 'orders.date as OrderDate', 'orders.total as OrderTotal',
+                'orders.coupon_code as CouponCode',
+                'orders.total_final as OrderTotalFinal',
+                'orders.note as Note',
+                'orders.storage as Storage',
+                'orders.ship_fee as ShipFee',
+                'coupons.id as CouponId',
+                'coupons.percentage as CouponPercentage',
+                'coupons.from_date as CouponFromDate',
+                'coupons.to_date as CouponToDate',
+                'statuses.id as StatusId',
+                'statuses.name as Status',
+                'statuses.color as Color',
+                'statuses.type as StatusType',
+                'users.name as Customer',
+                'users.phone as Phone',
+                'users.address as Address',
+                'tran_type.name as TranType',
+                'tran_type.id as TranTypeId'
+            )
 
             ->where('user_id', '=' , $user_id)
             ->where( DB::raw('MONTH(orders.date)'), '=', $month )

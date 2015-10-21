@@ -801,13 +801,14 @@ for($i = 0 ; $i < count($product_info[2]); $i ++)
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><b id="modify-type-modal">SẢN PHẨM THÊM VÀO GIỎ HÀNG THÀNH CÔNG.</h4>
+        <h4 class="modal-title"><b id="modify-type-modal">SẢN PHẨM THÊM VÀO GIỎ HÀNG THÀNH CÔNG.</b></h4>
       </div>
       <!--<div class="modal-body">
         <p></p>
       </div>-->
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ĐÓNG</button>
+        <a href="/cart/show"><button type="button" class="btn btn-default">BẤM VÀO ĐÂY ĐỂ ĐI VÀO GIỎ HÀNG NẾU BẠN CHỌN XONG</button></a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
