@@ -31,7 +31,33 @@ $( document ).ready(function() {
             alert("Mật khẩu không trùng khớp");
             return false;
         }
-        $('#register-form').submit();
+        //$('#register-form').submit();
+
+        $.ajax({
+            url: '/user/register',
+            type: 'POST',
+            data: {
+                name : $("#name").val(),
+                username : $("#username").val(),
+                password : $("#password").val(),
+                phone : $("#phone").val(),
+                email : $("#email").val(),
+                address : $("#address").val(),
+                role_id : $("#role_id").val(),
+                is_from_approve : $("#is-from-approve").val()
+            },
+            success: function (response) {
+                if(response == "back-to-approve"){
+                    $('#authenticate-modal').modal('hide');
+                    approveCart();
+                }
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+
+
     });
 
     $("#login-btn").click(function(){
@@ -49,26 +75,7 @@ $( document ).ready(function() {
                     //Check if come from approve cart
                     if($("#is-from-approve").val() == "true")
                     {
-                        if($("#coupon_code").val() == '')
-                            $("#coupon_code").val('0');
-                        $.ajax({
-                            url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
-                            type: 'GET',
-                            success: function (response) {
-                                if(response == 'Authentication error'){
-                                    $('#authenticate-modal').modal('show');
-                                }
-                                if(response == 'Success'){
-                                    $("#cart-approved-modal").modal("show");
-                                    setTimeout(function(){
-                                        window.location = '/';
-                                    }, 2000);
-                                }
-                            },
-                            error: function () {
-                                console.log('error');
-                            }
-                        });
+                        approveCart();
                     }
                     else
                     {
@@ -216,27 +223,7 @@ $( document ).ready(function() {
     });
 
     $("#approve-cart-btn").click(function(){
-        if($("#coupon_code").val() == '')
-            $("#coupon_code").val('0');
-        $.ajax({
-            url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
-            type: 'GET',
-            success: function (response) {
-                if(response == 'Authentication error'){
-                    $('#authenticate-modal').modal('show');
-                    $("#is-from-approve").val("true");
-                }
-                if(response == 'Success'){
-                    $("#cart-approved-modal").modal("show");
-                    setTimeout(function(){
-                        window.location = '/';
-                    }, 2000);
-                }
-            },
-            error: function () {
-                console.log('error');
-            }
-        });
+        approveCart();
     });
 
     $("#coupon-btn").click(function(){
@@ -398,7 +385,30 @@ var delay = (function(){
     };
 })();
 
-
+function approveCart()
+{
+    if($("#coupon_code").val() == '')
+        $("#coupon_code").val('0');
+    $.ajax({
+        url: '/cart/approve/'+$("#type").val()+'/'+$("#total").val()+'/'+$("#coupon_code").val()+'/'+$("#total_final").val()+'',
+        type: 'GET',
+        success: function (response) {
+            if(response == 'Authentication error'){
+                $('#authenticate-modal').modal('show');
+                $("#is-from-approve").val("true");
+            }
+            if(response == 'Success'){
+                $("#cart-approved-modal").modal("show");
+                setTimeout(function(){
+                    window.location = '/';
+                }, 2000);
+            }
+        },
+        error: function () {
+            console.log('error');
+        }
+    });
+}
 
 function addCommas(nStr)
 {

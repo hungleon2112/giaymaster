@@ -8,6 +8,8 @@
 
 <script src="/admin/js/bootstrap-datepicker.js"></script>
 
+<script src="/admin/js/editor.js"></script>
+
 <?php if(strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false) : ?>
 <!-- Morris Charts JavaScript -->
 <script src="/admin/js/plugins/morris/raphael.min.js"></script>

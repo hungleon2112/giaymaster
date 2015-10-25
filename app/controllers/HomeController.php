@@ -32,6 +32,8 @@ class HomeController extends BaseController {
     protected $coupon;
     protected $user;
     protected $discount;
+    protected $banner;
+    protected $banner_list;
     public function __construct(Branch $branch,
                                 Category $category,
                                 Product $product,
@@ -41,7 +43,8 @@ class HomeController extends BaseController {
                                 Order_Detail $order_detail,
                                 Coupon $coupon,
                                 Users $user,
-                                Discount $discount
+                                Discount $discount,
+                                Banner $banner
                                 ){
         $this->branch = $branch;
         $this->category = $category;
@@ -53,8 +56,12 @@ class HomeController extends BaseController {
         $this->coupon = $coupon;
         $this->user = $user;
         $this->discount = $discount;
+        $this->banner = $banner;
         $this->beforeFilter(function()
         {
+            $this->banner_list = $this->banner->GetAllBanner(50);
+
+
             $branch_list = $this->branch->GetAllBranch();
             $result = array();
             foreach ($branch_list as $list):
@@ -104,7 +111,9 @@ class HomeController extends BaseController {
           ->with('result', $this->result)
           ->with('listBrand', $this->listBrand)
           ->with('user_info', $this->user_info)
-          ->with('product_img', $product_img);
+          ->with('product_img', $product_img)
+          ->with('banner_list', $this->banner_list)
+          ;
     }
 
     public function Blog_Detail()
@@ -113,7 +122,8 @@ class HomeController extends BaseController {
             ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Blog_List()
@@ -122,7 +132,8 @@ class HomeController extends BaseController {
             ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Contact()
@@ -131,7 +142,8 @@ class HomeController extends BaseController {
             ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Gallery_List()
@@ -140,7 +152,8 @@ class HomeController extends BaseController {
             ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Gallery_Detail()
@@ -149,7 +162,8 @@ class HomeController extends BaseController {
             ->with('cart',$this->cart)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Product_List($category, $gender)
@@ -174,7 +188,8 @@ class HomeController extends BaseController {
             ->with('listBrand', $this->listBrand)
             ->with('list_product', $list_product)
             ->with('list_prod', $list_prod)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Product_List_Brand($brand)
@@ -199,7 +214,8 @@ class HomeController extends BaseController {
             ->with('listBrand', $this->listBrand)
             ->with('list_product', $list_product)
             ->with('list_prod', $list_prod)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function Product_Detail($product_id)
@@ -227,7 +243,8 @@ class HomeController extends BaseController {
             ->with('listBrand', $this->listBrand)
             ->with('product_info', $product_info)
             ->with('add_cart_quantity', $_ENV['Add_Cart_Quantity'])
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function AddProductToCart(){
@@ -289,7 +306,8 @@ class HomeController extends BaseController {
             ->with('coupon_code', $this->coupon_code)
             ->with('result', $this->result)
             ->with('listBrand', $this->listBrand)
-            ->with('user_info', $this->user_info);
+            ->with('user_info', $this->user_info)
+            ->with('banner_list', $this->banner_list);
     }
 
     public function DeleteItemCart($id)
@@ -414,6 +432,7 @@ class HomeController extends BaseController {
             ->with('list_order' , $list_order)
             ->with('list_user' , $list_user)
             ->with('list_order_discount_tab' , $list_order_discount_tab)
+            ->with('banner_list', $this->banner_list)
             ;
     }
 

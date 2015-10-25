@@ -7,6 +7,8 @@
 
 <link href="/admin/css/datepicker.css" rel="stylesheet">
 
+<link href="/admin/css/editor.css" rel="stylesheet">
+
 <!-- Custom CSS -->
 <link href="/admin/css/sb-admin.css" rel="stylesheet">
 

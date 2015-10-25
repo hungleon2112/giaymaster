@@ -43,7 +43,10 @@ class UserController extends \BaseController {
 
             Session::put('user_info', $user);
 
-            return Redirect::route('home.index');
+            if($input["is_from_approve"] == false)
+                return Redirect::route('home.index');
+            else
+                return "back-to-approve";
         }
         else
         {

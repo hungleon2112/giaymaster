@@ -188,7 +188,7 @@ src="http://maps.googleapis.com/maps/api/js">
 
 
 var locations = [
-      ['7A/43 Thành Thái P.14 Q.10', 10.769031,106.665747, 2],
+      ['7A/43 Thành Thái P.14 Q.10', 10.7714056,106.6622065, 2],
       ['435 Huỳnh Văn Bánh P.14 Q.Phu Nhuận', 10.791687, 106.671209, 1]
     ];
 

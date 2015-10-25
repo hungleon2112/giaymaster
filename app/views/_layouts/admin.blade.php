@@ -246,6 +246,18 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#banner"><i class=""></i> Banner <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="banner" class="collapse">
+                            <li>
+                                <a href="/admin/banner/add">Thêm</a>
+                            </li>
+                            <li>
+                                <a href="/admin/banner/list">Danh sách</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -1,42 +1,20 @@
 
         <ul class="bx-slider">
+        <?php
+        for($i = 0 ; $i < count($banner_list) ; $i ++)
+        {
+        ?>
           <li>
             <div class="banner_/front/images_content">
-              <img src="/front/images/banner.jpg" alt="">
+              <img src=<?php echo $_ENV['Domain_Name'].$banner_list[$i]->url ?> alt="">
             </div>
             <div class="description_banner">
-              <p>
-                Pellentesque habitant <br>
-                morbi tristique <span>senectus et</span>
-              </p>
-              <span>Proin malesuada consectetur erat, vitae lacinia</span>
-              <button class="btn btn-buy">Mua Hàng</button>
+              <?php echo $banner_list[$i]->description ?>
+              {{--<button class="btn btn-buy">Mua Hàng</button>--}}
             </div>
           </li>
-          <li>
-            <a href="#">
-              <img src="/front/images/banner.jpg" alt="">
-            </a>
-            <div class="description_banner">
-              <p>
-                Pellentesque habitant <br>
-                morbi tristique <span>senectus et</span>
-              </p>
-              <span>Proin malesuada consectetur erat, vitae lacinia</span>
-              <button class="btn btn-buy">Mua Hàng</button>
-            </div>
-          </li>
-          <li>
-            <a href="#">
-              <img src="/front/images/banner.jpg" alt="">
-            </a>
-            <div class="description_banner">
-              <p>
-                Pellentesque habitant <br>
-                morbi tristique <span>senectus et</span>
-              </p>
-              <span>Proin malesuada consectetur erat, vitae lacinia</span>
-              <button class="btn btn-buy">Mua Hàng</button>
-            </div>
-          </li>
+        <?php
+        }
+        ?>
+
         </ul>

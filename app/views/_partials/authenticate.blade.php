@@ -11,7 +11,7 @@
           <li class="active"><a data-toggle="tab" href="#home">Đăng nhập</a></li>
           <li><a data-toggle="tab" href="#menu1">Đăng ký</a></li>
         </ul>
-
+        <input type="hidden" id="is-from-approve" value="false" />
         <div class="tab-content">
           <div id="home" class="tab-pane fade in active">
             <h3>Đăng nhập</h3>
@@ -28,7 +28,6 @@
 
                   <button type="button" id="login-btn" class="btn btn-default">Đăng nhập</button>
             {{ Form::close() }}
-            <input type="hidden" id="is-from-approve" value="false" />
           </div>
           <div id="menu1" class="tab-pane fade">
             <h3>Đăng ký</h3>

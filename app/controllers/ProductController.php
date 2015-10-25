@@ -213,17 +213,9 @@ class ProductController extends \BaseController {
         $input = Input::all();
         $listProductID = $input['update_list_product_id'];
         $listProductID = explode(",",$listProductID);
-        $input_final['price_original'] = $input['price_original'];
         $input_final['price_new'] = $input['price_new'];
         foreach($listProductID as $p)
         {
-            if($input_final['price_new'] != '' )
-            {
-                $product = Product::find($p);
-                $product->price_new = $input_final['price_new'];
-                $product->save();
-            }
-
             if($input['optional_checkbox_news'] == true)
             {
                 $optional_product = new Optional_Product();
@@ -242,6 +234,24 @@ class ProductController extends \BaseController {
                 $optional_product->from_date = $input['from_date_sale'];
                 $optional_product->to_date = $input['to_date_sale'];
                 $optional_product->save();
+            }
+        }
+
+        $price_new_list = json_decode($input_final['price_new']);
+
+        if(count($price_new_list) > 0 )
+        {
+            for($i = 0 ; $i < count($price_new_list) ; $i ++)
+            {
+                $product_id = $price_new_list[$i]->product_id;
+                $new_price = str_replace(',','',$price_new_list[$i]->new_price);
+
+                if($new_price != '')
+                {
+                    $product = Product::find($product_id);
+                    $product->price_new = $new_price;
+                    $product->save();
+                }
             }
         }
     }

@@ -48,14 +48,7 @@
       <div class="modal-body">
         <form>
           <input type="hidden" id="update-list-product-id" name="update-list-product-id">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Giá</label>
-            <input type="text" class="form-control" id="price_original" placeholder="Giá">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Giá mới</label>
-            <input type="text" class="form-control" id="price_new" placeholder="Giá mới">
-          </div>
+
           <div class="checkbox">
                 <label>
                     <input type="checkbox" value="1" name="optional_id" id="optional-checkbox-news">Hàng mới
@@ -77,6 +70,9 @@
               <div class="form-group">
               <input disabled class="form-control date-picker-modal" placeholder="Ngày kết thúc" data-date-format="yyyy/mm/dd"  id="to_date_sale" name="to_date_sale" />
               </div>
+           </div>
+           <div id="dynamic-product-price-new">
+
            </div>
         </form>
       </div>
@@ -138,7 +134,7 @@
                                 <a href="/admin/product/edit?id={{$p->id}}">{{$p->code}}</a>
                             </td>
                             <td>
-                                <input type="hidden" value="{{$p->id}}" id="product_id_hidden" name="product_id">
+                                <input type="hidden" product-code="{{$p->code}}" value="{{$p->id}}" id="product_id_hidden" name="product_id">
                                 <a href="/admin/product/edit?id={{$p->id}}">{{$p->name}}</a>
                             </td>
                             <td>{{$p->brand}}</td>

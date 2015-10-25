@@ -42,5 +42,12 @@ function RegisterKeyEvents() {
         $(this).val($(this).val().toString().replace(/,/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     });
 
+    $(document).on('keyup','.currency-only',function(){
+        $(this).val($(this).val().toString().replace(/,/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    });
+
+    $(document).on('keydown','.currency-only',function(){
+        keych(e);
+    });
 }
 

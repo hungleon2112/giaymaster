@@ -3,6 +3,17 @@
  */
 $( document ).ready(function() {
 
+    $("#description_editor").Editor();
+    var description_editor_stxt = $("#description_full").text();
+    if(description_editor_stxt != '')
+        $('#description_editor').Editor("setText", [description_editor_stxt ]);
+
+    $("#banner_description_editor").Editor(
+    );
+    var banner_description_editor_stxt = $("#banner_description_full").text();
+    if(banner_description_editor_stxt != '')
+        $('#banner_description_editor').Editor("setText", [banner_description_editor_stxt ]);
+
     //Show Cat Lev 1
     $(document).on('change', '#branch-dd', function() {
         CleanAllCatLev();
@@ -235,6 +246,96 @@ $( document ).ready(function() {
         });
     });
 
+    //Insert Banner
+    $("#banner-add").click(function() {
+        $("#banner_description_full").text($('#banner_description_editor').Editor("getText"));
+
+        var form = document.forms.namedItem("banner-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/banner/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $("#banner_id").val(response['id']);
+                $('#modify-banner-modal').modal('show');
+                $("#upload-image-panel").css('display','block');
+                $("#banner-add").text('Cập nhật banner');
+                $("#modify-type").text('Cập nhật');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+
+    //Delete Image Banner
+    $(document).on('click', '#delete-image-banner', function() {
+        $('#loading-modal').modal('show');
+        $.ajax({
+            url: '/admin/banner/deleteImage',
+            type: 'GET',
+            data: { banner_id: $("#id").val()} ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+
+            },
+            error: function () {
+                console.log('error');
+                $('#loading-modal').modal('hide');
+            }
+        });
+    });
+
+    //Upload Image Banner
+    $( "#upload-image-banner" ).click(function() {
+        $('#loading-modal').modal('show');
+        var iframe = $('<iframe name="postiframe" id="postiframe" style="display: none"></iframe>');
+
+        $("body").append(iframe);
+
+        var form = $('#upload-form');
+        form.attr("action", "/admin/banner/uploadImage");
+        form.attr("method", "post");
+
+        form.attr("encoding", "multipart/form-data");
+        form.attr("enctype", "multipart/form-data");
+
+        form.attr("target", "postiframe");
+        form.submit();
+
+        $("#postiframe").load(function () {
+            $.ajax({
+                url: '/admin/banner/getAllImage',
+                type: 'GET',
+                data: { banner_id: $("#banner_id").val()} ,
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+
+                    $('#loading-modal').modal('hide');
+
+                    setTimeout(function(){
+                        window.location =  '/admin/banner/list';
+                    }, 500);
+                },
+                error: function () {
+                    console.log('error');
+                    $('#loading-modal').modal('hide');
+                }
+            });
+        });
+        return false;
+    });
+
+
     //Insert Coupon
     $("#coupon-add").click(function() {
         var form = document.forms.namedItem("coupon-form"); // high importance!, here you need change "yourformname" with the name of your form
@@ -264,6 +365,9 @@ $( document ).ready(function() {
 
     //Insert Product
     $("#product-add").click(function() {
+
+        $("#description_full").text($('#description_editor').Editor("getText"));
+
         var form = document.forms.namedItem("product-form"); // high importance!, here you need change "yourformname" with the name of your form
         var formdata = new FormData(form); // high importance!
         $.ajax({
@@ -678,12 +782,14 @@ $( document ).ready(function() {
     //Open Update Product Panel
     $("#edit-button").click(function(){
         var listProductID = "";
+        $("#dynamic-product-price-new").html('');
         $("input[name='btSelectItem']").each(function()
         {
             if($(this).is(':checked'))
             {
                 var theTrTag = $(this).parent().parent();
                 var product_id = $(theTrTag.find("#product_id_hidden"));
+                var product_code = $(product_id).attr("product-code");
                 if(listProductID == '')
                 {
                     //First Element
@@ -693,6 +799,14 @@ $( document ).ready(function() {
                 {
                     listProductID += ',' + product_id.val();
                 }
+
+                //Add Text field for new price
+                var new_price = '<div class="form-group">'+
+                '<label for="exampleInputPassword1">'+product_code+' - Giá mới</label>' +
+                '<input type="text" class="form-control currency-only" product-id='+product_id.val()+' id="price_new"  placeholder="Giá mới">'+
+                '</div>';
+
+                $("#dynamic-product-price-new").append(new_price);
             }
         });
 
@@ -1076,13 +1190,32 @@ $( document ).ready(function() {
 
     //Update List Products
     $("#btn-update").click(function(){
+
+        //Get data from New Price List
+        var new_price_data_list = new Array();
+        $("input[id='price_new']").each(function()
+        {
+            var product_id = ($(this).attr("product-id"));
+            var new_price = ($(this).val());
+
+            var new_price_data = {
+                product_id : product_id,
+                new_price : new_price
+            }
+
+            new_price_data_list.push(new_price_data);
+        });
+
+        console.log(new_price_data_list);
+
         $.ajax({
             url: '/admin/product/updateListProduct',
             type: 'POST',
             data: {
                 update_list_product_id : $("#update-list-product-id").val(),
                 price_original : $("#price_original").val(),
-                price_new : $("#price_new").val(),
+                //price_new : $("#price_new").val(),
+                price_new : JSON.stringify(new_price_data_list),
                 optional_checkbox_news : $("#optional-checkbox-news").prop('checked'),
                 from_date_news : $("#from_date_news").val(),
                 to_date_news : $("#to_date_news").val(),
@@ -1092,7 +1225,7 @@ $( document ).ready(function() {
             },
             success: function (response) {
                 $('#update-panel').modal('hide');
-                location.reload();
+                //location.reload();
             },
             error: function () {
                 console.log('error');

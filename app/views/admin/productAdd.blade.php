@@ -154,7 +154,8 @@
           <!-- Full Description -->
            <div class="form-group">
                 {{ Form::label('description_full', 'Mô tả') }}
-                {{ Form::textarea('description_full','',array('class'=>'form-control','id'=>'description_full','placeholder'=>'Mô tả')) }}
+                <div id="description_editor"></div>
+                {{ Form::textarea('description_full',isset($product)?$product->description_full:'',array('class'=>'form-control','id'=>'description_full','placeholder'=>'Mô tả', 'style'=>'display:none')) }}
            </div>
 
           <!-- Price Original -->

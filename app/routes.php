@@ -126,3 +126,12 @@ Route::post("/admin/discount/postAdd",array('as'=>'admin.discount.add','uses'=>'
 Route::get("/admin/discount/list",array('as'=>'admin.discount.add','uses'=>'DiscountController@ListDiscount'));
 Route::get("/admin/discount/edit",array('as'=>'admin.discount.edit','uses'=>'DiscountController@Edit'));
 Route::post("/admin/discount/deleteListDiscount",array('as'=>'admin.discount.delete','uses'=>'DiscountController@DeleteListDiscount'));
+
+// Banner Route
+Route::get("/admin/banner/add",array('as'=>'admin.banner.add','uses'=>'BannerController@Add'));
+Route::post("/admin/banner/postAdd",array('as'=>'admin.banner.postAdd','uses'=>'BannerController@PostAdd'));
+Route::get("/admin/banner/list",array('as'=>'admin.banner.list','uses'=>'BannerController@ListBanner'));
+Route::get("/admin/banner/edit",array('as'=>'admin.banner.edit','uses'=>'BannerController@Edit'));
+Route::post("/admin/banner/deleteListBanner",array('as'=>'admin.banner.delete','uses'=>'BannerController@DeleteListBanner'));
+Route::post("/admin/banner/uploadImage",array('as'=>'admin.banner.add','uses'=>'BannerController@UploadImage'));
+Route::get("/admin/banner/getAllImage",array('as'=>'admin.banner.add','uses'=>'BannerController@GetAllImage'));
