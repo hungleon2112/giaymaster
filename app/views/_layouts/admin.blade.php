@@ -258,6 +258,15 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#description"><i class=""></i> Mô tả Website <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="description" class="collapse">
+                            <li>
+                                <a href="/admin/description/add/1">Sửa</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

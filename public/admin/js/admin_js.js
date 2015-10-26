@@ -8,11 +8,15 @@ $( document ).ready(function() {
     if(description_editor_stxt != '')
         $('#description_editor').Editor("setText", [description_editor_stxt ]);
 
-    $("#banner_description_editor").Editor(
-    );
+    $("#banner_description_editor").Editor();
     var banner_description_editor_stxt = $("#banner_description_full").text();
     if(banner_description_editor_stxt != '')
         $('#banner_description_editor').Editor("setText", [banner_description_editor_stxt ]);
+
+    $("#website_description_editor").Editor();
+    var website_description_editor_stxt = $("#website_description_full").text();
+    if(website_description_editor_stxt != '')
+        $('#website_description_editor').Editor("setText", [website_description_editor_stxt ]);
 
     //Show Cat Lev 1
     $(document).on('change', '#branch-dd', function() {
@@ -136,6 +140,33 @@ $( document ).ready(function() {
             success: function (response) {
                 $("#id").val(response['id']);
                 $('#modify-role-modal').modal('show');
+                setTimeout(function(){
+                    $("#modify-type-modal").text('Cập nhật');
+                }, 3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+
+    //Insert Description
+    $("#description-add").click(function() {
+
+        $("#website_description_full").text($('#website_description_editor').Editor("getText"));
+
+        var form = document.forms.namedItem("description-form"); // high importance!, here you need change "yourformname" with the name of your form
+        var formdata = new FormData(form); // high importance!
+        $.ajax({
+            async: true,
+            url: '/admin/description/postAdd',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#id").val(response['id']);
+                $('#modify-description-modal').modal('show');
                 setTimeout(function(){
                     $("#modify-type-modal").text('Cập nhật');
                 }, 3000);

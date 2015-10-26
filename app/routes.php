@@ -135,3 +135,7 @@ Route::get("/admin/banner/edit",array('as'=>'admin.banner.edit','uses'=>'BannerC
 Route::post("/admin/banner/deleteListBanner",array('as'=>'admin.banner.delete','uses'=>'BannerController@DeleteListBanner'));
 Route::post("/admin/banner/uploadImage",array('as'=>'admin.banner.add','uses'=>'BannerController@UploadImage'));
 Route::get("/admin/banner/getAllImage",array('as'=>'admin.banner.add','uses'=>'BannerController@GetAllImage'));
+
+// Description Route
+Route::get("/admin/description/add/{id}",array('as'=>'admin.description.add','uses'=>'DescriptionController@Add'));
+Route::post("/admin/description/postAdd",array('as'=>'admin.description.postAdd','uses'=>'DescriptionController@PostAdd'));

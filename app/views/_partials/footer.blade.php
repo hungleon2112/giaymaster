@@ -12,7 +12,11 @@
             </div>
             <div class="welcome-ad">
               <h3>FLIGHT CLUB</h3>
-              <p> For nearly a decade, Flight Club has been the most trusted source for buying and selling the <br>rarest and most coveted sneakers, worldwide. You'll find the deepest and most versatile <br>selection of kicks here -- from Air Jordan to Nike to adidas to New Balance -- available to ship <br> worldwide, and ready to buy at both Flight Club shops between New York and Los Angeles.</p>
+              <p>
+              <?php
+                echo $website_description->description
+              ?>
+              </p>
             </div>
             <div class="newsletter">
               <div class="row">
